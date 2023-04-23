@@ -9,7 +9,7 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  background-color: #B9B6B7;
+  background-color: #5F5C5D;
   border-radius: 10px; 
 `;
 
@@ -32,12 +32,12 @@ const Button = styled.button`
   border-radius: 5px;
   width: 120px;
   font-size: 1.2rem;
-  color: #fff;
-  background-color: #0077b6;
+  color: black;
+  background-color: #F0F230;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   &:hover {
-    background-color: #023e8a;
+    background-color: #2AF557;
   }
 `;
 

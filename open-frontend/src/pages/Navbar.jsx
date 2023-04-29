@@ -1,9 +1,9 @@
 import React from 'react';
-import './index.css';
+
 import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from '../components/Login';
+import Register from '../components/Register';
 import {motion} from 'framer-motion';
 
 const AppWrapper = styled.div`

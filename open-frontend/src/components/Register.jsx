@@ -119,7 +119,7 @@ const Register = () => {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="Check the data once again, Updating this information is not possible in future"
                 />
               </Grid>
             </Grid>

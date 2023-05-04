@@ -6,6 +6,8 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import {motion} from 'framer-motion';
 
+
+
 const AppWrapper = styled.div`
   background-color: white;
   min-height: 100vh;

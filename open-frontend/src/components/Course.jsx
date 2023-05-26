@@ -82,22 +82,31 @@ const Course = () => {
            <h1>Register Number</h1>
            <input type="text" onChange={(e) => setRegNumber(e.target.value)}/>
 
-            {Object.entries(courseList).map(([key, value]) => (
-            <div key={key}>
-                <span>{key}: </span>
-                <select
-                value={value}
-                onChange={(e) => handleChange(key, parseInt(e.target.value))}
-                >
-                <option value={0}>{value ? value : "Select A Number"}</option>
-                {availableNumbers.map((number) => (
-                    <option key={number} value={number}>
-                    {number}
-                    </option>
-                ))}
-                </select>
-            </div>
-            ))}
+           <h2>List of Courses</h2>
+          {Object.entries(courseList).map(([key, value]) => {
+                const courseDepartment = key.slice(-3);
+
+                if (courseDepartment === dept) {
+                return null; // Skip mapping the course
+                }
+
+                return (
+                <div key={key}>
+                    <span>{key}: </span>
+                    <select
+                    value={value}
+                    onChange={(e) => handleChange(key, parseInt(e.target.value))}
+                    >
+                    <option value={0}>{value ? value : "Select A Number"}</option>
+                    {availableNumbers.map((number) => (
+                        <option key={number} value={number}>
+                        {number}
+                        </option>
+                    ))}
+                    </select>
+                </div>
+                );
+            })}
         </form>
       </div>
     </div>

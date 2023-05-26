@@ -37,8 +37,10 @@ const Course = () => {
     });
     const [name, setName] = useState("");
     const [regNumber, setRegNumber] = useState("");
+    const [dept, setDept] = useState("");
     const [mark, setMark] = useState(0);
 
+    const departments = ["BOT", "CHE", "CSC", "ECO", "COM", "HIS", "MAL", "MAT", "PHY", "PED", "POL", "SKT", "SAT", "ZLG"]
   const handleChange = (key, value) => {
     const isNumberAlreadyAssigned = Object.values(courseList).includes(value);
 
@@ -54,12 +56,32 @@ const Course = () => {
     }
   };
 
+  const assignedNumbers = Object.values(courseList).filter((value) => value !== 0);
+  const availableNumbers = [...Array(30)].map((_, index) => index + 1).filter((number) => !assignedNumbers.includes(number));
+
 
   return (
     <div>
       <h1>Course</h1>
       <div>
-        <form action="">
+        <form action="POST">
+
+           <h1>Name</h1>
+           <input type="text" onChange={ (event) => setName(event.target.value)}/> 
+
+           <h1>Department</h1>
+           <select value={dept} onChange={(e)=> setDept(e.target.value)}>
+             <option value="">Select Department</option>
+             {departments.map((department) => (
+                <option key={department} value={department}>
+                    {department}
+                </option>
+             ))}
+           </select>
+        
+           <h1>Register Number</h1>
+           <input type="text" onChange={(e) => setRegNumber(e.target.value)}/>
+
             {Object.entries(courseList).map(([key, value]) => (
             <div key={key}>
                 <span>{key}: </span>
@@ -67,10 +89,10 @@ const Course = () => {
                 value={value}
                 onChange={(e) => handleChange(key, parseInt(e.target.value))}
                 >
-                <option value={0}>Select a number</option>
-                {[...Array(30)].map((_, index) => (
-                    <option key={index} value={index + 1}>
-                    {index + 1}
+                <option value={0}>{value ? value : "Select A Number"}</option>
+                {availableNumbers.map((number) => (
+                    <option key={number} value={number}>
+                    {number}
                     </option>
                 ))}
                 </select>

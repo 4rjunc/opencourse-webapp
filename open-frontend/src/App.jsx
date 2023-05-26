@@ -1,12 +1,12 @@
 
 import './index.css'
-import Navbar from './pages/Navbar'
-
+//import Navbar from './pages/Navbar'
+import Course from './components/Course'
 function App() {
 
   return (
     <>
-      <Navbar/>
+      <Course/>
     </>
   )
 }

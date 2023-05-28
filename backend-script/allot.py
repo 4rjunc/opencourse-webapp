@@ -43,7 +43,7 @@ for i, stud in df.iterrows():
                     update_seats(dept)
                     allotted = True
                     allotment_row = []
-                    allotment_row.append(stud["Reg No."])
+                    allotment_row.append(stud["Reg No"])
                     allotment_row.append(stud["Name"])
                     allotment_row.append(stud["Marks"])
                     allotment_row.append(course)

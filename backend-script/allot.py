@@ -6,7 +6,7 @@ def is_available(dept):
 def update_seats(dept):
     currently_allotted_seats[dept] = currently_allotted_seats[dept] + 1
 
-df = pd.read_excel("OC.xlsx")
+df = pd.read_excel("OC.csv")
 df.sort_values(by=['Marks'], ascending=False,inplace=True)
 seats = {"BOT":30,"CHE":34,"COM":66,"CSC":20,"ECO":58,
          "HIS":55,"MAL":39,"MAT":33,"PED":30,"PHY":42,

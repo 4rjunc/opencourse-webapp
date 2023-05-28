@@ -4,8 +4,8 @@ import os
 from django.http import HttpResponse
 import csv
 import pandas as pd
-import gzip
 
+#FIX Proccess and Download.csv
 def process_file(file_path):
     df = pd.read_csv(file_path)
     df.sort_values(by=['Marks'], ascending=False, inplace=True)
@@ -20,20 +20,20 @@ def process_file(file_path):
         "POL": 0, "SKT": 0, "STA": 0, "ZLG": 0
     }
     courses = {
-        "5D01BOT": "BOT", "5D03BOT": "BOT",
-        "5D03CHE": "CHE", "5D04CHE": "CHE",
-        "5D01COM": "COM", "5D03COM": "COM",
-        "5D02CSC": "CSC", "5D05CSC": "CSC",
-        "5D01ECO": "ECO", "5D04ECO": "ECO",
-        "5D01HIS": "HIS", "5D02HIS": "HIS", "5D03HIS": "HIS",
-        "5D03MAL": "MAL", "5D04MAL": "MAL",
-        "5D02MAT": "MAT", "5D04MAT": "MAT",
-        "5D05PED": "PED",
-        "5D03PHY": "PHY", "5D05PHY": "PHY",
-        "5D01POL": "POL", "5D05POL": "POL",
-        "5D02SKT": "SKT", "5D05SKT": "SKT",
-        "5D02STA": "STA", "5D04STA": "STA",
-        "5D02ZLG": "ZLG", "5D03ZLG": "ZLG"
+        "_5D01BOT": "BOT", "_5D03BOT": "BOT",
+        "_5D03CHE": "CHE", "_5D04CHE": "CHE",
+        "_5D01COM": "COM", "_5D03COM": "COM",
+        "_5D02CSC": "CSC", "_5D05CSC": "CSC",
+        "_5D01ECO": "ECO", "_5D04ECO": "ECO",
+        "_5D01HIS": "HIS", "_5D02HIS": "HIS", "_5D03HIS": "HIS",
+        "_5D03MAL": "MAL", "_5D04MAL": "MAL",
+        "_5D02MAT": "MAT", "_5D04MAT": "MAT",
+        "_5D05PED": "PED",
+        "_5D03PHY": "PHY", "_5D05PHY": "PHY",
+        "_5D01POL": "POL", "_5D05POL": "POL",
+        "_5D02SKT": "SKT", "_5D05SKT": "SKT",
+        "_5D02STA": "STA", "_5D04STA": "STA",
+        "_5D02ZLG": "ZLG", "_5D03ZLG": "ZLG"
     }
 
     def is_available(dept):
@@ -83,7 +83,7 @@ def final_data(modeladmin, request, queryset):
     
     with open(file_path, 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
-        fields = [field.name for field in OC._meta.fields]  # Replace OC with your model name
+        fields = [field.name for field in OC._meta.fields]  # Replace OC with your model nait me
         
         writer.writerow(fields)
         for obj in queryset:

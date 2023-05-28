@@ -38,7 +38,8 @@ const Course = () => {
     const [name, setName] = useState("");
     const [regNumber, setRegNumber] = useState("");
     const [dept, setDept] = useState("");
-    const [mark, setMark] = useState(0);
+    const [marks, setMarks] = useState(0);
+    const [boardType, setBoardType] = useState("CBSE");
 
     const departments = ["BOT", "CHE", "CSC", "ECO", "COM", "HIS", "MAL", "MAT", "PHY", "PED", "POL", "SKT", "SAT", "ZLG"]
   const handleChange = (key, value) => {
@@ -59,6 +60,14 @@ const Course = () => {
   const assignedNumbers = Object.values(courseList).filter((value) => value !== 0);
   const availableNumbers = [...Array(30)].map((_, index) => index + 1).filter((number) => !assignedNumbers.includes(number));
 
+  const convertMarks = () => {
+    if (boardType === "CBSE") {
+      // Convert marks to out of 1200
+      setMarks(marks * (1200/100))
+      //return marks * (1200 / 100);
+    }
+    //return marks;
+  };
 
   return (
     <div>
@@ -68,6 +77,21 @@ const Course = () => {
 
            <h1>Name</h1>
            <input type="text" onChange={ (event) => setName(event.target.value)}/> 
+
+           <h2>Board Type</h2>
+          <select value={boardType} onChange={(e) => setBoardType(e.target.value)}>
+            <option value="CBSE">CBSE</option>
+            <option value="State">State</option>
+          </select>
+
+          <h2>Marks</h2>
+          <input
+            type="number"
+            placeholder="Enter Marks"
+            value={marks}
+            onChange={(e) => setMarks(parseInt(e.target.value))
+             }
+          />
 
            <h1>Department</h1>
            <select value={dept} onChange={(e)=> setDept(e.target.value)}>
@@ -107,6 +131,7 @@ const Course = () => {
                 </div>
                 );
             })}
+            <button type="submit">Submit</button>
         </form>
       </div>
     </div>

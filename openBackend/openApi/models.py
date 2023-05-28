@@ -1,0 +1,38 @@
+from django.db import models
+
+class OC(models.Model):
+    Name = models.CharField(max_length=255, db_column='Name')
+    Class = models.CharField(max_length=50, db_column='Class')
+    Reg_No = models.CharField(max_length=50, db_column='Reg_No')
+    Marks = models.IntegerField(db_column='Marks')
+    _5D01BOT = models.IntegerField(db_column='5D01BOT')
+    _5D03BOT = models.IntegerField(db_column='5D03BOT')
+    _5D03CHE = models.IntegerField(db_column='5D03CHE')
+    _5D04CHE = models.IntegerField(db_column='5D04CHE')
+    _5D01COM = models.IntegerField(db_column='5D01COM')
+    _5D03COM = models.IntegerField(db_column='5D03COM')
+    _5D02CSC = models.IntegerField(db_column='5D02CSC')
+    _5D05CSC = models.IntegerField(db_column='5D05CSC')
+    _5D01ECO = models.IntegerField(db_column='5D01ECO')
+    _5D04ECO = models.IntegerField(db_column='5D04ECO')
+    _5D01HIS = models.IntegerField(db_column='5D01HIS')
+    _5D02HIS = models.IntegerField(db_column='5D02HIS')
+    _5D03HIS = models.IntegerField(db_column='5D03HIS')
+    _5D03MAL = models.IntegerField(db_column='5D03MAL')
+    _5D04MAL = models.IntegerField(db_column='5D04MAL')
+    _5D02MAT = models.IntegerField(db_column='5D02MAT')
+    _5D04MAT = models.IntegerField(db_column='5D04MAT')
+    _5D05PED = models.IntegerField(db_column='5D05PED')
+    _5D03PHY = models.IntegerField(db_column='5D03PHY')
+    _5D05PHY = models.IntegerField(db_column='5D05PHY')
+    _5D01POL = models.IntegerField(db_column='5D01POL')
+    _5D05POL = models.IntegerField(db_column='5D05POL')
+    _5D02SKT = models.IntegerField(db_column='5D02SKT')
+    _5D05SKT = models.IntegerField(db_column='5D05SKT')
+    _5D02STA = models.IntegerField(db_column='5D02STA')
+    _5D04STA = models.IntegerField(db_column='5D04STA')
+    _5D02ZLG = models.IntegerField(db_column='5D02ZLG')
+    _5D03ZLG = models.IntegerField(db_column='5D03ZLG')
+
+    def __str__(self):
+        return self.Name

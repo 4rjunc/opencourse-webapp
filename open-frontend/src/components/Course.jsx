@@ -42,38 +42,67 @@ const Course = () => {
     const [boardType, setBoardType] = useState("CBSE");
 
     const departments = ["BOT", "CHE", "CSC", "ECO", "COM", "HIS", "MAL", "MAT", "PHY", "PED", "POL", "SKT", "SAT", "ZLG"]
-  const handleChange = (key, value) => {
+    const handleChange = (key, value) => {
     const isNumberAlreadyAssigned = Object.values(courseList).includes(value);
 
     if (!isNumberAlreadyAssigned) {
       setCourseList((prevCourseList) => ({
         ...prevCourseList,
         [key]: value,
-      }));
-    } else {
-      // Handle error or display a message indicating the number is already assigned
-      console.log("Number already assigned");
-      alert("Number is already assigned")
-    }
-  };
-
+      }));} 
+    else {
+        // Handle error or display a message indicating the number is already assigned
+        console.log("Number already assigned");
+        alert("Number is already assigned")
+      }
+    };
+  
+  //Mapping and reducing the numbers in priority selector and course
   const assignedNumbers = Object.values(courseList).filter((value) => value !== 0);
   const availableNumbers = [...Array(30)].map((_, index) => index + 1).filter((number) => !assignedNumbers.includes(number));
 
+  //Checks of the marks under the range
+  const handleMarksChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (boardType === 'CBSE' && (value < 0 || value > 500)) {
+      alert("Marks should be between 0 and 500");
+    } else if (boardType === 'State' && (value < 0 || value > 1200)) {
+      alert("Marks should be between 0 and 1200");
+    } else {
+      setMarks(value);
+    }
+  };
+  
+  //Converts the CBSE mark into 1200
   const convertMarks = () => {
     if (boardType === "CBSE") {
       // Convert marks to out of 1200
-      setMarks(marks * (1200/100))
-      //return marks * (1200 / 100);
+      return Math.floor((marks/500) * 1200)
+      //return marks
     }
-    //return marks;
+    return marks;
   };
+
+  //After Submittion
+  const handleSubmit = (e) => {
+    console.log("Submit");
+    e.preventDefault();
+    const convertedMark = convertMarks();
+    const data = {
+      name,
+      regNumber,
+      dept,
+      marks:convertedMark,
+      courseList,
+    };
+    console.log(data)
+  }
 
   return (
     <div>
       <h1>Course</h1>
       <div>
-        <form action="POST">
+        <form  onSubmit={handleSubmit}>
 
            <h1>Name</h1>
            <input type="text" onChange={ (event) => setName(event.target.value)}/> 
@@ -89,8 +118,7 @@ const Course = () => {
             type="number"
             placeholder="Enter Marks"
             value={marks}
-            onChange={(e) => setMarks(parseInt(e.target.value))
-             }
+            onChange={handleMarksChange}
           />
 
            <h1>Department</h1>

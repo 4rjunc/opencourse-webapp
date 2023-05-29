@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import upload_file
+from .views import save_object
 
 urlpatterns = [
-    path('upload/', upload_file, name='upload'),
+    path('api/submit/', save_object, name='save_object'),
 ]

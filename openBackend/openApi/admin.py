@@ -70,6 +70,8 @@ def process_file(file_path):
     data.to_excel(new_file_path, index=False)
     return new_file_path
 
+
+#
 def process_and_download_csv(self, request, queryset):
         file_path = "./openApi/csv_file/Open_Course.csv"  # Replace 'path/to/project/folder' with the actual path to your project folder
         new_file_path = process_file(file_path)
@@ -78,13 +80,15 @@ def process_and_download_csv(self, request, queryset):
             response['Content-Disposition'] = 'attachment; filename=open_allotment_2022-23.xlsx'
             return response
 
+
+# This action will download the oc table in .csv file
 def final_data(modeladmin, request, queryset):
     filename = 'Open_Course.csv'
     file_path = os.path.join('./openApi/csv_file/', filename)  # Replace 'path/to/project/folder' with the actual path to your project folder
     
     with open(file_path, 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
-        fields = [field.name for field in OC._meta.fields]  # Replace OC with your model nait me
+        fields = [field.name for field in OC._meta.fields]  
         
         writer.writerow(fields)
         for obj in queryset:
@@ -94,7 +98,7 @@ def final_data(modeladmin, request, queryset):
     response['Content-Disposition'] = 'attachment; filename="Open_Course.csv"'
 
     writer = csv.writer(response)
-    fields = [field.name for field in OC._meta.fields]  # Replace YourModel with your model name
+    fields = [field.name for field in OC._meta.fields]  
 
     writer.writerow(fields)
     for obj in queryset:

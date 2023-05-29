@@ -5,7 +5,7 @@ from django.http import HttpResponse
 import csv
 import pandas as pd
 
-#FIX Proccess and Download.csv
+#FIXed the Proccess and Download.csv, not finished the final check with some more data
 def process_file(file_path):
     df = pd.read_csv(file_path)
     df.sort_values(by=['Marks'], ascending=False, inplace=True)
@@ -48,7 +48,8 @@ def process_file(file_path):
         allotted = False
         for choice in range(1, 25):
             l = stud[stud == choice].index.tolist()
-            for course, dept in courses.items():
+            if l:
+             for course, dept in courses.items():
                     if l[0] == course:
                         if is_available(dept):
                             update_seats(dept)

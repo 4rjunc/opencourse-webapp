@@ -3,7 +3,7 @@ http://127.0.0.1:8000/openApi/api/submit/
 
 {
     "name": "Arjun",
-    "regNumber": "NA20PICS11",
+    "regNumber": "NA20PICS23",
     "dept": "CSC",
     "marks": 1005,
     "courseList": {

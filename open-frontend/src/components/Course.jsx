@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import  axios  from 'axios'
 
 const Course = () => {
     /*const list = {
@@ -96,6 +96,37 @@ const Course = () => {
       courseList,
     };
     console.log(data)
+
+    //POST-ing data to server
+    axios.post("http://127.0.0.1:8000/openApi/api/submit/",data)
+      .then((response) => {
+        console.log(response.data)
+        alert(response.data)
+        setName("")
+        setRegNumber("")
+        setDept("")
+        setMarks(0)
+        setCourseList({
+          "5D01BOT":0,"5D03BOT":0,
+          "5D03CHE":0,"5D04CHE":0,
+          "5D01COM":0,"5D03COM":0,
+          "5D02CSC":0,"5D05CSC":0,
+          "5D01ECO":0,"5D04ECO":0,
+          "5D01HIS":0,"5D02HIS":0,"5D03HIS":0,
+          "5D03MAL":0,"5D04MAL":0,
+          "5D02MAT":0,"5D04MAT":0,
+          "5D05PED":0,
+          "5D03PHY":0,"5D05PHY":0,
+          "5D01POL":0,"5D05POL":0,
+          "5D02SKT":0,"5D05SKT":0,
+          "5D02STA":0,"5D04STA":0,
+          "5D02ZLG":0,"5D03ZLG":0
+        })
+      })
+      .catch((error) => {
+        console.log("Error", error)
+      })
+
   }
 
   return (

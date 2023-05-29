@@ -1,19 +1,19 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import OC
-
+import json
 #fix this
 @csrf_exempt
 def save_object(request):
-    payload = request.POST  # Assuming the payload is sent using POST request
-    print(payload)
+    payload = json.loads(request.body.decode('utf-8'))
+    #print(payload)
     name = payload.get("name")
     reg_number = payload.get("regNumber")
     dept = payload.get("dept")
     marks = payload.get("marks")
     course_list = payload.get("courseList")
-    print(marks)
-    print(course_list)
+    #print(marks)
+    #print(course_list)
 
     oc_object = OC(
         Name=name,

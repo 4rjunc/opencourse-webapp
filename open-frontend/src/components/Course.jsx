@@ -41,7 +41,26 @@ const Course = () => {
     const [marks, setMarks] = useState(0);
     const [boardType, setBoardType] = useState("CBSE");
 
-    const departments = ["BOT", "CHE", "CSC", "ECO", "COM", "HIS", "MAL", "MAT", "PHY", "PED", "POL", "SKT", "SAT", "ZLG"]
+    //const departments = ["BOT", "CHE", "CSC", "ECO", "COM", "HIS", "MAL", "MAT", "PHY", "PED", "POL", "SKT", "SAT", "ZLG"]
+    
+    const departments = {
+      BOT: "Botany",
+      CHE: "Chemistry",
+      CSC: "Computer Science",
+      ECO: "Economics",
+      COM: "Commerce",
+      HIS: "History",
+      MAL: "Malayalam",
+      MAT: "Mathematics",
+      PHY: "Physics",
+      PED: "Physical Education",
+      POL: "Political Science",
+      SKT: "Sanskrit",
+      SAT: "Statistics",
+      ZLG: "Zoology",
+    };
+
+    
     const handleChange = (key, value) => {
     const isNumberAlreadyAssigned = Object.values(courseList).includes(value);
 
@@ -153,14 +172,15 @@ const Course = () => {
           />
 
            <h1>Department</h1>
-           <select value={dept} onChange={(e)=> setDept(e.target.value)}>
-             <option value="">Select Department</option>
-             {departments.map((department) => (
-                <option key={department} value={department}>
-                    {department}
-                </option>
-             ))}
-           </select>
+           <select value={dept} onChange={(e) => setDept(e.target.value)}>
+            <option value="">Select Department</option>
+            {Object.entries(departments).map(([code, name]) => (
+              <option key={code} value={code}>
+                {name}
+              </option>
+            ))}
+          </select>
+
         
            <h1>Register Number</h1>
            <input type="text" onChange={(e) => setRegNumber(e.target.value)}/>

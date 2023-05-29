@@ -2,7 +2,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import OC
 import json
-#fix this
+
+#Takes the payload from http://127.0.0.1:8000/openApi/api/submit/ and saves it in 
 @csrf_exempt
 def save_object(request):
     payload = json.loads(request.body.decode('utf-8'))
@@ -14,7 +15,11 @@ def save_object(request):
     course_list = payload.get("courseList")
     #print(marks)
     #print(course_list)
-
+    
+    #Checks for duplicate entries
+    if OC.objects.filter(Reg_No=reg_number).exists():
+        return JsonResponse({"message": "Object with the same regNumber already exists."}, status=400)
+    
     oc_object = OC(
         Name=name,
         Class=dept,

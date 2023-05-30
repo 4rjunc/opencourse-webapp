@@ -53,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  
+    'http://localhost:5173', 'https://0a86-2401-4900-6157-f13a-d9d9-c1bf-5ead-22d8.ngrok-free.app'
 ]
 
 ROOT_URLCONF = 'openBackend.urls'

@@ -104,6 +104,7 @@ const Course = () => {
 
   //After Submittion
   const handleSubmit = (e) => {
+
     console.log("Submit");
     e.preventDefault();
     const convertedMark = convertMarks();
@@ -150,7 +151,7 @@ const Course = () => {
 
   return (
     <div>
-      <h1>Course</h1>
+      <h1>Open-Course</h1>
       <div>
         <form  onSubmit={handleSubmit}>
 

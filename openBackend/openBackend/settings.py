@@ -52,9 +52,13 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+CROS_ORIGIN_ALLOW_ALL = True
+CROS_ALLOW_CREDENTIALS = True
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173', 'https://0a86-2401-4900-6157-f13a-d9d9-c1bf-5ead-22d8.ngrok-free.app'
 ]
+
 
 ROOT_URLCONF = 'openBackend.urls'
 
@@ -112,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

@@ -41,6 +41,10 @@ const Course = () => {
     const [marks, setMarks] = useState(0);
     const [boardType, setBoardType] = useState("CBSE");
 
+    //Field Checks
+    const [isFieldsFilled, setIsFieldsFilled] = useState(true);
+    const [isRegNumberValid, setIsRegNumberValid] = useState(true);
+
     //const departments = ["BOT", "CHE", "CSC", "ECO", "COM", "HIS", "MAL", "MAT", "PHY", "PED", "POL", "SKT", "SAT", "ZLG"]
     
     const departments = {
@@ -107,6 +111,21 @@ const Course = () => {
 
     console.log("Submit");
     e.preventDefault();
+
+    if (!name || !regNumber || !dept || marks === 0) {
+      setIsFieldsFilled(false);
+      return;
+    }
+
+    //const regNumberRegex = /^[A-Z0-9]{8}$/;
+    //if (!regNumberRegex.test(regNumber)) {
+      //setIsRegNumberValid(false);
+      //return;
+    //}
+
+    //setIsRegNumberValid(true);
+    setIsFieldsFilled(true);
+
     const convertedMark = convertMarks();
     const data = {
       name,
@@ -121,7 +140,7 @@ const Course = () => {
     axios.post("http://127.0.0.1:8000/openApi/api/submit/",data)
       .then((response) => {
         console.log(response.data)
-        alert(response.data)
+        alert(response.data["message"])
         setName("")
         setRegNumber("")
         setDept("")
@@ -145,6 +164,7 @@ const Course = () => {
       })
       .catch((error) => {
         console.log("Error", error)
+        alert(error.response.data["message"])
       })
 
   }
@@ -184,7 +204,13 @@ const Course = () => {
 
         
            <h1>Register Number</h1>
-           <input type="text" onChange={(e) => setRegNumber(e.target.value)}/>
+           <input type="text" value={regNumber} onChange={(e) => setRegNumber(e.target.value)}/>
+           {!isRegNumberValid && (
+            <p style={{ color:"red" }}>
+              Please enter a valid register number (8 characters, only uppercase
+              letters and numbers allowed).
+            </p>
+          )}
 
            <h2>List of Courses</h2>
           {Object.entries(courseList).map(([key, value]) => {
@@ -211,6 +237,7 @@ const Course = () => {
                 </div>
                 );
             })}
+            {!isFieldsFilled && <p style={{color:"red"}}>Please fill in all the fields.</p>}
             <button type="submit">Submit</button>
         </form>
       </div>

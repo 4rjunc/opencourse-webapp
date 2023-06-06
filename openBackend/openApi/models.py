@@ -91,7 +91,7 @@ class CourseType(models.Model):
         db_table = 'course_type'
 
     def __str__(self):
-        return self.course_type_id
+        return self.course_type_desc
 
 
 class Department(models.Model):
@@ -102,6 +102,9 @@ class Department(models.Model):
     class Meta:
         managed = False
         db_table = 'department'
+
+    def __str__(self):
+        return self.dept_name
     
     
 

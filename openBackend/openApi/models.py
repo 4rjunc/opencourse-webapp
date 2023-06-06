@@ -77,6 +77,10 @@ class Course(models.Model):
         managed = False
         db_table = 'course'
 
+    # added today show example
+    def __str__(self):
+        return self.course_title
+
 
 class CourseType(models.Model):
     course_type_id = models.IntegerField(primary_key=True)
@@ -85,6 +89,9 @@ class CourseType(models.Model):
     class Meta:
         managed = False
         db_table = 'course_type'
+
+    def __str__(self):
+        return self.course_type_id
 
 
 class Department(models.Model):
@@ -95,6 +102,8 @@ class Department(models.Model):
     class Meta:
         managed = False
         db_table = 'department'
+    
+    
 
 
 class Designation(models.Model):
@@ -480,6 +489,9 @@ class StudMaster(models.Model):
     class Meta:
         managed = False
         db_table = 'stud_master'
+    
+    def __str__(self):
+        return self.name
 
 
 class Takes(models.Model):
@@ -576,3 +588,5 @@ class WorkingDays(models.Model):
     class Meta:
         managed = False
         db_table = 'working_days'
+
+

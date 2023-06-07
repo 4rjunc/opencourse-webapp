@@ -369,6 +369,9 @@ class Programme(models.Model):
         managed = False
         db_table = 'programme'
 
+    def __str__(self):
+        return self.pgm_name
+
 
 class Quota(models.Model):
     quota_id = models.IntegerField(primary_key=True)
@@ -448,7 +451,9 @@ class Stream(models.Model):
         managed = False
         db_table = 'stream'
 
-
+    def __str__(self):
+        return self.stream_name
+    
 class StudMaster(models.Model):
     stud_id = models.AutoField(primary_key=True)
     admn_no = models.IntegerField(unique=True, blank=True, null=True)

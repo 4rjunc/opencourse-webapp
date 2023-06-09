@@ -26,7 +26,7 @@ const Login = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      regno : data.get('regno'),
       password: data.get('password'),
     });
   };
@@ -47,17 +47,17 @@ const Login = () => {
             <SchoolIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+           Open Course Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="regno"
+              label="Register Number"
+              name="regno"
+              
               autoFocus
             />
             <TextField
@@ -70,19 +70,19 @@ const Login = () => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            />*/}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Login In
             </Button>
-            <Grid container>
+           {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
@@ -93,7 +93,7 @@ const Login = () => {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid>*/}
           </Box>
         </Box>
       </Container>

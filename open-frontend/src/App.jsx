@@ -3,11 +3,18 @@ import './index.css'
 //import Navbar from './pages/Navbar'
 import Course from './components/Course'
 import CourseNew from './components/CourseNew'
+import Login from './components/Login'
+import { Routes, Route, BrowserRouter} from 'react-router-dom'
 function App() {
 
   return (
     <>
-      <CourseNew/>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/course' element={<Course/>}/>
+        <Route path='/' element={<Login/>}/>
+      </Routes> 
+    </BrowserRouter>
     </>
   )
 }

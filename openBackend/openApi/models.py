@@ -18,6 +18,9 @@ class Absentee(models.Model):
         managed = False
         db_table = 'absentee'
         unique_together = (('hour', 'stud'),)
+    
+    def __str__(self):
+        return self.hour
 
 
 class Caste(models.Model):

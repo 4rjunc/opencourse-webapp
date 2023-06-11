@@ -12,6 +12,8 @@ import SchoolIcon from '@mui/icons-material/School';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -21,15 +23,36 @@ const theme = createTheme({
   }
 });
 
+
+
 const Login = () => {
-  const handleSubmit = (event) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      regno : data.get('regno'),
-      password: data.get('password'),
-    });
+    const data = {
+      'username' : username,
+      'password' : password
+    }
+    console.log(data)
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/openApi/api/login/', data);
+      
+      // Assuming the API response contains the token
+      const token = response.data.session_token;
+      
+      // Store the token in local storage or session storage
+      localStorage.setItem('token', token);
+      
+      // Redirect to the desired page
+      window.location.href = '/course';
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Handle login failure, display error message, etc.
+    }
   };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -57,7 +80,7 @@ const Login = () => {
               id="regno"
               label="Register Number"
               name="regno"
-              
+              onChange={(e) => setUsername(e.target.value)}
               autoFocus
             />
             <TextField
@@ -69,6 +92,7 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -79,6 +103,7 @@ const Login = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Login In
             </Button>

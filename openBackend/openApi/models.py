@@ -502,7 +502,7 @@ class StudMaster(models.Model):
         db_table = 'stud_master'
     
     def __str__(self):
-        return self.name
+        return f" Name : {self.name}, DOB: {self.dob}"
 
 
 class Takes(models.Model):

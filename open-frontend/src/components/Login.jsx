@@ -24,6 +24,7 @@ const theme = createTheme({
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -40,7 +41,7 @@ const Login = () => {
       window.location.href = '/course';
     } catch (error) {
       console.error('Login failed:', error);
-      alert(error["data"])
+      alert(error.response.data["message"])
     }
   };
 
@@ -82,6 +83,7 @@ const Login = () => {
               label="Password"
               type="password"
               id="password"
+              placeholder='YYYY-MM-DD'
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />

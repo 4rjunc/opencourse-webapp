@@ -15,20 +15,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import axios from 'axios';
 
-
-
 const theme = createTheme({
   typography:{
     fontFamily: 'Helvetica Neue'
   }
 });
 
-
-
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -36,20 +31,16 @@ const Login = () => {
       'password' : password
     }
     console.log(data)
+    //Login is not complete about fix 1) session_token handling 2) unauthorizes asses to /course
     try {
       const response = await axios.post('http://127.0.0.1:8000/openApi/api/login/', data);
-      
-      // Assuming the API response contains the token
-      const token = response.data.session_token;
-      
-      // Store the token in local storage or session storage
+      const token = response.data["session_token"];
+      console.log(token)
       localStorage.setItem('token', token);
-      
-      // Redirect to the desired page
       window.location.href = '/course';
     } catch (error) {
       console.error('Login failed:', error);
-      // Handle login failure, display error message, etc.
+      alert(error["data"])
     }
   };
 

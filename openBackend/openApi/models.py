@@ -107,7 +107,7 @@ class Department(models.Model):
         db_table = 'department'
 
     def __str__(self):
-        return self.dept_name
+        return self.dept_id
     
     
 

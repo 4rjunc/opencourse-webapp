@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
+//import FormControlLabel from '@mui/material/FormControlLabel';
 //import Checkbox from '@mui/material/Checkbox';
 //import Link from '@mui/material/Link';
 //import Grid from '@mui/material/Grid';
@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate} from 'react-router-dom';
 
 const theme = createTheme({
   typography:{
@@ -24,7 +25,13 @@ const theme = createTheme({
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const navigate = useNavigate()
+
+  const handleVote = () => {
+    const email = encodeURIComponent(profileData["email"]); // URL-encode the email
+    const url = `/vote/?email=${email}`;
+    navigate(url);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -38,7 +45,10 @@ const Login = () => {
       const token = response.data["session_token"];
       console.log(token)
       localStorage.setItem('token', token);
-      window.location.href = '/course';
+      const regno = encodeURIComponent(username); // URL-encode the email
+      const url = `/course/?regno=${regno}`;
+      navigate(url);
+      //window.location.href = '/course';
     } catch (error) {
       console.error('Login failed:', error);
       alert(error.response.data["message"])

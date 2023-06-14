@@ -21,17 +21,8 @@ class Command(BaseCommand):
                 try:
                     # Create a new user account
                     user = User.objects.create_user(username=username, password=str(password))
-
-                    # Customize user creation logic if needed
-                    # user.first_name = user_data.first_name
-                    # user.last_name = user_data.last_name
-                    # ...
-
-                    # Save the user account
                     user.save()
-                
                     self.stdout.write(f'Successfully created account for {username}')
-                
                 except IntegrityError:
                     self.stdout.write(f'Skipped duplicate entry for {username}')
             else:

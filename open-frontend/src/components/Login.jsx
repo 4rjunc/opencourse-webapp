@@ -36,7 +36,7 @@ const Login = () => {
     event.preventDefault();
     const data = {
       'username' : username,
-      'password' : password
+      'password' : password,
     }
     console.log(data)
     //Login is not complete about fix 1) session_token handling 2) unauthorizes asses to /course

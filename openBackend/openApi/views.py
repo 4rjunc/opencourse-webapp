@@ -1,62 +1,72 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import OC
+from .models import StudMaster, Course, Department, Programme
 import json
+from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.urls import reverse
+from django.db.models import Q
+from django.core import serializers
 
-#Takes the payload from http://127.0.0.1:8000/openApi/api/submit/ and saves it in 
+# http://127.0.0.1:8000/openApi/api/details/?regno=NA20CPCR29
+
+def details(request):
+        reg = request.GET.get('regno')
+        try : 
+            student = StudMaster.objects.get(uty_reg_no=reg)
+        except StudMaster.DoesNotExist :
+            return JsonResponse({'message': 'Student Not Found'}, status=404)
+        response = []
+        name = student.name
+        marks = student.marks_twelth
+        regno = student.uty_reg_no
+        dept = str(student.pgm)
+        dob = student.dob  
+        #Will sort out the opencourses considering the dept of student
+        programm = Programme.objects.filter(pgm_name="B.Sc. Polymer Chemistry").first()
+        #print(programm.dept_id)
+        opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019) & ~Q(dept=programm.dept_id)) 
+        #print(opencourse)
+        courses_list = serializers.serialize('python', opencourse)
+        #print(courses_list)
+        courses_list = [ { course["fields"]["course_title"] : course["fields"]["course_code"]} for course in courses_list]
+
+        stud_dict = {
+            "name" : name,
+            "marks" : marks,
+            "dept" : dept,
+            "regno" : regno,
+            "dob" : dob,
+            "courses" : courses_list
+        }
+        response = [stud_dict]
+        return JsonResponse(response, safe=False) 
+
+# http://127.0.0.1:8000/openApi/api/login/
 
 @csrf_exempt
-def save_object(request):
-    payload = json.loads(request.body.decode('utf-8'))
-    #print(payload)
-    name = payload.get("name")
-    reg_number = payload.get("regNumber")
-    dept = payload.get("dept")
-    marks = payload.get("marks")
-    course_list = payload.get("courseList")
-    #print(marks)
-    #print(course_list)
+def login_api(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        username = data.get('username')
+        password = data.get('password')
+        print(username,password)
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            session_token = request.session.session_key
+            if not session_token:
+                # Create a new session if one doesn't exist
+                request.session.create()
+                session_token = request.session.session_key
+            # Generate the redirection URL
+            redirect_url = 'course'  # Replace 'your_specific_page' with your actual URL name
+            return JsonResponse({'message': 'Login successful', 'session_token': session_token, 'redirect_url': redirect_url})
+        else:
+            return JsonResponse({'message': 'Invalid username or password'}, status=401)
+    else:
+        return JsonResponse({'message': 'Invalid request'}, status=400)
 
-    #Checks for duplicate entries
-    if OC.objects.filter(Reg_No=reg_number).exists():
-        return JsonResponse({"message": "Object with the same regNumber already exists."}, status=400)
-    
-    oc_object = OC(
-        Name=name,
-        Class=dept,
-        Reg_No=reg_number,
-        Marks=marks,
-        _5D01BOT=course_list.get("5D01BOT"),
-        _5D03BOT=course_list.get("5D03BOT"),
-        _5D03CHE=course_list.get("5D03CHE"),
-        _5D04CHE=course_list.get("5D04CHE"),
-        _5D01COM=course_list.get("5D01COM"),
-        _5D03COM=course_list.get("5D03COM"),
-        _5D02CSC=course_list.get("5D02CSC"),
-        _5D05CSC=course_list.get("5D05CSC"),
-        _5D01ECO=course_list.get("5D01ECO"),
-        _5D04ECO=course_list.get("5D04ECO"),
-        _5D01HIS=course_list.get("5D01HIS"),
-        _5D02HIS=course_list.get("5D02HIS"),
-        _5D03HIS=course_list.get("5D03HIS"),
-        _5D03MAL=course_list.get("5D03MAL"),
-        _5D04MAL=course_list.get("5D04MAL"),
-        _5D02MAT=course_list.get("5D02MAT"),
-        _5D04MAT=course_list.get("5D04MAT"),
-        _5D05PED=course_list.get("5D05PED"),
-        _5D03PHY=course_list.get("5D03PHY"),
-        _5D05PHY=course_list.get("5D05PHY"),
-        _5D01POL=course_list.get("5D01POL"),
-        _5D05POL=course_list.get("5D05POL"),
-        _5D02SKT=course_list.get("5D02SKT"),
-        _5D05SKT=course_list.get("5D05SKT"),
-        _5D02STA=course_list.get("5D02STA"),
-        _5D04STA=course_list.get("5D04STA"),
-        _5D02ZLG=course_list.get("5D02ZLG"),
-        _5D03ZLG=course_list.get("5D03ZLG")
-    )
 
-    oc_object.save()
-
-    return JsonResponse({"message": "Object saved successfully."})
-
+ 

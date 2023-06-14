@@ -1,0 +1,7 @@
+POST
+http://127.0.0.1:8000/openApi/api/login/
+
+{
+        'username': 'NA21AECR001',
+        'password': '2004-03-30',
+}

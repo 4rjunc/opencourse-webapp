@@ -23,6 +23,7 @@ def details(request):
         regno = student.uty_reg_no
         dept = str(student.pgm)
         dob = student.dob  
+        #Try to make it short or better
         #Will sort out the opencourses considering the dept of student
         programm = Programme.objects.filter(pgm_name="B.Sc. Polymer Chemistry").first()
         #print(programm.dept_id)

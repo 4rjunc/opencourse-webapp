@@ -1,3 +1,4 @@
 GET
+#This will fetch all the details like all the oapcrs for a student, marks, dod, dept
 http://127.0.0.1:8000/openApi/api/details/?regno=NA20CPCR29
 

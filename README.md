@@ -88,11 +88,8 @@ Start the server
 Example of payload
 
 ```json
-{
-    "name": "Theertha",
-    "regNumber": "NA20PICS23",
-    "dept": "CSC",
-    "marks": 1005,
+{   
+    "regno":"NAXXXXXXXX"
     "courseList": {
         "5D01BOT": 1,
         "5D03BOT": 3,

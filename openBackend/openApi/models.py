@@ -600,4 +600,8 @@ class WorkingDays(models.Model):
         managed = False
         db_table = 'working_days'
 
+class OpenCourseChoice(models.Model):
+    course_code = models.CharField(blank=True,null=True,max_length=20)
+    choice = models.IntegerField(blank=True,max_length=2)
+
 

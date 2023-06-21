@@ -601,7 +601,10 @@ class WorkingDays(models.Model):
         db_table = 'working_days'
 
 class OpenCourseChoice(models.Model):
-    course_code = models.CharField(blank=True,null=True,max_length=20)
-    choice = models.IntegerField(blank=True,max_length=2)
-
-
+    course_code = models.CharField(blank=True, null=True,max_length=20)
+    choice = models.IntegerField(blank=True, null=True)
+    reg_no = models.ForeignKey(StudMaster, models.CASCADE, blank=True, null=True)
+    marks = models.IntegerField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.reg_no

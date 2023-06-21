@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import StudMaster, Course, Department, Programme
+from .models import StudMaster, Course, Programme
 import json
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
@@ -25,7 +25,7 @@ def details(request):
         dob = student.dob  
         #Try to make it short or better
         #Will sort out the opencourses considering the dept of student
-        programm = Programme.objects.filter(pgm_name="B.Sc. Polymer Chemistry").first()
+        programm = Programme.objects.filter(pgm_name=dept).first()
         #print(programm.dept_id)
         opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019) & ~Q(dept=programm.dept_id)) 
         #print(opencourse)

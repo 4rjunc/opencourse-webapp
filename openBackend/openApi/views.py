@@ -66,6 +66,12 @@ def login_api(request):
             return JsonResponse({'message': 'Invalid username or password'}, status=401)
     else:
         return JsonResponse({'message': 'Invalid request'}, status=400)
+    
 
+@csrf_exempt
+def submit(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        return JsonResponse({'messsage': "success"})
 
- 

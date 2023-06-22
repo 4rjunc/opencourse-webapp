@@ -89,44 +89,30 @@ Example of payload
 
 ```json
 {   
-    "regno":"NAXXXXXXXX"
-    "courseList": {
-        "5D01BOT": 1,
-        "5D03BOT": 3,
-        "5D03CHE": 7,
-        "5D04CHE": 5,
-        "5D01COM": 4,
-        "5D03COM": 11,
-        "5D02CSC": 0,
-        "5D05CSC": 0,
-        "5D01ECO": 6,
-        "5D04ECO": 10,
-        "5D01HIS": 12,
-        "5D02HIS": 8,
-        "5D03HIS": 18,
-        "5D03MAL": 13,
-        "5D04MAL": 15,
-        "5D02MAT": 2,
-        "5D04MAT": 19,
-        "5D05PED": 14,
-        "5D03PHY": 21,
-        "5D05PHY": 17,
-        "5D01POL": 9,
-        "5D05POL": 20,
-        "5D02SKT": 23,
-        "5D05SKT": 16,
-        "5D02STA": 25,
-        "5D04STA": 22,
-        "5D02ZLG": 27,
-        "5D03ZLG": 26
-    }
+    "regno":"NAXXXXXXXX",
+    "marks":XXXX,
+    "courseList": [
+        ["Course1", 1],
+        ["Course2", 2],
+        ["Course3", 3]
+    ]
 }
+  
 ```
 
 To Do
+
 Security issue in login page
+
 Form Ui
+  displaying the opencourses in a priority list where the numbers(priority on LHS) & course name in RHS
+  once selected course should not be displayed in the dropdown
+
 Submission of data
+    submission to table in row wise
+
 Sorting of data
+    create a button in admin panel which will sort the data from OpenCourseChoice Table and downloads a CSV file.
+      an upgradation to this saperate csv files download are per the requirement (using .zip)
 
 

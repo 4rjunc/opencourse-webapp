@@ -58,12 +58,10 @@ def login_api(request):
             login(request, user)
             session_token = request.session.session_key
             if not session_token:
-                # Create a new session if one doesn't exist
+                # Create a new session if one doesn't exists
                 request.session.create()
                 session_token = request.session.session_key
-            # Generate the redirection URL
-            redirect_url = 'course'  # Replace 'your_specific_page' with your actual URL name
-            return JsonResponse({'message': 'Login successful', 'session_token': session_token, 'redirect_url': redirect_url})
+            return JsonResponse({'message': 'Login successful', 'session_token': session_token})
         else:
             return JsonResponse({'message': 'Invalid username or password'}, status=401)
     else:

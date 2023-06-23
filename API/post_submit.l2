@@ -1,0 +1,12 @@
+POST
+http://127.0.0.1:8000/openApi/api/submit/
+{   
+    "regno":"NAXXXXXXXX",
+    "marks":1000,
+    "courseList": [
+        ["Course1", 1],
+        ["Course2", 2],
+        ["Course3", 3]
+    ]
+}
+ 

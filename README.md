@@ -90,11 +90,13 @@ Example of payload
 ```json
 {   
     "regno":"NAXXXXXXXX",
-    "marks":XXXX,
+    "marks":1000,
     "courseList": [
         ["Course1", 1],
         ["Course2", 2],
-        ["Course3", 3]
+        ["Course3", 3],
+        ["Course4", 4],
+        ["Course5", 5]
     ]
 }
   

@@ -502,7 +502,7 @@ class StudMaster(models.Model):
         db_table = 'stud_master'
     
     def __str__(self):
-        return f" Name : {self.name}, RegNo: {self.uty_reg_no}"
+        return self.name
 
 
 class Takes(models.Model):
@@ -579,7 +579,6 @@ class TimeSlot(models.Model):
         managed = False
         db_table = 'time_slot'
 
-
 class Tutor(models.Model):
     teacher_id = models.IntegerField(blank=True, null=True)
     pgm_id = models.IntegerField(blank=True, null=True)
@@ -590,7 +589,6 @@ class Tutor(models.Model):
         managed = False
         db_table = 'tutor'
 
-
 class WorkingDays(models.Model):
     year = models.IntegerField(blank=True, null=True)
     sem = models.IntegerField(blank=True, null=True)
@@ -600,6 +598,7 @@ class WorkingDays(models.Model):
         managed = False
         db_table = 'working_days'
 
+#Table to store data of students on their Course Priority
 class OpenCourseChoice(models.Model):
     course_code = models.CharField(blank=True, null=True,max_length=20)
     choice = models.IntegerField(blank=True, null=True)
@@ -608,3 +607,4 @@ class OpenCourseChoice(models.Model):
     
     def __str__(self):
         return self.reg_no
+    

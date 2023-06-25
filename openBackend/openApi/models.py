@@ -607,4 +607,7 @@ class OpenCourseChoice(models.Model):
     
     def __str__(self):
         return self.reg_no
-    
+
+
+#Add table to list out seats in each dept. for opencourse    
+#class SeatsOpenCourse(models.Model):

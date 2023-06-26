@@ -610,4 +610,35 @@ class OpenCourseChoice(models.Model):
 
 
 #Add table to list out seats in each dept. for opencourse    
-#class SeatsOpenCourse(models.Model):
+class SeatsOpenCourse(models.Model):
+    id = models.AutoField(primary_key=True)
+    sanskrit = models.IntegerField(blank=True, null=True)
+    commerce = models.IntegerField(blank=True,null=True)
+    cs = models.IntegerField(blank=True,null=True)
+    pe = models.IntegerField(blank=True,null=True)
+    hindi = models.IntegerField(blank=True,null=True)
+    botony = models.IntegerField(blank=True,null=True)
+    chemistry = models.IntegerField(blank=True,null=True)
+    physics = models.IntegerField(blank=True,null=True)
+    economics = models.IntegerField(blank=True,null=True)
+    politics = models.IntegerField(blank=True,null=True)
+    hindi = models.IntegerField(blank=True,null=True)
+    english = models.IntegerField(blank=True,null=True)
+    malayalam = models.IntegerField(blank=True,null=True)
+
+    def __str__(self):
+        return "Seating"
+    
+    class Meta:
+        # Add a unique constraint to ensure only one row is stored
+        constraints = [
+            models.UniqueConstraint(
+                fields=['id'],
+                name='unique_seats_open_course',
+            ),
+        ]
+
+    def save(self, *args, **kwargs):
+        # Override the save method to ensure only one instance is saved
+        self.id = 1  # Set the id to 1
+        super().save(*args, **kwargs)

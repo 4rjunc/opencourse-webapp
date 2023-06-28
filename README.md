@@ -1,4 +1,5 @@
 
+
 # OpenCourse Management Webapp
 OpenCourse is a programme in our college where students of other deparments are given an oppertunity to learn courses out of their majors. The courses will be provided by other deparments of the college. The allotement of students to the courses is managed by this Webapp  
 
@@ -116,5 +117,6 @@ Submission of data
 Sorting of data
     create a button in admin panel which will sort the data from OpenCourseChoice Table and downloads a CSV file.
       an upgradation to this saperate csv files download are per the requirement (using .zip)
-
+Fixing admin panel
+	Taking admin actions to react rather than django logins
 

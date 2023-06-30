@@ -7,8 +7,9 @@ const Course = () => {
   const [regNumber, setRegNumber] = useState("");
   const [dept, setDept] = useState("");
   const [marks, setMarks] = useState(0);
-  const [boardType, setBoardType] = useState("CBSE");
-  const [course, setCourse] = useState({});
+  const [courses, setCourses] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
+
 
   const token = localStorage.getItem("token");
   console.log(token);
@@ -32,7 +33,8 @@ const Course = () => {
       setName(response.data[0].name);
       setMarks(response.data[0].marks);
       setDept(response.data[0].dept);
-      setCourse(response.data[0].courses);
+      setRegNumber(response.data[0].regno);
+      setCourses(response.data[0].courses);
       console.log(name);
     } catch (error) {
       console.error(error);
@@ -43,7 +45,7 @@ const Course = () => {
   const handleSubmit = (e) => {
     console.log("Submit");
     e.preventDefault();
-
+    const data = "HEllp";
     //POST-ing data to server
     axios
       .post("http://127.0.0.1:8000/openApi/api/submit/", data)
@@ -91,6 +93,11 @@ const Course = () => {
       });
   };
 
+  const handleCourseSelection = (courseCode) => {
+    console.log(selectedCourses)
+    setSelectedCourses((prevSelectedCourses) => [...prevSelectedCourses, courseCode]);
+  };
+
   return (
     <div>
       <h1>Open-Course</h1>
@@ -100,19 +107,38 @@ const Course = () => {
             Name : {name} <br />
             Marks : {marks} <br />
             Dept : {dept} <br />
+            Register Number : {regNumber}
           </p>
           <h3>List of courses</h3>
-          {/*Fix the rendering of courses*/}
-          {console.log(course)}
-          {Object.keys(course).map((item, index) => {
-            return (
-              <div key={index}>
-                <h2>
-                  {index}:{item}
-                </h2>
-              </div>
-            );
-          })}
+          {/*Fix the rendering of courses
+          1. the filtering out of selected courses
+          2. the selected values should be displayed in drop down select
+          3. the unselected values should be re displayed in drop down 
+          */}
+          {console.log(courses)}
+          <h2>Courses:</h2>
+          <ul>
+            {courses.map((course, index) => {
+              const courseName = Object.keys(course)[0];
+              const courseCode = Object.values(course)[0];
+              return (
+                <li key={index}>
+                  {index + 1}:{" "}
+                  <select onChange={(e) => handleCourseSelection(e.target.value)}>
+                    {courses.map((course, index) => {
+                      const courseName = Object.keys(course)[0];
+                      const courseCode = Object.values(course)[0];
+                      return (
+                        <option key={index} value={courseCode}>
+                          {courseName} : {courseCode}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </li>
+              );
+            })}
+          </ul>
           <button type="submit">Submit</button>
         </form>
       </div>

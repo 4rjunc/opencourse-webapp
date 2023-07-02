@@ -56,36 +56,7 @@ const Course = () => {
         setRegNumber("");
         setDept("");
         setMarks(0);
-        setCourseList({
-          "5D01BOT": 0,
-          "5D03BOT": 0,
-          "5D03CHE": 0,
-          "5D04CHE": 0,
-          "5D01COM": 0,
-          "5D03COM": 0,
-          "5D02CSC": 0,
-          "5D05CSC": 0,
-          "5D01ECO": 0,
-          "5D04ECO": 0,
-          "5D01HIS": 0,
-          "5D02HIS": 0,
-          "5D03HIS": 0,
-          "5D03MAL": 0,
-          "5D04MAL": 0,
-          "5D02MAT": 0,
-          "5D04MAT": 0,
-          "5D05PED": 0,
-          "5D03PHY": 0,
-          "5D05PHY": 0,
-          "5D01POL": 0,
-          "5D05POL": 0,
-          "5D02SKT": 0,
-          "5D05SKT": 0,
-          "5D02STA": 0,
-          "5D04STA": 0,
-          "5D02ZLG": 0,
-          "5D03ZLG": 0,
-        });
+        setCourses([]);
       })
       .catch((error) => {
         console.log("Error", error);
@@ -126,13 +97,13 @@ const Course = () => {
           {console.log(courses)}
           <ul>
             {courses.map((course, index) => {
-              const courseName = Object.keys(course)[0];
-              const courseCode = Object.values(course)[0];
+              //const courseName = Object.keys(course)[0];
+              //const courseCode = Object.values(course)[0];
               return (
                 <li key={index}>
                   {index + 1}:{" "}
                   <select onChange={(e) => handleCourseSelection(e.target.value,index+1)}>
-                    {courses.map((course, index) => {
+                    {availableCourses.map((course, index) => {
                       const courseName = Object.keys(course)[0];
                       const courseCode = Object.values(course)[0];
                       return (

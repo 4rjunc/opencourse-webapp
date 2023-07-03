@@ -22,7 +22,7 @@ const Course = () => {
 
   useEffect(() => {
     handleDetails();
-  }, []);
+  }, [regno]);
 
   const handleDetails = async () => {
     try {

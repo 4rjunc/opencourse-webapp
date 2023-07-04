@@ -45,7 +45,7 @@ const Course = () => {
   const handleSubmit = (e) => {
     console.log("Submit");
     e.preventDefault();
-    const data = "HEllp";
+    const data = "Help";
     //POST-ing data to server
     axios
       .post("http://127.0.0.1:8000/openApi/api/submit/", data)

@@ -26,11 +26,8 @@ def details(request):
         #Try to make it short or better
         #Will sort out the opencourses considering the dept of student
         programm = Programme.objects.filter(pgm_name=dept).first()
-        #print(programm.dept_id)
         opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019) & ~Q(dept=programm.dept_id)) 
-        #print(opencourse)
         courses_list = serializers.serialize('python', opencourse)
-        #print(courses_list)
         courses_list = [ { course["fields"]["course_title"] : course["fields"]["course_code"]} for course in courses_list]
 
         stud_dict = {

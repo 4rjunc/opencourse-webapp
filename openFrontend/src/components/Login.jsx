@@ -56,15 +56,17 @@ const Login = () => {
       localStorage.setItem("token", token);
       const regno = encodeURIComponent(username); // URL-encode the email
       const url = `/course/?regno=${regno}`;
-      
       setSnackbarOpen(true);
       setSnackbarMessage("Login successful!");
       setSnackbarSeverity("success");
-      navigate(url);
+
+      setTimeout(()=>{
+        navigate(url);
+      }, 1500)
+      
       //window.location.href = '/course';
     } catch (error) {
       console.error("Login failed:", error);
-      alert(error.response.data["message"]);
       setSnackbarOpen(true);
       setSnackbarMessage("Login failed. Please check your credentials.");
       setSnackbarSeverity("error");

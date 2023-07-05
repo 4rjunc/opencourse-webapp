@@ -64,7 +64,6 @@ const Login = () => {
         navigate(url);
       }, 1500)
       
-      //window.location.href = '/course';
     } catch (error) {
       console.error("Login failed:", error);
       setSnackbarOpen(true);
@@ -136,6 +135,7 @@ const Login = () => {
               open={snackbarOpen}
               autoHideDuration={5000}
               onClose={handleSnackbarClose}
+              style={{padding:"20rem 31.2rem"}}
             >
               <MuiAlert
                 elevation={6}

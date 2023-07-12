@@ -65,17 +65,15 @@ const Course = () => {
   };
 
   const handleCourseSelection = (courseCode, index) => {
-    setSelectedCourses((prevSelectedCourses) => [
-      ...prevSelectedCourses,
-      { courseCode, index },
-    ]);
-    console.log("SelectedCourses",selectedCourses)
+    setSelectedCourses((prevSelectedCourses) => {
+      const updatedCourses = [...prevSelectedCourses];
+      updatedCourses[index] = { courseCode, index };
+      console.log("selectedCoures", selectedCourses)
+      return updatedCourses;
+      
+    });
   };
-
-  const availableCourses = courses.filter(
-    (course, index) =>
-      !selectedCourses.some((selected) => selected.index === index)
-  );
+  
 
   return (
     <div>
@@ -89,21 +87,16 @@ const Course = () => {
             Register Number : {regNumber}
           </p>
           <h3>List of courses</h3>
-          {/*Fix the rendering of courses
-          1. the filtering out of selected courses
-          2. the selected values should be displayed in drop down select
-          3. the unselected values should be re displayed in drop down 
-          */}
           {console.log(courses)}
           <ul>
             {courses.map((course, index) => {
               //const courseName = Object.keys(course)[0];
-              //const courseCode = Object.values(course)[0];
+              const choice = index + 1
               return (
                 <li key={index}>
                   {index + 1}:{" "}
-                  <select onChange={(e) => handleCourseSelection(e.target.value,index+1)}>
-                    {availableCourses.map((course, index) => {
+                  <select onChange={(e) => handleCourseSelection(e.target.value, choice)}>
+                    {courses.map((course, index) => {
                       const courseName = Object.keys(course)[0];
                       const courseCode = Object.values(course)[0];
                       return (

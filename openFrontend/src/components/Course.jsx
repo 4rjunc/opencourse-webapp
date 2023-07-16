@@ -65,95 +65,12 @@ const Course = () => {
   };
 
   const handleCourseSelection = (courseCode, index) => {
-    setSelectedCourses((prevSelectedCourses) => {
-      const updatedCourses = [...prevSelectedCourses];
-      updatedCourses[index] = { courseCode, index };
-      console.log("selectedCoures", selectedCourses)
-      return updatedCourses;
-      
-    });
+      setSelectedCourses([...selectedCourses, {courseCode, index}])
   };
-  const data = [
-    {
-        "name": "HARINANDANAN V",
-        "marks": "92",
-        "dept": "B.A. Economics",
-        "regno": "NA21AECR001",
-        "dob": "2004-03-30",
-        "courses": [
-            {
-                "Mushroom Cultivation": "5D01BOT"
-            },
-            {
-                "Vaikkom Muhammed Basheer - Paadavum Padanavum": "5D04MAL"
-            },
-            {
-                "Plant Propagation": "5D03BOT"
-            },
-            {
-                "Basic Accounting": "5D01COM"
-            },
-            {
-                "Principles of Management": "5D03COM"
-            },
-            {
-                "Environmental Studies": "5D03CHE"
-            },
-            {
-                "Web Technology": "5D02CSC"
-            },
-            {
-                "Python Programming": "5D05CSC"
-            },
-            {
-                "Social Reform Movements in Kerala": "5D01HIS"
-            },
-            {
-                "India's Struggle for Freedom": "5D02HIS"
-            },
-            {
-                "Cultural Heritage of North Malabar": "5D03HIS"
-            },
-            {
-                "Quantitative Arithmetic and Reasoning": "5D01MAT"
-            },
-            {
-                "Graph Theory": "5D04MAT"
-            },
-            {
-                "Biophysics": "5D03PHY"
-            },
-            {
-                "Electricity in Daily Life": "5D05PHY"
-            },
-            {
-                "Human Rights in India": "5D01POL"
-            },
-            {
-                "Herbal Literacy and Ethnobotanical Awareness": "5D02SKT"
-            },
-            {
-                "Literary Wolrd of Kalidasa": "5D052SKT"
-            },
-            {
-                "Sampling Techniques": "5D02STA"
-            },
-            {
-                "Index Numbers and Time Series": "5D04STA"
-            },
-            {
-                "Apiculture": "5D02ZLG"
-            },
-            {
-                "Sericulture": "5D03ZLG"
-            },
-            {
-                "Exercise is Medicine": "5D05PED"
-            }
-        ]
-    }
-]
-
+  useEffect(() => {
+    console.log("selectedcourses", selectedCourses);
+  }, [selectedCourses]);
+  
   return (
     <div>
       <h1>Open-Course</h1>
@@ -175,6 +92,7 @@ const Course = () => {
                 <li key={index}>
                   {index + 1}:{" "}
                   <select onChange={(e) => handleCourseSelection(e.target.value, choice)}>
+                  <option value="">Select a course</option>
                     {courses.map((course, index) => {
                       const courseName = Object.keys(course)[0];
                       const courseCode = Object.values(course)[0];

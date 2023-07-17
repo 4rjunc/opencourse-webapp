@@ -72,10 +72,10 @@ def submit(request):
         print(data)
         reg_no = data["regno"]
         stud_obj = StudMaster.objects.get(uty_reg_no=reg_no)
-        course_list = data["course_list"]
-        for course_data in course_list:
-            course_code, choice = course_data
+        course_list = data["selectedCourses"]
+        print("course_list",course_list)
+        for course_code, choice in course_list.items():
             open_obj = OpenCourseChoice(course_code=course_code, choice=choice, stud_id=stud_obj)
             open_obj.save()
-        return JsonResponse({'messsage': "Data Stubmitted"})
+        return JsonResponse({'message': "Data Stubmitted"})
 

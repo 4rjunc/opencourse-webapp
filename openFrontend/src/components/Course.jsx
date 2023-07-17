@@ -45,18 +45,18 @@ const Course = () => {
   const handleSubmit = (e) => {
     console.log("Submit");
     e.preventDefault();
-    const data = "Help";
     //POST-ing data to server
+    const data = {
+      "regno":regNumber,
+      selectedCourses
+    }
+
+    console.log("data", data)
     axios
       .post("http://127.0.0.1:8000/openApi/api/submit/", data)
       .then((response) => {
         console.log(response.data);
         alert(response.data["message"]);
-        setName("");
-        setRegNumber("");
-        setDept("");
-        setMarks(0);
-        setCourses([]);
       })
       .catch((error) => {
         console.log("Error", error);
@@ -65,7 +65,7 @@ const Course = () => {
   };
 
   const handleCourseSelection = (courseCode, index) => {
-      setSelectedCourses([...selectedCourses, {courseCode, index}])
+      setSelectedCourses({...selectedCourses, [courseCode]: index})
   };
   useEffect(() => {
     console.log("selectedcourses", selectedCourses);

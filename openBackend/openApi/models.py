@@ -502,7 +502,7 @@ class StudMaster(models.Model):
         db_table = 'stud_master'
     
     def __str__(self):
-        return f"{self.name} , {self.stud_id}"
+        return f"{self.name} , {self.uty_reg_no}"
 
 
 class Takes(models.Model):
@@ -605,7 +605,7 @@ class OpenCourseChoice(models.Model):
     stud_id = models.ForeignKey(StudMaster, models.CASCADE, blank=True, null=True)
     
     def __str__(self):
-        return str(self.stud_id.name)
+        return f"{str(self.stud_id.name)}, {self.stud_id.uty_reg_no}"
 
 
 #Add table to list out seats in each dept. for opencourse    

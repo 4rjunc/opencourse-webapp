@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import StudMaster, Course, Programme
+from .models import StudMaster, Course, Programme, OpenCourseChoice
 import json
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
@@ -70,5 +70,12 @@ def submit(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         print(data)
-        return JsonResponse({'messsage': "success"})
+        reg_no = data["regno"]
+        stud_obj = StudMaster.objects.get(uty_reg_no=reg_no)
+        course_list = data["course_list"]
+        for course_data in course_list:
+            course_code, choice = course_data
+            open_obj = OpenCourseChoice(course_code=course_code, choice=choice, stud_id=stud_obj)
+            open_obj.save()
+        return JsonResponse({'messsage': "Data Stubmitted"})
 

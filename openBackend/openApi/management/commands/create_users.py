@@ -6,8 +6,8 @@ from django.db import IntegrityError
 
 
 class Command(BaseCommand):
-    help = 'Create user accounts from table data'
-    
+    help = "Create user accounts from table data"
+
     def handle(self, *args, **options):
         pgm_exp = [15, 16, 12, 10, 4, 2]
         users = StudMaster.objects.filter(~Q(pgm__in=pgm_exp) & Q(current_sem=4))
@@ -20,10 +20,12 @@ class Command(BaseCommand):
             if username:
                 try:
                     # Create a new user account
-                    user = User.objects.create_user(username=username, password=str(password))
+                    user = User.objects.create_user(
+                        username=username, password=str(password)
+                    )
                     user.save()
-                    self.stdout.write(f'Successfully created account for {username}')
+                    self.stdout.write(f"Successfully created account for {username}")
                 except IntegrityError:
-                    self.stdout.write(f'Skipped duplicate entry for {username}')
+                    self.stdout.write(f"Skipped duplicate entry for {username}")
             else:
-                self.stdout.write('Skipping user creation due to missing username')
+                self.stdout.write("Skipping user creation due to missing username")

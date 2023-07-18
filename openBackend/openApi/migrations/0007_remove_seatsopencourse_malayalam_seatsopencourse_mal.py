@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('openApi', '0006_alter_seatsopencourse_id_and_more'),
+        ("openApi", "0006_alter_seatsopencourse_id_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='seatsopencourse',
-            name='malayalam',
+            model_name="seatsopencourse",
+            name="malayalam",
         ),
         migrations.AddField(
-            model_name='seatsopencourse',
-            name='MAL',
-            field=models.IntegerField(blank=True, null=True, verbose_name='Malayalam'),
+            model_name="seatsopencourse",
+            name="MAL",
+            field=models.IntegerField(blank=True, null=True, verbose_name="Malayalam"),
         ),
     ]

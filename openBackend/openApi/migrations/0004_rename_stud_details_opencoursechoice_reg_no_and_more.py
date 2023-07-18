@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('openApi', '0003_opencoursechoice'),
+        ("openApi", "0003_opencoursechoice"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='opencoursechoice',
-            old_name='stud_details',
-            new_name='reg_no',
+            model_name="opencoursechoice",
+            old_name="stud_details",
+            new_name="reg_no",
         ),
         migrations.AddField(
-            model_name='opencoursechoice',
-            name='marks',
+            model_name="opencoursechoice",
+            name="marks",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='opencoursechoice',
-            name='choice',
+            model_name="opencoursechoice",
+            name="choice",
             field=models.IntegerField(blank=True, null=True),
         ),
     ]

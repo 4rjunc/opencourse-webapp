@@ -9,16 +9,18 @@ from django.db import models
 
 
 class Absentee(models.Model):
-    hour = models.OneToOneField('HoursTaken', models.DO_NOTHING, primary_key=True)  # The composite primary key (hour_id, stud_id) found, that is not supported. The first column is selected.
-    stud = models.ForeignKey('StudMaster', models.DO_NOTHING)
+    hour = models.OneToOneField(
+        "HoursTaken", models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (hour_id, stud_id) found, that is not supported. The first column is selected.
+    stud = models.ForeignKey("StudMaster", models.DO_NOTHING)
     status_id = models.IntegerField(blank=True, null=True)
     grace = models.SmallIntegerField()
 
     class Meta:
         managed = False
-        db_table = 'absentee'
-        unique_together = (('hour', 'stud'),)
-    
+        db_table = "absentee"
+        unique_together = (("hour", "stud"),)
+
     def __str__(self):
         return self.hour
 
@@ -26,12 +28,12 @@ class Absentee(models.Model):
 class Caste(models.Model):
     caste_id = models.AutoField(primary_key=True)
     caste_name = models.CharField(max_length=50, blank=True, null=True)
-    religion = models.ForeignKey('Religion', models.DO_NOTHING, blank=True, null=True)
-    cat = models.ForeignKey('Category', models.DO_NOTHING, blank=True, null=True)
+    religion = models.ForeignKey("Religion", models.DO_NOTHING, blank=True, null=True)
+    cat = models.ForeignKey("Category", models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'caste'
+        db_table = "caste"
 
 
 class Category(models.Model):
@@ -40,26 +42,28 @@ class Category(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'category'
+        db_table = "category"
 
 
 class CommonCourse(models.Model):
-    course = models.OneToOneField('Course', models.DO_NOTHING, primary_key=True)
-    common_course_type = models.ForeignKey('CommonCourseType', models.DO_NOTHING, blank=True, null=True)
+    course = models.OneToOneField("Course", models.DO_NOTHING, primary_key=True)
+    common_course_type = models.ForeignKey(
+        "CommonCourseType", models.DO_NOTHING, blank=True, null=True
+    )
 
     class Meta:
         managed = False
-        db_table = 'common_course'
+        db_table = "common_course"
 
 
 class CommonCourseType(models.Model):
     common_course_type_id = models.IntegerField(primary_key=True)
     common_course_type_dec = models.CharField(max_length=30, blank=True, null=True)
-    dept = models.ForeignKey('Department', models.DO_NOTHING, blank=True, null=True)
+    dept = models.ForeignKey("Department", models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'common_course_type'
+        db_table = "common_course_type"
 
 
 class Course(models.Model):
@@ -67,18 +71,24 @@ class Course(models.Model):
     course_title = models.CharField(max_length=100, blank=True, null=True)
     course_code = models.CharField(max_length=12, blank=True, null=True)
     lab_theory = models.CharField(max_length=1, blank=True, null=True)
-    course_type = models.ForeignKey('CourseType', models.DO_NOTHING, blank=True, null=True)
-    dept = models.ForeignKey('Department', models.DO_NOTHING, blank=True, null=True)
+    course_type = models.ForeignKey(
+        "CourseType", models.DO_NOTHING, blank=True, null=True
+    )
+    dept = models.ForeignKey("Department", models.DO_NOTHING, blank=True, null=True)
     semester = models.IntegerField(blank=True, null=True)
     syllabus_intro_year = models.IntegerField(blank=True, null=True)
     credits = models.IntegerField(blank=True, null=True)
-    total_internal = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
-    total_external = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    total_internal = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
+    total_external = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
     grad_level = models.CharField(max_length=2, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'course'
+        db_table = "course"
 
     # added today show example
     def __str__(self):
@@ -91,7 +101,7 @@ class CourseType(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'course_type'
+        db_table = "course_type"
 
     def __str__(self):
         return self.course_type_desc
@@ -100,16 +110,14 @@ class CourseType(models.Model):
 class Department(models.Model):
     dept_id = models.IntegerField(primary_key=True)
     dept_name = models.CharField(max_length=80, blank=True, null=True)
-    stream = models.ForeignKey('Stream', models.DO_NOTHING, blank=True, null=True)
+    stream = models.ForeignKey("Stream", models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'department'
+        db_table = "department"
 
     def __str__(self):
         return self.dept_name
-    
-    
 
 
 class Designation(models.Model):
@@ -118,7 +126,7 @@ class Designation(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'designation'
+        db_table = "designation"
 
 
 class District(models.Model):
@@ -128,7 +136,7 @@ class District(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'district'
+        db_table = "district"
 
 
 class Examboard(models.Model):
@@ -137,64 +145,70 @@ class Examboard(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'examboard'
+        db_table = "examboard"
 
 
 class FbAnswer(models.Model):
     ans_id = models.IntegerField(primary_key=True)
-    type = models.ForeignKey('FbQuestionType', models.DO_NOTHING, blank=True, null=True)
+    type = models.ForeignKey("FbQuestionType", models.DO_NOTHING, blank=True, null=True)
     answer_desc = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_answer'
+        db_table = "fb_answer"
 
 
 class FbCollegeDesc(models.Model):
-    fb = models.OneToOneField('FbFeedback', models.DO_NOTHING, primary_key=True)  # The composite primary key (fb_id, q_id) found, that is not supported. The first column is selected.
-    q = models.ForeignKey('FbQuestion', models.DO_NOTHING)
+    fb = models.OneToOneField(
+        "FbFeedback", models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (fb_id, q_id) found, that is not supported. The first column is selected.
+    q = models.ForeignKey("FbQuestion", models.DO_NOTHING)
     answer_desc = models.CharField(max_length=100, blank=True, null=True)
     answer_comment = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_college_desc'
-        unique_together = (('fb', 'q'),)
+        db_table = "fb_college_desc"
+        unique_together = (("fb", "q"),)
 
 
 class FbCollegeMcq(models.Model):
-    fb = models.OneToOneField('FbFeedback', models.DO_NOTHING, primary_key=True)  # The composite primary key (fb_id, q_id) found, that is not supported. The first column is selected.
-    q = models.ForeignKey('FbQuestion', models.DO_NOTHING)
+    fb = models.OneToOneField(
+        "FbFeedback", models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (fb_id, q_id) found, that is not supported. The first column is selected.
+    q = models.ForeignKey("FbQuestion", models.DO_NOTHING)
     ans = models.ForeignKey(FbAnswer, models.DO_NOTHING, blank=True, null=True)
     answer_comment = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_college_mcq'
-        unique_together = (('fb', 'q'),)
+        db_table = "fb_college_mcq"
+        unique_together = (("fb", "q"),)
 
 
 class FbCollegeTeacher(models.Model):
-    fb = models.OneToOneField('FbFeedback', models.DO_NOTHING, primary_key=True)  # The composite primary key (fb_id, q_id) found, that is not supported. The first column is selected.
-    q = models.ForeignKey('FbQuestion', models.DO_NOTHING)
-    teacher = models.ForeignKey('Teacher', models.DO_NOTHING, blank=True, null=True)
+    fb = models.OneToOneField(
+        "FbFeedback", models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (fb_id, q_id) found, that is not supported. The first column is selected.
+    q = models.ForeignKey("FbQuestion", models.DO_NOTHING)
+    teacher = models.ForeignKey("Teacher", models.DO_NOTHING, blank=True, null=True)
     answer_comment = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_college_teacher'
-        unique_together = (('fb', 'q'),)
+        db_table = "fb_college_teacher"
+        unique_together = (("fb", "q"),)
 
 
 class FbFeedback(models.Model):
     fb_id = models.CharField(primary_key=True, max_length=50)
-    pgm = models.ForeignKey('Programme', models.DO_NOTHING, blank=True, null=True)
+    pgm = models.ForeignKey("Programme", models.DO_NOTHING, blank=True, null=True)
     year_of_admn = models.IntegerField(blank=True, null=True)
     fb_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_feedback'
+        db_table = "fb_feedback"
 
 
 class FbLogin(models.Model):
@@ -204,20 +218,22 @@ class FbLogin(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'fb_login'
+        db_table = "fb_login"
 
 
 class FbQuestion(models.Model):
     q_id = models.IntegerField(primary_key=True)
     q_desc = models.CharField(max_length=400, blank=True, null=True)
-    cat = models.ForeignKey('FbQuestionCategory', models.DO_NOTHING, blank=True, null=True)
-    type = models.ForeignKey('FbQuestionType', models.DO_NOTHING, blank=True, null=True)
+    cat = models.ForeignKey(
+        "FbQuestionCategory", models.DO_NOTHING, blank=True, null=True
+    )
+    type = models.ForeignKey("FbQuestionType", models.DO_NOTHING, blank=True, null=True)
     additional_answer = models.IntegerField(blank=True, null=True)
     mandatory = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_question'
+        db_table = "fb_question"
 
 
 class FbQuestionCategory(models.Model):
@@ -226,7 +242,7 @@ class FbQuestionCategory(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'fb_question_category'
+        db_table = "fb_question_category"
 
 
 class FbQuestionType(models.Model):
@@ -235,50 +251,60 @@ class FbQuestionType(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'fb_question_type'
+        db_table = "fb_question_type"
 
 
 class FbTeacherDesc(models.Model):
-    fb = models.OneToOneField(FbFeedback, models.DO_NOTHING, primary_key=True)  # The composite primary key (fb_id, teacher_id, q_id) found, that is not supported. The first column is selected.
-    teacher = models.ForeignKey('Teacher', models.DO_NOTHING)
+    fb = models.OneToOneField(
+        FbFeedback, models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (fb_id, teacher_id, q_id) found, that is not supported. The first column is selected.
+    teacher = models.ForeignKey("Teacher", models.DO_NOTHING)
     q = models.ForeignKey(FbQuestion, models.DO_NOTHING)
     answer_desc = models.CharField(max_length=100, blank=True, null=True)
     answer_comment = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_teacher_desc'
-        unique_together = (('fb', 'teacher', 'q'),)
+        db_table = "fb_teacher_desc"
+        unique_together = (("fb", "teacher", "q"),)
 
 
 class FbTeacherMcq(models.Model):
-    fb = models.OneToOneField(FbFeedback, models.DO_NOTHING, primary_key=True)  # The composite primary key (fb_id, teacher_id, q_id) found, that is not supported. The first column is selected.
-    teacher = models.ForeignKey('Teacher', models.DO_NOTHING)
+    fb = models.OneToOneField(
+        FbFeedback, models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (fb_id, teacher_id, q_id) found, that is not supported. The first column is selected.
+    teacher = models.ForeignKey("Teacher", models.DO_NOTHING)
     q = models.ForeignKey(FbQuestion, models.DO_NOTHING)
     ans = models.ForeignKey(FbAnswer, models.DO_NOTHING, blank=True, null=True)
     answer_comment = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_teacher_mcq'
-        unique_together = (('fb', 'teacher', 'q'),)
+        db_table = "fb_teacher_mcq"
+        unique_together = (("fb", "teacher", "q"),)
 
 
 class FbTeacherNumeric(models.Model):
-    fb = models.OneToOneField(FbFeedback, models.DO_NOTHING, primary_key=True)  # The composite primary key (fb_id, teacher_id, q_id) found, that is not supported. The first column is selected.
-    teacher = models.ForeignKey('Teacher', models.DO_NOTHING)
+    fb = models.OneToOneField(
+        FbFeedback, models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (fb_id, teacher_id, q_id) found, that is not supported. The first column is selected.
+    teacher = models.ForeignKey("Teacher", models.DO_NOTHING)
     q = models.ForeignKey(FbQuestion, models.DO_NOTHING)
-    answer_value = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    answer_value = models.DecimalField(
+        max_digits=5, decimal_places=2, blank=True, null=True
+    )
     answer_comment = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'fb_teacher_numeric'
-        unique_together = (('fb', 'teacher', 'q'),)
+        db_table = "fb_teacher_numeric"
+        unique_together = (("fb", "teacher", "q"),)
 
 
 class FeedbackUrls(models.Model):
-    teacher_id = models.AutoField(primary_key=True)  # The composite primary key (teacher_id, part) found, that is not supported. The first column is selected.
+    teacher_id = models.AutoField(
+        primary_key=True
+    )  # The composite primary key (teacher_id, part) found, that is not supported. The first column is selected.
     name = models.CharField(max_length=50, blank=True, null=True)
     feedback_url = models.CharField(max_length=500, blank=True, null=True)
     active = models.IntegerField()
@@ -287,8 +313,8 @@ class FeedbackUrls(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'feedback_urls'
-        unique_together = (('teacher_id', 'part'),)
+        db_table = "feedback_urls"
+        unique_together = (("teacher_id", "part"),)
 
 
 class GraceAttType(models.Model):
@@ -298,67 +324,86 @@ class GraceAttType(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'grace_att_type'
+        db_table = "grace_att_type"
 
 
 class HoursTaken(models.Model):
     hour_id = models.AutoField(primary_key=True)
     hour_date = models.DateField(blank=True, null=True)
-    section = models.ForeignKey('Takes', models.DO_NOTHING, to_field='section_id', blank=True, null=True,unique=True)
-    teacher = models.ForeignKey('Takes', models.DO_NOTHING, related_name='hourstaken_teacher_set', blank=True, null=True)
-    status = models.ForeignKey('Status', models.DO_NOTHING, blank=True, null=True)
-    time_slot = models.ForeignKey('TimeSlot', models.DO_NOTHING, blank=True, null=True)
-    pgm = models.ForeignKey('Programme', models.DO_NOTHING, blank=True, null=True)
-    regular = models.TextField(db_column='Regular')  # Field name made lowercase. This field type is a guess.
+    section = models.ForeignKey(
+        "Takes",
+        models.DO_NOTHING,
+        to_field="section_id",
+        blank=True,
+        null=True,
+        unique=True,
+    )
+    teacher = models.ForeignKey(
+        "Takes",
+        models.DO_NOTHING,
+        related_name="hourstaken_teacher_set",
+        blank=True,
+        null=True,
+    )
+    status = models.ForeignKey("Status", models.DO_NOTHING, blank=True, null=True)
+    time_slot = models.ForeignKey("TimeSlot", models.DO_NOTHING, blank=True, null=True)
+    pgm = models.ForeignKey("Programme", models.DO_NOTHING, blank=True, null=True)
+    regular = models.TextField(
+        db_column="Regular"
+    )  # Field name made lowercase. This field type is a guess.
 
     class Meta:
         managed = False
-        db_table = 'hours_taken'
+        db_table = "hours_taken"
 
         constraints = [
-            models.UniqueConstraint(fields=['section'], name='unique_section'),
+            models.UniqueConstraint(fields=["section"], name="unique_section"),
         ]
 
 
 class InternalExam(models.Model):
     exam_id = models.CharField(primary_key=True, max_length=10)
     pgm_id = models.IntegerField()
-    section = models.ForeignKey('Section', models.DO_NOTHING, blank=True, null=True)
-    max_marks = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    section = models.ForeignKey("Section", models.DO_NOTHING, blank=True, null=True)
+    max_marks = models.DecimalField(
+        max_digits=4, decimal_places=2, blank=True, null=True
+    )
     exam_date = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'internal_exam'
+        db_table = "internal_exam"
 
 
 class InternalExamMarks(models.Model):
-    exam = models.OneToOneField(InternalExam, models.DO_NOTHING, primary_key=True)  # The composite primary key (exam_id, stud_id) found, that is not supported. The first column is selected.
-    stud = models.ForeignKey('StudMaster', models.DO_NOTHING)
+    exam = models.OneToOneField(
+        InternalExam, models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (exam_id, stud_id) found, that is not supported. The first column is selected.
+    stud = models.ForeignKey("StudMaster", models.DO_NOTHING)
     marks = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'internal_exam_marks'
-        unique_together = (('exam', 'stud'),)
+        db_table = "internal_exam_marks"
+        unique_together = (("exam", "stud"),)
 
 
 class OpenAllotment(models.Model):
-    stud = models.OneToOneField('StudMaster', models.DO_NOTHING, primary_key=True)
-    section = models.ForeignKey('Section', models.DO_NOTHING, blank=True, null=True)
+    stud = models.OneToOneField("StudMaster", models.DO_NOTHING, primary_key=True)
+    section = models.ForeignKey("Section", models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'open_allotment'
+        db_table = "open_allotment"
 
 
 class PgmCourse(models.Model):
-    pgm = models.ForeignKey('Programme', models.DO_NOTHING, blank=True, null=True)
+    pgm = models.ForeignKey("Programme", models.DO_NOTHING, blank=True, null=True)
     course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'pgm_course'
+        db_table = "pgm_course"
 
 
 class Programme(models.Model):
@@ -370,7 +415,7 @@ class Programme(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'programme'
+        db_table = "programme"
 
     def __str__(self):
         return self.pgm_name
@@ -382,7 +427,7 @@ class Quota(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'quota'
+        db_table = "quota"
 
 
 class Religion(models.Model):
@@ -391,7 +436,7 @@ class Religion(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'religion'
+        db_table = "religion"
 
 
 class Role(models.Model):
@@ -400,11 +445,11 @@ class Role(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'role'
+        db_table = "role"
 
 
 class Section(models.Model):
-    section_id = models.AutoField(primary_key=True,unique=True)
+    section_id = models.AutoField(primary_key=True, unique=True)
     course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
     part = models.SmallIntegerField(blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
@@ -412,7 +457,7 @@ class Section(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'section'
+        db_table = "section"
 
 
 class StaffLogin(models.Model):
@@ -420,12 +465,12 @@ class StaffLogin(models.Model):
     username = models.CharField(unique=True, max_length=20, blank=True, null=True)
     pwd = models.CharField(max_length=40, blank=True, null=True)
     role = models.ForeignKey(Role, models.DO_NOTHING, blank=True, null=True)
-    teacher = models.ForeignKey('Teacher', models.DO_NOTHING, blank=True, null=True)
+    teacher = models.ForeignKey("Teacher", models.DO_NOTHING, blank=True, null=True)
     pwd_sl_no = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'staff_login'
+        db_table = "staff_login"
 
 
 class State(models.Model):
@@ -434,7 +479,7 @@ class State(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'state'
+        db_table = "state"
 
 
 class Status(models.Model):
@@ -443,7 +488,7 @@ class Status(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'status'
+        db_table = "status"
 
 
 class Stream(models.Model):
@@ -452,76 +497,131 @@ class Stream(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'stream'
+        db_table = "stream"
 
     def __str__(self):
         return self.stream_name
-    
+
+
 class StudMaster(models.Model):
     stud_id = models.AutoField(primary_key=True)
     admn_no = models.IntegerField(unique=True, blank=True, null=True)
     roll_no = models.IntegerField(blank=True, null=True)
-    uty_reg_no = models.CharField(max_length=12, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    name = models.CharField(max_length=50, db_collation='utf8mb3_general_ci')
+    uty_reg_no = models.CharField(
+        max_length=12, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    name = models.CharField(max_length=50, db_collation="utf8mb3_general_ci")
     year_of_admn = models.IntegerField(blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
-    sex = models.CharField(max_length=1, db_collation='utf8mb3_general_ci')
+    sex = models.CharField(max_length=1, db_collation="utf8mb3_general_ci")
     caste = models.ForeignKey(Caste, models.DO_NOTHING, blank=True, null=True)
     religion = models.ForeignKey(Religion, models.DO_NOTHING, blank=True, null=True)
-    email = models.CharField(unique=True, max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    contact_no = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    parent_name = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    parent_occupation = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    parent_mob = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    parent_land = models.CharField(max_length=20, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    house_name = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    street = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    place = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    dist = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    state = models.CharField(max_length=50, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    pincode = models.CharField(max_length=6, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    email = models.CharField(
+        unique=True,
+        max_length=100,
+        db_collation="utf8mb3_general_ci",
+        blank=True,
+        null=True,
+    )
+    contact_no = models.CharField(
+        max_length=20, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    parent_name = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    parent_occupation = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    parent_mob = models.CharField(
+        max_length=20, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    parent_land = models.CharField(
+        max_length=20, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    house_name = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    street = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    place = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    dist = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    state = models.CharField(
+        max_length=50, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    pincode = models.CharField(
+        max_length=6, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
     pgm = models.ForeignKey(Programme, models.DO_NOTHING, blank=True, null=True)
-    marks_sslc = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
-    marks_twelth = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    marks_sslc = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
+    marks_twelth = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
     board_twelth = models.IntegerField(blank=True, null=True)
-    quota = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    photo = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    status = models.CharField(max_length=10, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    comments = models.CharField(max_length=100, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    quota = models.CharField(
+        max_length=10, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    photo = models.CharField(
+        max_length=100, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    status = models.CharField(
+        max_length=10, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
+    comments = models.CharField(
+        max_length=100, db_collation="utf8mb3_general_ci", blank=True, null=True
+    )
     current_sem = models.IntegerField(blank=True, null=True)
-    language = models.ForeignKey(CommonCourseType, models.DO_NOTHING, blank=True, null=True)
-    annual_income = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
-    differently_abled = models.TextField(blank=True, null=True)  # This field type is a guess.
+    language = models.ForeignKey(
+        CommonCourseType, models.DO_NOTHING, blank=True, null=True
+    )
+    annual_income = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
+    differently_abled = models.TextField(
+        blank=True, null=True
+    )  # This field type is a guess.
     date_of_admission = models.DateField()
     date_of_leaving = models.DateField(blank=True, null=True)
     egrantz = models.TextField(blank=True, null=True)  # This field type is a guess.
-    fish_egrantz = models.TextField(blank=True, null=True)  # This field type is a guess.
+    fish_egrantz = models.TextField(
+        blank=True, null=True
+    )  # This field type is a guess.
 
     class Meta:
         managed = False
-        db_table = 'stud_master'
-    
+        db_table = "stud_master"
+
     def __str__(self):
         return f"{self.name} , {self.uty_reg_no}"
 
 
 class Takes(models.Model):
-    teacher = models.OneToOneField('Teacher', models.DO_NOTHING, primary_key=True)  # The composite primary key (teacher_id, section_id) found, that is not supported. The first column is selected.
+    teacher = models.OneToOneField(
+        "Teacher", models.DO_NOTHING, primary_key=True
+    )  # The composite primary key (teacher_id, section_id) found, that is not supported. The first column is selected.
     section_id = models.IntegerField(unique=True)
 
     class Meta:
         managed = False
-        db_table = 'takes'
-        unique_together = (('teacher', 'section_id'),)
+        db_table = "takes"
+        unique_together = (("teacher", "section_id"),)
 
 
 class Tc(models.Model):
-    tc_no = models.PositiveSmallIntegerField(primary_key=True)  # The composite primary key (tc_no, year) found, that is not supported. The first column is selected.
+    tc_no = models.PositiveSmallIntegerField(
+        primary_key=True
+    )  # The composite primary key (tc_no, year) found, that is not supported. The first column is selected.
     year = models.PositiveSmallIntegerField()
     stud = models.ForeignKey(StudMaster, models.DO_NOTHING, blank=True, null=True)
     tc_app_date = models.DateField()
     tc_issue_date = models.DateField()
-    reason = models.ForeignKey('TcReasons', models.DO_NOTHING)
+    reason = models.ForeignKey("TcReasons", models.DO_NOTHING)
     date_of_leaving = models.DateField()
     exam_month = models.DateField(blank=True, null=True)
     scholarship = models.CharField(max_length=3, blank=True, null=True)
@@ -529,8 +629,8 @@ class Tc(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tc'
-        unique_together = (('tc_no', 'year'),)
+        db_table = "tc"
+        unique_together = (("tc_no", "year"),)
 
 
 class TcReasons(models.Model):
@@ -539,13 +639,15 @@ class TcReasons(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tc_reasons'
+        db_table = "tc_reasons"
 
 
 class Teacher(models.Model):
     teacher_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=60, blank=True, null=True)
-    designation = models.ForeignKey(Designation, models.DO_NOTHING, blank=True, null=True)
+    designation = models.ForeignKey(
+        Designation, models.DO_NOTHING, blank=True, null=True
+    )
     dept = models.ForeignKey(Department, models.DO_NOTHING, blank=True, null=True)
     mob = models.CharField(max_length=15, blank=True, null=True)
     land = models.CharField(max_length=15, blank=True, null=True)
@@ -566,18 +668,23 @@ class Teacher(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'teacher'
+        db_table = "teacher"
 
 
 class TimeSlot(models.Model):
     time_slot_id = models.IntegerField(primary_key=True)
-    start_time = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
-    end_time = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    start_time = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
+    end_time = models.DecimalField(
+        max_digits=10, decimal_places=0, blank=True, null=True
+    )
     session = models.CharField(max_length=2, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'time_slot'
+        db_table = "time_slot"
+
 
 class Tutor(models.Model):
     teacher_id = models.IntegerField(blank=True, null=True)
@@ -587,7 +694,8 @@ class Tutor(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tutor'
+        db_table = "tutor"
+
 
 class WorkingDays(models.Model):
     year = models.IntegerField(blank=True, null=True)
@@ -596,46 +704,47 @@ class WorkingDays(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'working_days'
+        db_table = "working_days"
 
-#Table to store data of students on their Course Priority
+
+# Table to store data of students on their Course Priority
 class OpenCourseChoice(models.Model):
-    course_code = models.CharField(blank=True, null=True,max_length=20)
+    course_code = models.CharField(blank=True, null=True, max_length=20)
     choice = models.IntegerField(blank=True, null=True)
     stud_id = models.ForeignKey(StudMaster, models.CASCADE, blank=True, null=True)
-    
+
     def __str__(self):
         return f"{str(self.stud_id.name)}, {self.stud_id.uty_reg_no}"
 
 
-#Add table to list out seats in each dept. for opencourse    
+# Add table to list out seats in each dept. for opencourse
 class SeatsOpenCourse(models.Model):
     id = models.AutoField(primary_key=True)
     BOT = models.IntegerField(blank=True, null=True, verbose_name="Botany")
-    CHE = models.IntegerField(blank=True,null=True, verbose_name="Chemistry")
-    COM = models.IntegerField(blank=True,null=True, verbose_name="Commerce")
-    CSC = models.IntegerField(blank=True,null=True, verbose_name="Computer Science")
-    ECO = models.IntegerField(blank=True,null=True, verbose_name="Economics")
-    MAT = models.IntegerField(blank=True,null=True, verbose_name="Maths")
-    PED = models.IntegerField(blank=True,null=True, verbose_name="Physical Education")
-    PHY = models.IntegerField(blank=True,null=True, verbose_name="Physics")
-    POL = models.IntegerField(blank=True,null=True, verbose_name="Politics")
-    SKT = models.IntegerField(blank=True,null=True, verbose_name="Sanskrit")
-    STA = models.IntegerField(blank=True,null=True, verbose_name="Statistics")
-    ZLG = models.IntegerField(blank=True,null=True, verbose_name="Zoology")
-    HIS = models.IntegerField(blank=True,null=True, verbose_name="History")
-    ENG = models.IntegerField(blank=True,null=True, verbose_name="English")
-    MAL = models.IntegerField(blank=True,null=True, verbose_name="Malayalam")
+    CHE = models.IntegerField(blank=True, null=True, verbose_name="Chemistry")
+    COM = models.IntegerField(blank=True, null=True, verbose_name="Commerce")
+    CSC = models.IntegerField(blank=True, null=True, verbose_name="Computer Science")
+    ECO = models.IntegerField(blank=True, null=True, verbose_name="Economics")
+    MAT = models.IntegerField(blank=True, null=True, verbose_name="Maths")
+    PED = models.IntegerField(blank=True, null=True, verbose_name="Physical Education")
+    PHY = models.IntegerField(blank=True, null=True, verbose_name="Physics")
+    POL = models.IntegerField(blank=True, null=True, verbose_name="Politics")
+    SKT = models.IntegerField(blank=True, null=True, verbose_name="Sanskrit")
+    STA = models.IntegerField(blank=True, null=True, verbose_name="Statistics")
+    ZLG = models.IntegerField(blank=True, null=True, verbose_name="Zoology")
+    HIS = models.IntegerField(blank=True, null=True, verbose_name="History")
+    ENG = models.IntegerField(blank=True, null=True, verbose_name="English")
+    MAL = models.IntegerField(blank=True, null=True, verbose_name="Malayalam")
 
     def __str__(self):
         return "Seating"
-    
+
     class Meta:
         # Add a unique constraint to ensure only one row is stored
         constraints = [
             models.UniqueConstraint(
-                fields=['id'],
-                name='unique_seats_open_course',
+                fields=["id"],
+                name="unique_seats_open_course",
             ),
         ]
 

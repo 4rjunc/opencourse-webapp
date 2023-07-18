@@ -4,19 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('openApi', '0005_seatsopencourse'),
+        ("openApi", "0005_seatsopencourse"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='seatsopencourse',
-            name='id',
+            model_name="seatsopencourse",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AddConstraint(
-            model_name='seatsopencourse',
-            constraint=models.UniqueConstraint(fields=('id',), name='unique_seats_open_course'),
+            model_name="seatsopencourse",
+            constraint=models.UniqueConstraint(
+                fields=("id",), name="unique_seats_open_course"
+            ),
         ),
     ]

@@ -5,617 +5,993 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('openApi', '0001_initial'),
+        ("openApi", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Caste',
+            name="Caste",
             fields=[
-                ('caste_id', models.AutoField(primary_key=True, serialize=False)),
-                ('caste_name', models.CharField(blank=True, max_length=50, null=True)),
+                ("caste_id", models.AutoField(primary_key=True, serialize=False)),
+                ("caste_name", models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
-                'db_table': 'caste',
-                'managed': False,
+                "db_table": "caste",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('cat_id', models.AutoField(primary_key=True, serialize=False)),
-                ('cat_name', models.CharField(blank=True, max_length=10, null=True)),
+                ("cat_id", models.AutoField(primary_key=True, serialize=False)),
+                ("cat_name", models.CharField(blank=True, max_length=10, null=True)),
             ],
             options={
-                'db_table': 'category',
-                'managed': False,
+                "db_table": "category",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='CommonCourseType',
+            name="CommonCourseType",
             fields=[
-                ('common_course_type_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('common_course_type_dec', models.CharField(blank=True, max_length=30, null=True)),
+                (
+                    "common_course_type_id",
+                    models.IntegerField(primary_key=True, serialize=False),
+                ),
+                (
+                    "common_course_type_dec",
+                    models.CharField(blank=True, max_length=30, null=True),
+                ),
             ],
             options={
-                'db_table': 'common_course_type',
-                'managed': False,
+                "db_table": "common_course_type",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('course_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('course_title', models.CharField(blank=True, max_length=100, null=True)),
-                ('course_code', models.CharField(blank=True, max_length=12, null=True)),
-                ('lab_theory', models.CharField(blank=True, max_length=1, null=True)),
-                ('semester', models.IntegerField(blank=True, null=True)),
-                ('syllabus_intro_year', models.IntegerField(blank=True, null=True)),
-                ('credits', models.IntegerField(blank=True, null=True)),
-                ('total_internal', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('total_external', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('grad_level', models.CharField(blank=True, max_length=2, null=True)),
+                ("course_id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "course_title",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                ("course_code", models.CharField(blank=True, max_length=12, null=True)),
+                ("lab_theory", models.CharField(blank=True, max_length=1, null=True)),
+                ("semester", models.IntegerField(blank=True, null=True)),
+                ("syllabus_intro_year", models.IntegerField(blank=True, null=True)),
+                ("credits", models.IntegerField(blank=True, null=True)),
+                (
+                    "total_internal",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "total_external",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                ("grad_level", models.CharField(blank=True, max_length=2, null=True)),
             ],
             options={
-                'db_table': 'course',
-                'managed': False,
+                "db_table": "course",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='CourseType',
+            name="CourseType",
             fields=[
-                ('course_type_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('course_type_desc', models.CharField(blank=True, max_length=50, null=True)),
+                (
+                    "course_type_id",
+                    models.IntegerField(primary_key=True, serialize=False),
+                ),
+                (
+                    "course_type_desc",
+                    models.CharField(blank=True, max_length=50, null=True),
+                ),
             ],
             options={
-                'db_table': 'course_type',
-                'managed': False,
+                "db_table": "course_type",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Department',
+            name="Department",
             fields=[
-                ('dept_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('dept_name', models.CharField(blank=True, max_length=80, null=True)),
+                ("dept_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("dept_name", models.CharField(blank=True, max_length=80, null=True)),
             ],
             options={
-                'db_table': 'department',
-                'managed': False,
+                "db_table": "department",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Designation',
+            name="Designation",
             fields=[
-                ('designation_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('designation_name', models.CharField(blank=True, max_length=60, null=True)),
+                (
+                    "designation_id",
+                    models.IntegerField(primary_key=True, serialize=False),
+                ),
+                (
+                    "designation_name",
+                    models.CharField(blank=True, max_length=60, null=True),
+                ),
             ],
             options={
-                'db_table': 'designation',
-                'managed': False,
+                "db_table": "designation",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='District',
+            name="District",
             fields=[
-                ('dist_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('state_id', models.IntegerField(blank=True, null=True)),
-                ('dist_name', models.CharField(blank=True, max_length=50, null=True)),
+                ("dist_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("state_id", models.IntegerField(blank=True, null=True)),
+                ("dist_name", models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
-                'db_table': 'district',
-                'managed': False,
+                "db_table": "district",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Examboard',
+            name="Examboard",
             fields=[
-                ('board_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('board_name', models.CharField(blank=True, max_length=50, null=True)),
+                ("board_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("board_name", models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
-                'db_table': 'examboard',
-                'managed': False,
+                "db_table": "examboard",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbAnswer',
+            name="FbAnswer",
             fields=[
-                ('ans_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('answer_desc', models.CharField(blank=True, max_length=50, null=True)),
+                ("ans_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("answer_desc", models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
-                'db_table': 'fb_answer',
-                'managed': False,
+                "db_table": "fb_answer",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbFeedback',
+            name="FbFeedback",
             fields=[
-                ('fb_id', models.CharField(max_length=50, primary_key=True, serialize=False)),
-                ('year_of_admn', models.IntegerField(blank=True, null=True)),
-                ('fb_date', models.DateTimeField(blank=True, null=True)),
+                (
+                    "fb_id",
+                    models.CharField(max_length=50, primary_key=True, serialize=False),
+                ),
+                ("year_of_admn", models.IntegerField(blank=True, null=True)),
+                ("fb_date", models.DateTimeField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'fb_feedback',
-                'managed': False,
+                "db_table": "fb_feedback",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbLogin',
+            name="FbLogin",
             fields=[
-                ('user_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('username', models.CharField(blank=True, max_length=20, null=True, unique=True)),
-                ('pwd', models.CharField(blank=True, max_length=40, null=True)),
+                ("user_id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "username",
+                    models.CharField(blank=True, max_length=20, null=True, unique=True),
+                ),
+                ("pwd", models.CharField(blank=True, max_length=40, null=True)),
             ],
             options={
-                'db_table': 'fb_login',
-                'managed': False,
+                "db_table": "fb_login",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbQuestion',
+            name="FbQuestion",
             fields=[
-                ('q_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('q_desc', models.CharField(blank=True, max_length=400, null=True)),
-                ('additional_answer', models.IntegerField(blank=True, null=True)),
-                ('mandatory', models.IntegerField(blank=True, null=True)),
+                ("q_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("q_desc", models.CharField(blank=True, max_length=400, null=True)),
+                ("additional_answer", models.IntegerField(blank=True, null=True)),
+                ("mandatory", models.IntegerField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'fb_question',
-                'managed': False,
+                "db_table": "fb_question",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbQuestionCategory',
+            name="FbQuestionCategory",
             fields=[
-                ('cat_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('cat_desc', models.CharField(blank=True, max_length=20, null=True)),
+                ("cat_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("cat_desc", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'db_table': 'fb_question_category',
-                'managed': False,
+                "db_table": "fb_question_category",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbQuestionType',
+            name="FbQuestionType",
             fields=[
-                ('type_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('type_desc', models.CharField(blank=True, max_length=20, null=True)),
+                ("type_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("type_desc", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'db_table': 'fb_question_type',
-                'managed': False,
+                "db_table": "fb_question_type",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FeedbackUrls',
+            name="FeedbackUrls",
             fields=[
-                ('teacher_id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=50, null=True)),
-                ('feedback_url', models.CharField(blank=True, max_length=500, null=True)),
-                ('active', models.IntegerField()),
-                ('part', models.IntegerField()),
-                ('department', models.IntegerField(blank=True, null=True)),
+                ("teacher_id", models.AutoField(primary_key=True, serialize=False)),
+                ("name", models.CharField(blank=True, max_length=50, null=True)),
+                (
+                    "feedback_url",
+                    models.CharField(blank=True, max_length=500, null=True),
+                ),
+                ("active", models.IntegerField()),
+                ("part", models.IntegerField()),
+                ("department", models.IntegerField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'feedback_urls',
-                'managed': False,
+                "db_table": "feedback_urls",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='GraceAttType',
+            name="GraceAttType",
             fields=[
-                ('id', models.SmallIntegerField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=30)),
-                ('max', models.SmallIntegerField()),
+                ("id", models.SmallIntegerField(primary_key=True, serialize=False)),
+                ("description", models.CharField(max_length=30)),
+                ("max", models.SmallIntegerField()),
             ],
             options={
-                'db_table': 'grace_att_type',
-                'managed': False,
+                "db_table": "grace_att_type",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='HoursTaken',
+            name="HoursTaken",
             fields=[
-                ('hour_id', models.AutoField(primary_key=True, serialize=False)),
-                ('hour_date', models.DateField(blank=True, null=True)),
-                ('regular', models.TextField(db_column='Regular')),
+                ("hour_id", models.AutoField(primary_key=True, serialize=False)),
+                ("hour_date", models.DateField(blank=True, null=True)),
+                ("regular", models.TextField(db_column="Regular")),
             ],
             options={
-                'db_table': 'hours_taken',
-                'managed': False,
+                "db_table": "hours_taken",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='InternalExam',
+            name="InternalExam",
             fields=[
-                ('exam_id', models.CharField(max_length=10, primary_key=True, serialize=False)),
-                ('pgm_id', models.IntegerField()),
-                ('max_marks', models.DecimalField(blank=True, decimal_places=2, max_digits=4, null=True)),
-                ('exam_date', models.DateField(blank=True, null=True)),
+                (
+                    "exam_id",
+                    models.CharField(max_length=10, primary_key=True, serialize=False),
+                ),
+                ("pgm_id", models.IntegerField()),
+                (
+                    "max_marks",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=4, null=True
+                    ),
+                ),
+                ("exam_date", models.DateField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'internal_exam',
-                'managed': False,
+                "db_table": "internal_exam",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='PgmCourse',
+            name="PgmCourse",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'pgm_course',
-                'managed': False,
+                "db_table": "pgm_course",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Programme',
+            name="Programme",
             fields=[
-                ('pgm_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('pgm_name', models.CharField(blank=True, max_length=100, null=True)),
-                ('no_of_sems', models.IntegerField(blank=True, null=True)),
-                ('grad_level', models.CharField(blank=True, max_length=2, null=True)),
+                ("pgm_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("pgm_name", models.CharField(blank=True, max_length=100, null=True)),
+                ("no_of_sems", models.IntegerField(blank=True, null=True)),
+                ("grad_level", models.CharField(blank=True, max_length=2, null=True)),
             ],
             options={
-                'db_table': 'programme',
-                'managed': False,
+                "db_table": "programme",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Quota',
+            name="Quota",
             fields=[
-                ('quota_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('quota_name', models.CharField(blank=True, max_length=50, null=True)),
+                ("quota_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("quota_name", models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
-                'db_table': 'quota',
-                'managed': False,
+                "db_table": "quota",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Religion',
+            name="Religion",
             fields=[
-                ('religion_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('religion_name', models.CharField(blank=True, max_length=50, null=True)),
+                ("religion_id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "religion_name",
+                    models.CharField(blank=True, max_length=50, null=True),
+                ),
             ],
             options={
-                'db_table': 'religion',
-                'managed': False,
+                "db_table": "religion",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Role',
+            name="Role",
             fields=[
-                ('role_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('role_name', models.CharField(blank=True, max_length=20, null=True)),
+                ("role_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("role_name", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'db_table': 'role',
-                'managed': False,
+                "db_table": "role",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Section',
+            name="Section",
             fields=[
-                ('section_id', models.AutoField(primary_key=True, serialize=False, unique=True)),
-                ('part', models.SmallIntegerField(blank=True, null=True)),
-                ('year', models.IntegerField(blank=True, null=True)),
-                ('active', models.SmallIntegerField(blank=True, null=True)),
+                (
+                    "section_id",
+                    models.AutoField(primary_key=True, serialize=False, unique=True),
+                ),
+                ("part", models.SmallIntegerField(blank=True, null=True)),
+                ("year", models.IntegerField(blank=True, null=True)),
+                ("active", models.SmallIntegerField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'section',
-                'managed': False,
+                "db_table": "section",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='StaffLogin',
+            name="StaffLogin",
             fields=[
-                ('user_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('username', models.CharField(blank=True, max_length=20, null=True, unique=True)),
-                ('pwd', models.CharField(blank=True, max_length=40, null=True)),
-                ('pwd_sl_no', models.IntegerField(blank=True, null=True)),
+                ("user_id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "username",
+                    models.CharField(blank=True, max_length=20, null=True, unique=True),
+                ),
+                ("pwd", models.CharField(blank=True, max_length=40, null=True)),
+                ("pwd_sl_no", models.IntegerField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'staff_login',
-                'managed': False,
+                "db_table": "staff_login",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='State',
+            name="State",
             fields=[
-                ('state_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('state_name', models.CharField(blank=True, max_length=50, null=True)),
+                ("state_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("state_name", models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
-                'db_table': 'state',
-                'managed': False,
+                "db_table": "state",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Status',
+            name="Status",
             fields=[
-                ('status_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('status_desc', models.CharField(blank=True, max_length=20, null=True)),
+                ("status_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("status_desc", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'db_table': 'status',
-                'managed': False,
+                "db_table": "status",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Stream',
+            name="Stream",
             fields=[
-                ('stream_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('stream_name', models.CharField(blank=True, max_length=20, null=True)),
+                ("stream_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("stream_name", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'db_table': 'stream',
-                'managed': False,
+                "db_table": "stream",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='StudMaster',
+            name="StudMaster",
             fields=[
-                ('stud_id', models.AutoField(primary_key=True, serialize=False)),
-                ('admn_no', models.IntegerField(blank=True, null=True, unique=True)),
-                ('roll_no', models.IntegerField(blank=True, null=True)),
-                ('uty_reg_no', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=12, null=True)),
-                ('name', models.CharField(db_collation='utf8mb3_general_ci', max_length=50)),
-                ('year_of_admn', models.IntegerField(blank=True, null=True)),
-                ('dob', models.DateField(blank=True, null=True)),
-                ('sex', models.CharField(db_collation='utf8mb3_general_ci', max_length=1)),
-                ('email', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=100, null=True, unique=True)),
-                ('contact_no', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=20, null=True)),
-                ('parent_name', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('parent_occupation', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('parent_mob', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=20, null=True)),
-                ('parent_land', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=20, null=True)),
-                ('house_name', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('street', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('place', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('dist', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('state', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=50, null=True)),
-                ('pincode', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=6, null=True)),
-                ('marks_sslc', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('marks_twelth', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('board_twelth', models.IntegerField(blank=True, null=True)),
-                ('quota', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=10, null=True)),
-                ('photo', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=100, null=True)),
-                ('status', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=10, null=True)),
-                ('comments', models.CharField(blank=True, db_collation='utf8mb3_general_ci', max_length=100, null=True)),
-                ('current_sem', models.IntegerField(blank=True, null=True)),
-                ('annual_income', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('differently_abled', models.TextField(blank=True, null=True)),
-                ('date_of_admission', models.DateField()),
-                ('date_of_leaving', models.DateField(blank=True, null=True)),
-                ('egrantz', models.TextField(blank=True, null=True)),
-                ('fish_egrantz', models.TextField(blank=True, null=True)),
+                ("stud_id", models.AutoField(primary_key=True, serialize=False)),
+                ("admn_no", models.IntegerField(blank=True, null=True, unique=True)),
+                ("roll_no", models.IntegerField(blank=True, null=True)),
+                (
+                    "uty_reg_no",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=12,
+                        null=True,
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(db_collation="utf8mb3_general_ci", max_length=50),
+                ),
+                ("year_of_admn", models.IntegerField(blank=True, null=True)),
+                ("dob", models.DateField(blank=True, null=True)),
+                (
+                    "sex",
+                    models.CharField(db_collation="utf8mb3_general_ci", max_length=1),
+                ),
+                (
+                    "email",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=100,
+                        null=True,
+                        unique=True,
+                    ),
+                ),
+                (
+                    "contact_no",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=20,
+                        null=True,
+                    ),
+                ),
+                (
+                    "parent_name",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "parent_occupation",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "parent_mob",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=20,
+                        null=True,
+                    ),
+                ),
+                (
+                    "parent_land",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=20,
+                        null=True,
+                    ),
+                ),
+                (
+                    "house_name",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "street",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "place",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "dist",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "state",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=50,
+                        null=True,
+                    ),
+                ),
+                (
+                    "pincode",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=6,
+                        null=True,
+                    ),
+                ),
+                (
+                    "marks_sslc",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "marks_twelth",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                ("board_twelth", models.IntegerField(blank=True, null=True)),
+                (
+                    "quota",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=10,
+                        null=True,
+                    ),
+                ),
+                (
+                    "photo",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=10,
+                        null=True,
+                    ),
+                ),
+                (
+                    "comments",
+                    models.CharField(
+                        blank=True,
+                        db_collation="utf8mb3_general_ci",
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                ("current_sem", models.IntegerField(blank=True, null=True)),
+                (
+                    "annual_income",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                ("differently_abled", models.TextField(blank=True, null=True)),
+                ("date_of_admission", models.DateField()),
+                ("date_of_leaving", models.DateField(blank=True, null=True)),
+                ("egrantz", models.TextField(blank=True, null=True)),
+                ("fish_egrantz", models.TextField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'stud_master',
-                'managed': False,
+                "db_table": "stud_master",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Tc',
+            name="Tc",
             fields=[
-                ('tc_no', models.PositiveSmallIntegerField(primary_key=True, serialize=False)),
-                ('year', models.PositiveSmallIntegerField()),
-                ('tc_app_date', models.DateField()),
-                ('tc_issue_date', models.DateField()),
-                ('date_of_leaving', models.DateField()),
-                ('exam_month', models.DateField(blank=True, null=True)),
-                ('scholarship', models.CharField(blank=True, max_length=3, null=True)),
-                ('dues_cleared', models.CharField(max_length=1)),
+                (
+                    "tc_no",
+                    models.PositiveSmallIntegerField(primary_key=True, serialize=False),
+                ),
+                ("year", models.PositiveSmallIntegerField()),
+                ("tc_app_date", models.DateField()),
+                ("tc_issue_date", models.DateField()),
+                ("date_of_leaving", models.DateField()),
+                ("exam_month", models.DateField(blank=True, null=True)),
+                ("scholarship", models.CharField(blank=True, max_length=3, null=True)),
+                ("dues_cleared", models.CharField(max_length=1)),
             ],
             options={
-                'db_table': 'tc',
-                'managed': False,
+                "db_table": "tc",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='TcReasons',
+            name="TcReasons",
             fields=[
-                ('reason_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('reason_desc', models.CharField(max_length=100)),
+                ("reason_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("reason_desc", models.CharField(max_length=100)),
             ],
             options={
-                'db_table': 'tc_reasons',
-                'managed': False,
+                "db_table": "tc_reasons",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Teacher',
+            name="Teacher",
             fields=[
-                ('teacher_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=60, null=True)),
-                ('mob', models.CharField(blank=True, max_length=15, null=True)),
-                ('land', models.CharField(blank=True, max_length=15, null=True)),
-                ('email', models.CharField(blank=True, max_length=60, null=True)),
-                ('house_name', models.CharField(blank=True, max_length=50, null=True)),
-                ('street', models.CharField(blank=True, max_length=50, null=True)),
-                ('place', models.CharField(blank=True, max_length=50, null=True)),
-                ('dist', models.CharField(blank=True, max_length=50, null=True)),
-                ('state', models.CharField(blank=True, max_length=50, null=True)),
-                ('pincode', models.CharField(blank=True, max_length=6, null=True)),
-                ('dob', models.DateField(blank=True, null=True)),
-                ('doj', models.DateField(blank=True, null=True)),
-                ('sex', models.CharField(blank=True, max_length=1, null=True)),
-                ('photo', models.CharField(blank=True, max_length=100, null=True)),
-                ('status', models.CharField(blank=True, max_length=20, null=True)),
+                ("teacher_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(blank=True, max_length=60, null=True)),
+                ("mob", models.CharField(blank=True, max_length=15, null=True)),
+                ("land", models.CharField(blank=True, max_length=15, null=True)),
+                ("email", models.CharField(blank=True, max_length=60, null=True)),
+                ("house_name", models.CharField(blank=True, max_length=50, null=True)),
+                ("street", models.CharField(blank=True, max_length=50, null=True)),
+                ("place", models.CharField(blank=True, max_length=50, null=True)),
+                ("dist", models.CharField(blank=True, max_length=50, null=True)),
+                ("state", models.CharField(blank=True, max_length=50, null=True)),
+                ("pincode", models.CharField(blank=True, max_length=6, null=True)),
+                ("dob", models.DateField(blank=True, null=True)),
+                ("doj", models.DateField(blank=True, null=True)),
+                ("sex", models.CharField(blank=True, max_length=1, null=True)),
+                ("photo", models.CharField(blank=True, max_length=100, null=True)),
+                ("status", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'db_table': 'teacher',
-                'managed': False,
+                "db_table": "teacher",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='TimeSlot',
+            name="TimeSlot",
             fields=[
-                ('time_slot_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('start_time', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('end_time', models.DecimalField(blank=True, decimal_places=0, max_digits=10, null=True)),
-                ('session', models.CharField(blank=True, max_length=2, null=True)),
+                (
+                    "time_slot_id",
+                    models.IntegerField(primary_key=True, serialize=False),
+                ),
+                (
+                    "start_time",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                (
+                    "end_time",
+                    models.DecimalField(
+                        blank=True, decimal_places=0, max_digits=10, null=True
+                    ),
+                ),
+                ("session", models.CharField(blank=True, max_length=2, null=True)),
             ],
             options={
-                'db_table': 'time_slot',
-                'managed': False,
+                "db_table": "time_slot",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Tutor',
+            name="Tutor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('teacher_id', models.IntegerField(blank=True, null=True)),
-                ('pgm_id', models.IntegerField(blank=True, null=True)),
-                ('year_of_admn', models.IntegerField(blank=True, null=True)),
-                ('semester', models.IntegerField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("teacher_id", models.IntegerField(blank=True, null=True)),
+                ("pgm_id", models.IntegerField(blank=True, null=True)),
+                ("year_of_admn", models.IntegerField(blank=True, null=True)),
+                ("semester", models.IntegerField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'tutor',
-                'managed': False,
+                "db_table": "tutor",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='WorkingDays',
+            name="WorkingDays",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.IntegerField(blank=True, null=True)),
-                ('sem', models.IntegerField(blank=True, null=True)),
-                ('work_day', models.DateField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("year", models.IntegerField(blank=True, null=True)),
+                ("sem", models.IntegerField(blank=True, null=True)),
+                ("work_day", models.DateField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'working_days',
-                'managed': False,
+                "db_table": "working_days",
+                "managed": False,
             },
         ),
         migrations.DeleteModel(
-            name='OC',
+            name="OC",
         ),
         migrations.CreateModel(
-            name='Absentee',
+            name="Absentee",
             fields=[
-                ('hour', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.hourstaken')),
-                ('status_id', models.IntegerField(blank=True, null=True)),
-                ('grace', models.SmallIntegerField()),
+                (
+                    "hour",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.hourstaken",
+                    ),
+                ),
+                ("status_id", models.IntegerField(blank=True, null=True)),
+                ("grace", models.SmallIntegerField()),
             ],
             options={
-                'db_table': 'absentee',
-                'managed': False,
+                "db_table": "absentee",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='CommonCourse',
+            name="CommonCourse",
             fields=[
-                ('course', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.course')),
+                (
+                    "course",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.course",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'common_course',
-                'managed': False,
+                "db_table": "common_course",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbCollegeDesc',
+            name="FbCollegeDesc",
             fields=[
-                ('fb', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.fbfeedback')),
-                ('answer_desc', models.CharField(blank=True, max_length=100, null=True)),
-                ('answer_comment', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "fb",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.fbfeedback",
+                    ),
+                ),
+                (
+                    "answer_desc",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                (
+                    "answer_comment",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
             ],
             options={
-                'db_table': 'fb_college_desc',
-                'managed': False,
+                "db_table": "fb_college_desc",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbCollegeMcq',
+            name="FbCollegeMcq",
             fields=[
-                ('fb', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.fbfeedback')),
-                ('answer_comment', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "fb",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.fbfeedback",
+                    ),
+                ),
+                (
+                    "answer_comment",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
             ],
             options={
-                'db_table': 'fb_college_mcq',
-                'managed': False,
+                "db_table": "fb_college_mcq",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbCollegeTeacher',
+            name="FbCollegeTeacher",
             fields=[
-                ('fb', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.fbfeedback')),
-                ('answer_comment', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "fb",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.fbfeedback",
+                    ),
+                ),
+                (
+                    "answer_comment",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
             ],
             options={
-                'db_table': 'fb_college_teacher',
-                'managed': False,
+                "db_table": "fb_college_teacher",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbTeacherDesc',
+            name="FbTeacherDesc",
             fields=[
-                ('fb', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.fbfeedback')),
-                ('answer_desc', models.CharField(blank=True, max_length=100, null=True)),
-                ('answer_comment', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "fb",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.fbfeedback",
+                    ),
+                ),
+                (
+                    "answer_desc",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                (
+                    "answer_comment",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
             ],
             options={
-                'db_table': 'fb_teacher_desc',
-                'managed': False,
+                "db_table": "fb_teacher_desc",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbTeacherMcq',
+            name="FbTeacherMcq",
             fields=[
-                ('fb', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.fbfeedback')),
-                ('answer_comment', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "fb",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.fbfeedback",
+                    ),
+                ),
+                (
+                    "answer_comment",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
             ],
             options={
-                'db_table': 'fb_teacher_mcq',
-                'managed': False,
+                "db_table": "fb_teacher_mcq",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='FbTeacherNumeric',
+            name="FbTeacherNumeric",
             fields=[
-                ('fb', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.fbfeedback')),
-                ('answer_value', models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True)),
-                ('answer_comment', models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "fb",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.fbfeedback",
+                    ),
+                ),
+                (
+                    "answer_value",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=5, null=True
+                    ),
+                ),
+                (
+                    "answer_comment",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
             ],
             options={
-                'db_table': 'fb_teacher_numeric',
-                'managed': False,
+                "db_table": "fb_teacher_numeric",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='InternalExamMarks',
+            name="InternalExamMarks",
             fields=[
-                ('exam', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.internalexam')),
-                ('marks', models.DecimalField(blank=True, decimal_places=2, max_digits=4, null=True)),
+                (
+                    "exam",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.internalexam",
+                    ),
+                ),
+                (
+                    "marks",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=4, null=True
+                    ),
+                ),
             ],
             options={
-                'db_table': 'internal_exam_marks',
-                'managed': False,
+                "db_table": "internal_exam_marks",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='OpenAllotment',
+            name="OpenAllotment",
             fields=[
-                ('stud', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.studmaster')),
+                (
+                    "stud",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.studmaster",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'open_allotment',
-                'managed': False,
+                "db_table": "open_allotment",
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='Takes',
+            name="Takes",
             fields=[
-                ('teacher', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='openApi.teacher')),
-                ('section_id', models.IntegerField(unique=True)),
+                (
+                    "teacher",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="openApi.teacher",
+                    ),
+                ),
+                ("section_id", models.IntegerField(unique=True)),
             ],
             options={
-                'db_table': 'takes',
-                'managed': False,
+                "db_table": "takes",
+                "managed": False,
             },
         ),
     ]

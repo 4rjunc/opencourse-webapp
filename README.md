@@ -108,11 +108,11 @@ To Do
 Security issue in login page
 
 Form Ui
-  displaying the opencourses in a priority list where the numbers(priority on LHS) & course name in RHS
+  displaying the opencourses in a priority list where the numbers(priority on LHS) & course name in RHS 👍🏼
   once selected course should not be displayed in the dropdown
 
 Submission of data
-    submission to table in row wise
+    submission to table in row wise 👍🏼
 
 Sorting of data
     create a button in admin panel which will sort the data from OpenCourseChoice Table and downloads a CSV file.

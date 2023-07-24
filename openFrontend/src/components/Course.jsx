@@ -67,6 +67,7 @@ const Course = () => {
   const handleCourseSelection = (courseCode, index) => {
       setSelectedCourses({...selectedCourses, [courseCode]: index})
   };
+
   useEffect(() => {
     console.log("selectedcourses", selectedCourses);
   }, [selectedCourses]);
@@ -96,11 +97,15 @@ const Course = () => {
                     {courses.map((course, index) => {
                       const courseName = Object.keys(course)[0];
                       const courseCode = Object.values(course)[0];
-                      return (
-                        <option key={index} value={courseCode}>
-                          {courseName} : {courseCode}
-                        </option>
-                      );
+                      // Check if the courseCode exists in selectedCourses
+                        if (!selectedCourses[courseCode]) {
+                          return (
+                            <option key={index} value={courseCode}>
+                              {courseName} : {courseCode}
+                            </option>
+                          );
+                        }
+                        return null; // Skip rendering this option
                     })}
                   </select>
                 </li>

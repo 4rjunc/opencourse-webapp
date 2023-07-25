@@ -65,7 +65,23 @@ const Course = () => {
   };
 
   const handleCourseSelection = (courseCode, index) => {
-      setSelectedCourses({...selectedCourses, [courseCode]: index})
+      //setSelectedCourses({...selectedCourses, [courseCode]: index})
+       setSelectedCourses((prevSelectedCourses) => {
+    // Check if the course with the same index already exists
+    const isCourseExists = Object.values(prevSelectedCourses).includes(index);
+
+    if (isCourseExists) {
+      // If the course exists, remove it
+      const updatedSelectedCourses = Object.fromEntries(
+        Object.entries(prevSelectedCourses).filter(([key, value]) => value !== index)
+      );
+      // Add the new course with the selected courseCode
+      return { ...updatedSelectedCourses, [courseCode]: index };
+    } else {
+      // If the course doesn't exist, simply add the new one
+      return { ...prevSelectedCourses, [courseCode]: index };
+    }
+  });
   };
 
   useEffect(() => {
@@ -105,7 +121,6 @@ const Course = () => {
                             </option>
                           );
                         }
-                        return null; // Skip rendering this option
                     })}
                   </select>
                 </li>

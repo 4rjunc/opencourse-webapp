@@ -102,7 +102,14 @@ Example of payload
 }
   
 ```
+Automation Scripts
+```bash
+backend-scipt/auto_data_entry.py  # Auto data entries
 
+python3 manage.py create_user # Creates user
+
+python3 manaeg.py delete_user # Deletes the user
+``````
 To Do
 
 Security issue in login page

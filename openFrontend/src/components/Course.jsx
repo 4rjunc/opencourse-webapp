@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -9,6 +11,14 @@ const Course = () => {
   const [marks, setMarks] = useState(0);
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
 
   const token = localStorage.getItem("token");
@@ -56,11 +66,17 @@ const Course = () => {
       .post("http://127.0.0.1:8000/openApi/api/submit/", data)
       .then((response) => {
         console.log(response.data);
-        alert(response.data["message"]);
+        //alert(response.data["message"]);
+        setSnackbarOpen(true);
+        setSnackbarMessage("Submitted Successful!");
+        setSnackbarSeverity("success");
       })
       .catch((error) => {
         console.log("Error", error);
-        alert(error.response.data["message"]);
+        //alert(error.response.data["message"]);
+        setSnackbarOpen(true);
+        setSnackbarMessage("Already Submitted");
+        setSnackbarSeverity("error");
       });
   };
 
@@ -128,6 +144,21 @@ const Course = () => {
             })}
           </ul>
           <button type="submit">Submit</button>
+          <Snackbar
+              open={snackbarOpen}
+              autoHideDuration={5000}
+              onClose={handleSnackbarClose}
+              style={{padding:"20rem 31.2rem"}}
+            >
+              <MuiAlert
+                elevation={6}
+                variant="filled"
+                onClose={handleSnackbarClose}
+                severity={snackbarSeverity}
+              >
+                {snackbarMessage}
+              </MuiAlert>
+            </Snackbar>
         </form>
       </div>
     </div>

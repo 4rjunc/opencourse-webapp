@@ -16,7 +16,7 @@ OpenCourse is a programme in our college where students of other deparments are 
 
 **Client:** React \
 **Server:** Django \
-**Database:** sqlite
+**Database:** MySql
 
 
 
@@ -86,12 +86,10 @@ Start the server
 ```http
   POST api/submit/
 ```
-Example of payload
-
+Playload Example
 ```json
 {   
     "regno":"NAXXXXXXXX",
-    "marks":1000,
     "courseList": [
         ["Course1", 1],
         ["Course2", 2],
@@ -102,21 +100,43 @@ Example of payload
 }
   
 ```
-Automation Scripts
+
+### Login
+
+```http
+  POST /api/login/
+```
+Payload Example
+```json
+  {
+        'username': 'REGISTER_NUMBER',
+        'password': 'DATE_OF_BIRTH',  
+  }
+``````
+Passwords are set by default.
+
+### Details
+```http
+  GET api/details/?regno=REGISTER_NUMBER
+``````
+
+## Automation Scripts
 ```bash
 backend-scipt/auto_data_entry.py  # Auto data entries
 
 python3 manage.py create_user # Creates user
 
-python3 manaeg.py delete_user # Deletes the user
+python3 manage.py delete_user # Deletes the user
 ``````
-To Do
+
+
+## To Do
 
 Security issue in login page
 
 Form Ui
   displaying the opencourses in a priority list where the numbers(priority on LHS) & course name in RHS 👍🏼
-  once selected course should not be displayed in the dropdown
+  once selected course should not be displayed in the dropdown 👍🏼
 
 Submission of data
     submission to table in row wise 👍🏼

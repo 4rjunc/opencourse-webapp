@@ -3,6 +3,11 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import { Button } from "@mui/material";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -19,7 +24,6 @@ const Course = () => {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
-
 
   const token = localStorage.getItem("token");
   console.log(token);
@@ -57,11 +61,11 @@ const Course = () => {
     e.preventDefault();
     //POST-ing data to server
     const data = {
-      "regno":regNumber,
-      selectedCourses
-    }
+      regno: regNumber,
+      selectedCourses,
+    };
 
-    console.log("data", data)
+    console.log("data", data);
     axios
       .post("http://127.0.0.1:8000/openApi/api/submit/", data)
       .then((response) => {
@@ -81,29 +85,31 @@ const Course = () => {
   };
 
   const handleCourseSelection = (courseCode, index) => {
-      //setSelectedCourses({...selectedCourses, [courseCode]: index})
-       setSelectedCourses((prevSelectedCourses) => {
-    // Check if the course with the same index already exists
-    const isCourseExists = Object.values(prevSelectedCourses).includes(index);
+    //setSelectedCourses({...selectedCourses, [courseCode]: index})
+    setSelectedCourses((prevSelectedCourses) => {
+      // Check if the course with the same index already exists
+      const isCourseExists = Object.values(prevSelectedCourses).includes(index);
 
-    if (isCourseExists) {
-      // If the course exists, remove it
-      const updatedSelectedCourses = Object.fromEntries(
-        Object.entries(prevSelectedCourses).filter(([key, value]) => value !== index)
-      );
-      // Add the new course with the selected courseCode
-      return { ...updatedSelectedCourses, [courseCode]: index };
-    } else {
-      // If the course doesn't exist, simply add the new one
-      return { ...prevSelectedCourses, [courseCode]: index };
-    }
-  });
+      if (isCourseExists) {
+        // If the course exists, remove it
+        const updatedSelectedCourses = Object.fromEntries(
+          Object.entries(prevSelectedCourses).filter(
+            ([key, value]) => value !== index
+          )
+        );
+        // Add the new course with the selected courseCode
+        return { ...updatedSelectedCourses, [courseCode]: index };
+      } else {
+        // If the course doesn't exist, simply add the new one
+        return { ...prevSelectedCourses, [courseCode]: index };
+      }
+    });
   };
 
   useEffect(() => {
     console.log("selectedcourses", selectedCourses);
   }, [selectedCourses]);
-  
+
   return (
     <div>
       <h1>Open-Course</h1>
@@ -117,48 +123,56 @@ const Course = () => {
           </p>
           <h3>List of courses</h3>
           {console.log(courses)}
-          <ul>
+          <ul style={{ padding: "1rem 2rem" }}>
             {courses.map((course, index) => {
-              //const courseName = Object.keys(course)[0];
-              const choice = index + 1
+              const choice = index + 1;
               return (
                 <li key={index}>
                   {index + 1}:{" "}
-                  <select onChange={(e) => handleCourseSelection(e.target.value, choice)}>
-                  <option value="">Select a course</option>
-                    {courses.map((course, index) => {
-                      const courseName = Object.keys(course)[0];
-                      const courseCode = Object.values(course)[0];
-                      // Check if the courseCode exists in selectedCourses
+                  <FormControl variant="outlined" sx={{ minWidth: 300 }}>
+                    <InputLabel>Select a course</InputLabel>
+                    <Select
+                      value={selectedCourses[choice] || ""}
+                      onChange={(e) =>
+                        handleCourseSelection(e.target.value, choice)
+                      }
+                      label="Select a course"
+                    >
+                      <MenuItem value="">Select a course</MenuItem>
+                      {courses.map((course, index) => {
+                        const courseName = Object.keys(course)[0];
+                        const courseCode = Object.values(course)[0];
                         if (!selectedCourses[courseCode]) {
                           return (
-                            <option key={index} value={courseCode}>
+                            <MenuItem key={index} value={courseCode}>
                               {courseName} : {courseCode}
-                            </option>
+                            </MenuItem>
                           );
                         }
-                    })}
-                  </select>
+                        return null;
+                      })}
+                    </Select>
+                  </FormControl>
                 </li>
               );
             })}
           </ul>
-          <button type="submit">Submit</button>
+          <Button variant="contained" type="submit">Submit</Button>
           <Snackbar
-              open={snackbarOpen}
-              autoHideDuration={5000}
+            open={snackbarOpen}
+            autoHideDuration={5000}
+            onClose={handleSnackbarClose}
+            style={{ padding: "20rem 31.2rem" }}
+          >
+            <MuiAlert
+              elevation={6}
+              variant="filled"
               onClose={handleSnackbarClose}
-              style={{padding:"20rem 31.2rem"}}
+              severity={snackbarSeverity}
             >
-              <MuiAlert
-                elevation={6}
-                variant="filled"
-                onClose={handleSnackbarClose}
-                severity={snackbarSeverity}
-              >
-                {snackbarMessage}
-              </MuiAlert>
-            </Snackbar>
+              {snackbarMessage}
+            </MuiAlert>
+          </Snackbar>
         </form>
       </div>
     </div>

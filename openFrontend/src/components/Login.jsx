@@ -131,11 +131,12 @@ const Login = () => {
             >
               Login
             </Button>
+            <Box sx={{textAlign:"center"}}>
             <Snackbar
               open={snackbarOpen}
               autoHideDuration={5000}
               onClose={handleSnackbarClose}
-              style={{padding:"20rem 31.2rem"}}
+              //style={{padding:"20rem 31.2rem"}}
             >
               <MuiAlert
                 elevation={6}
@@ -146,7 +147,7 @@ const Login = () => {
                 {snackbarMessage}
               </MuiAlert>
             </Snackbar>
-
+            </Box>
             {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

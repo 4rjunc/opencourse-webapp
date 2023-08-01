@@ -167,12 +167,12 @@ const Course = () => {
           </ul>
           <Box sx={{textAlign:"center"}}>
           <Button variant="contained" type="submit">Submit</Button>
-          </Box>
+          
           <Snackbar
             open={snackbarOpen}
             autoHideDuration={5000}
             onClose={handleSnackbarClose}
-            style={{ padding: "20rem 31.2rem" }}
+            //style={{ padding: "20rem 31.2rem" }}
           >
             <MuiAlert
               elevation={6}
@@ -183,6 +183,7 @@ const Course = () => {
               {snackbarMessage}
             </MuiAlert>
           </Snackbar>
+          </Box>
         </form>
       </div>
     </Box>

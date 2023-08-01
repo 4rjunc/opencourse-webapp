@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -111,7 +111,15 @@ const Course = () => {
   }, [selectedCourses]);
 
   return (
-    <div>
+    <div style={{margin:"2rem"}}>
+    <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      //paddingTop: "0rem", // Add some top padding to center vertically
+    }}
+  >
       <h1>Open-Course</h1>
       <div>
         <form onSubmit={handleSubmit}>
@@ -127,7 +135,7 @@ const Course = () => {
             {courses.map((course, index) => {
               const choice = index + 1;
               return (
-                <li key={index}>
+                <li key={index} style={{marginTop: 10}}>
                   {index + 1}:{" "}
                   <FormControl variant="outlined" sx={{ minWidth: 300 }}>
                     <InputLabel>Select a course</InputLabel>
@@ -157,7 +165,9 @@ const Course = () => {
               );
             })}
           </ul>
+          <Box sx={{textAlign:"center"}}>
           <Button variant="contained" type="submit">Submit</Button>
+          </Box>
           <Snackbar
             open={snackbarOpen}
             autoHideDuration={5000}
@@ -175,6 +185,7 @@ const Course = () => {
           </Snackbar>
         </form>
       </div>
+    </Box>
     </div>
   );
 };

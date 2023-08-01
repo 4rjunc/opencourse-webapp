@@ -140,7 +140,7 @@ const Course = () => {
                   <FormControl variant="outlined" sx={{ minWidth: 300 }}>
                     <InputLabel>Select a course</InputLabel>
                     <Select
-                      value={selectedCourses[choice] || ""}
+                      value=""
                       onChange={(e) =>
                         handleCourseSelection(e.target.value, choice)
                       }

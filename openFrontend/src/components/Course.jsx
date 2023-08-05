@@ -8,6 +8,13 @@ import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { Button, Box } from "@mui/material";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SchoolIcon from "@mui/icons-material/School";
+
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -111,6 +118,26 @@ const Course = () => {
   }, [selectedCourses]);
 
   return (
+    <div>
+      <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ backgroundColor: "green" }}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <SchoolIcon />
+          </IconButton>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 , fontWeight: 600}}>
+          Open Course
+          </Typography>
+         {/* <Button color="inherit">Login</Button>  add a view to submissions*/}
+        </Toolbar>
+      </AppBar>
+    </Box>
     <div style={{margin:"2rem"}}>
     <Box
     sx={{
@@ -120,21 +147,20 @@ const Course = () => {
       //paddingTop: "0rem", // Add some top padding to center vertically
     }}
   >
-      <h1>Open-Course</h1>
+      
       <div>
         <form onSubmit={handleSubmit}>
-          <p>
+          <p style={{fontSize: 20}}>
             Name : {name} <br />
             Marks : {marks} <br />
             Dept : {dept} <br />
             Register Number : {regNumber}
           </p>
-          <h3>List of courses</h3>
+          <h2>Select the courses</h2>
          
           <ul style={{ padding: "1rem 2rem" }}>
             {courses.map((course, index) => {
               const choice = index + 1;
-              
               return (
                 <li key={index} style={{marginTop: 10}}>
                   {index + 1}:{" "}
@@ -188,6 +214,7 @@ const Course = () => {
         </form>
       </div>
     </Box>
+    </div>
     </div>
   );
 };

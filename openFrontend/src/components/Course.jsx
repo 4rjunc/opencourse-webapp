@@ -130,10 +130,11 @@ const Course = () => {
             Register Number : {regNumber}
           </p>
           <h3>List of courses</h3>
-          {console.log(courses)}
+         
           <ul style={{ padding: "1rem 2rem" }}>
             {courses.map((course, index) => {
               const choice = index + 1;
+              
               return (
                 <li key={index} style={{marginTop: 10}}>
                   {index + 1}:{" "}

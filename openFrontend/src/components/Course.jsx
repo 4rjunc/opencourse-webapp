@@ -8,13 +8,21 @@ import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { Button, Box } from "@mui/material";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 import SchoolIcon from "@mui/icons-material/School";
 
+
+const SelectedCourseLabel = ({ selectedCourses, choice, courseCode, courseName }) => {
+  if (selectedCourses[courseCode]) {
+    return <b>{Object.values(selectedCourses)[choice]}</b>;
+  } else {
+    return <b>Select A Course</b>;
+  }
+};
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -120,101 +128,114 @@ const Course = () => {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "green" }}>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <SchoolIcon />
-          </IconButton>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 , fontWeight: 600}}>
-          Open Course
-          </Typography>
-         {/* <Button color="inherit">Login</Button>  add a view to submissions*/}
-        </Toolbar>
-      </AppBar>
-    </Box>
-    <div style={{margin:"2rem"}}>
-    <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      //paddingTop: "0rem", // Add some top padding to center vertically
-    }}
-  >
-      
-      <div>
-        <form onSubmit={handleSubmit}>
-          <p style={{fontSize: 20}}>
-            Name : {name} <br />
-            Marks : {marks} <br />
-            Dept : {dept} <br />
-            Register Number : {regNumber}
-          </p>
-          <h2>Select the courses</h2>
-         
-          <ul style={{ padding: "1rem 2rem" }}>
-            {courses.map((course, index) => {
-              const choice = index + 1;
-              return (
-                <li key={index} style={{marginTop: 10}}>
-                  {index + 1}:{" "}
-                  <FormControl variant="outlined" sx={{ minWidth: 300 }}>
-                    <InputLabel>Select a course</InputLabel>
-                    <Select
-                      value=""
-                      onChange={(e) =>
-                        handleCourseSelection(e.target.value, choice)
-                      }
-                      label="Select a course"
-                    >
-                      <MenuItem value="">Select a course</MenuItem>
-                      {courses.map((course, index) => {
-                        const courseName = Object.keys(course)[0];
-                        const courseCode = Object.values(course)[0];
-                        if (!selectedCourses[courseCode]) {
-                          return (
-                            <MenuItem key={index} value={courseCode}>
-                              {courseName} : {courseCode}
-                            </MenuItem>
-                          );
-                        }
-                        return null;
-                      })}
-                    </Select>
-                  </FormControl>
-                </li>
-              );
-            })}
-          </ul>
-          <Box sx={{textAlign:"center"}}>
-          <Button variant="contained" type="submit">Submit</Button>
-          
-          <Snackbar
-            open={snackbarOpen}
-            autoHideDuration={5000}
-            onClose={handleSnackbarClose}
-            //style={{ padding: "20rem 31.2rem" }}
-          >
-            <MuiAlert
-              elevation={6}
-              variant="filled"
-              onClose={handleSnackbarClose}
-              severity={snackbarSeverity}
+        <AppBar position="static" sx={{ backgroundColor: "green" }}>
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
             >
-              {snackbarMessage}
-            </MuiAlert>
-          </Snackbar>
-          </Box>
-        </form>
+              <SchoolIcon />
+            </IconButton>
+            <Typography
+              variant="h4"
+              component="div"
+              sx={{ flexGrow: 1, fontWeight: 600 }}
+            >
+              Open Course
+            </Typography>
+            {/* <Button color="inherit">Login</Button>  add a view to submissions*/}
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <div style={{ margin: "2rem" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            //paddingTop: "0rem", // Add some top padding to center vertically
+          }}
+        >
+          <div>
+            <form onSubmit={handleSubmit}>
+              <p style={{ fontSize: 20 }}>
+                <b>Name :</b> {name} <br />
+                <b>Marks :</b> {marks} <br />
+                <b>Dept :</b> {dept} <br />
+                <b>Register Number :</b> {regNumber}
+              </p>
+              <b style={{ fontSize: 25 }}>Select the courses</b>
+              <ul style={{ padding: "1rem 2rem" }}>
+                {courses.map((course, index) => {
+                  const choice = index + 1;
+                  const courseCode = Object.values(course)[0];
+                  const courseName = Object.keys(course)[0];
+                  return (
+                    <li key={index} style={{ marginTop: 10 }}>
+                      {index + 1}:{" "}
+                      <FormControl variant="outlined" sx={{ minWidth: 300 }}>
+                        <InputLabel>
+                        <SelectedCourseLabel
+                          selectedCourses={selectedCourses}
+                          choice={choice}
+                          courseCode={courseCode}
+                          courseName={courseName}
+                        />
+                        </InputLabel>
+                        <Select
+                          value=""
+                          onChange={(e) =>
+                            handleCourseSelection(e.target.value, choice)
+                          }
+                          label="Select a course"
+                        >
+                          <MenuItem value="">Select a course</MenuItem>
+                          {courses.map((course, index) => {
+                            const courseName = Object.keys(course)[0];
+                            const courseCode = Object.values(course)[0];
+                            if (!selectedCourses[courseCode]) {
+                              return (
+                                <MenuItem key={index} value={courseCode}>
+                                  {courseName} : {courseCode}
+                                </MenuItem>
+                              );
+                            }
+                            return null;
+                          })}
+                        </Select>
+                      </FormControl>
+                    </li>
+                  );
+                })}
+              </ul>
+              <Box sx={{ textAlign: "center" }}>
+                <Button variant="contained" type="submit">
+                  Submit
+                </Button>
+
+                <Snackbar
+                  open={snackbarOpen}
+                  autoHideDuration={5000}
+                  onClose={handleSnackbarClose}
+                  //style={{ padding: "20rem 31.2rem" }}
+                >
+                  <MuiAlert
+                    elevation={6}
+                    variant="filled"
+                    onClose={handleSnackbarClose}
+                    severity={snackbarSeverity}
+                  >
+                    {snackbarMessage}
+                  </MuiAlert>
+                </Snackbar>
+              </Box>
+            </form>
+          </div>
+        </Box>
       </div>
-    </Box>
-    </div>
     </div>
   );
 };

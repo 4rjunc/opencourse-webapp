@@ -33,6 +33,7 @@ def details(request):
     courses_list = serializers.serialize("python", opencourse)
     courses_list = [
         {course["fields"]["course_title"]: course["fields"]["course_code"]}
+        #{course["fields"]["course_code"] : course["fields"]["course_title"] }
         for course in courses_list
     ]
 

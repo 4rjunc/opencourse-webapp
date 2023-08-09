@@ -14,15 +14,8 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import SchoolIcon from "@mui/icons-material/School";
+import { convertLength } from "@mui/material/styles/cssUtils";
 
-
-const SelectedCourseLabel = ({ selectedCourses, choice, courseCode, courseName }) => {
-  if (selectedCourses[courseCode]) {
-    return <b>{Object.values(selectedCourses)[choice]}</b>;
-  } else {
-    return <b>Select A Course</b>;
-  }
-};
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -121,6 +114,18 @@ const Course = () => {
     });
   };
 
+  const getCourseCodeForKey = (targetValue) => {
+    for (const key in selectedCourses) {
+      if (selectedCourses[key] === targetValue) {
+        console.log("key", key)
+        const courseName = courses.find(course => Object.values(course)[0] === key);
+        console.log("courseName", Object.keys(courseName)[0])
+        return Object.keys(courseName)[0];
+      }
+    }
+    return null; // Return null if no key is found for the given value
+  };
+
   useEffect(() => {
     console.log("selectedcourses", selectedCourses);
   }, [selectedCourses]);
@@ -161,29 +166,27 @@ const Course = () => {
         >
           <div>
             <form onSubmit={handleSubmit}>
-              <p style={{ fontSize: 20 }}>
+              <p style={{ fontSize: 20, padding:"1rem" }}>
                 <b>Name :</b> {name} <br />
                 <b>Marks :</b> {marks} <br />
                 <b>Dept :</b> {dept} <br />
                 <b>Register Number :</b> {regNumber}
               </p>
-              <b style={{ fontSize: 25 }}>Select the courses</b>
+              <b style={{ fontSize: 25, padding:"1rem" }}>Select the courses</b>
               <ul style={{ padding: "1rem 2rem" }}>
                 {courses.map((course, index) => {
                   const choice = index + 1;
-                  const courseCode = Object.values(course)[0];
-                  const courseName = Object.keys(course)[0];
+                  const selectedCourseKey = getCourseCodeForKey(choice);
                   return (
                     <li key={index} style={{ marginTop: 10 }}>
                       {index + 1}:{" "}
                       <FormControl variant="outlined" sx={{ minWidth: 300 }}>
                         <InputLabel>
-                        <SelectedCourseLabel
-                          selectedCourses={selectedCourses}
-                          choice={choice}
-                          courseCode={courseCode}
-                          courseName={courseName}
-                        />
+                          {selectedCourseKey ? (
+                            <b>{selectedCourseKey}</b>
+                          ) : (
+                            <b>Select A Course</b>
+                          )}
                         </InputLabel>
                         <Select
                           value=""
@@ -235,6 +238,7 @@ const Course = () => {
             </form>
           </div>
         </Box>
+        <Box style={{textAlign:"center"}}>Develped with ♥️ </Box>
       </div>
     </div>
   );

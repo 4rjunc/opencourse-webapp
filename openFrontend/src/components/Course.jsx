@@ -12,10 +12,16 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SchoolIcon from "@mui/icons-material/School";
-import { convertLength } from "@mui/material/styles/cssUtils";
 
+
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Helvetica Neue",
+  },
+});
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -131,6 +137,7 @@ const Course = () => {
   }, [selectedCourses]);
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "green" }}>
@@ -241,6 +248,7 @@ const Course = () => {
         <Box style={{textAlign:"center"}}>Develped with ♥️ </Box>
       </div>
     </div>
+    </ThemeProvider>
   );
 };
 

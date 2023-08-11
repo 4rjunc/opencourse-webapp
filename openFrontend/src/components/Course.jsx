@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SchoolIcon from "@mui/icons-material/School";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -34,7 +35,7 @@ const Course = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
-
+  
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
@@ -68,6 +69,7 @@ const Course = () => {
       console.error(error);
     }
   };
+
 
   //After Submittion
   const handleSubmit = (e) => {
@@ -135,7 +137,13 @@ const Course = () => {
   useEffect(() => {
     console.log("selectedcourses", selectedCourses);
   }, [selectedCourses]);
-
+  
+  //Logout
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    navigate('/')
+  }
+  
   return (
     <ThemeProvider theme={theme}>
     <div>
@@ -158,7 +166,7 @@ const Course = () => {
             >
               Open Course
             </Typography>
-            {/* <Button color="inherit">Login</Button>  add a view to submissions*/}
+            <Button style={{backgroundColor:"white", color:"black"}} onClick={handleLogout}>Logout</Button>
           </Toolbar>
         </AppBar>
       </Box>

@@ -141,6 +141,7 @@ const Course = () => {
   //Logout
   const navigate = useNavigate()
   const handleLogout = () => {
+    localStorage.removeItem("token");
     navigate('/')
   }
   

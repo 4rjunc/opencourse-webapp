@@ -16,8 +16,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 
-
-
 const theme = createTheme({
   typography: {
     fontFamily: "Helvetica Neue",

@@ -7,9 +7,9 @@ OpenCourse is a programme in our college where students of other deparments are 
 
 ## Screenshots
 
-![App Screenshot](./doc/s1.png)
-![App Screenshot](./doc/s2.png)
-![App Screenshot](./doc/s3.png)
+![Login Page](./src/s1.png)
+<!-- ![App Screenshot](./doc/s2.png)
+![App Screenshot](./doc/s3.png) -->
 
 
 ## Tech Stack

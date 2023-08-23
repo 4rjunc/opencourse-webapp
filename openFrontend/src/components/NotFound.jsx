@@ -11,7 +11,7 @@ function NotFound() {
         minHeight: '100vh',
         fontSize:"2.5rem"
      }}>
-       <p>404 Not Found</p>
+       <p>404 Not Found!</p>
     </Box>
     </>
   )

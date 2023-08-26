@@ -55,7 +55,15 @@ const Login = () => {
       console.log(token);
       localStorage.setItem("token", token);
       const regno = encodeURIComponent(username); // URL-encode the email
-      const url = `/course/?regno=${regno}`;
+      const regex = new RegExp('NA*');
+      const regexadmin = new RegExp('ad*1');
+      console.log(regex.test(regno))
+      if (regex.text(regno)) {
+        const url = `/course/?regno=${regno}`;
+      }
+      if (regex.text(regno)){
+        const url = `/admininstrator`
+      }
       setSnackbarOpen(true);
       setSnackbarMessage("Login successful!");
       setSnackbarSeverity("success");

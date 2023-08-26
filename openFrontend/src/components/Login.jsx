@@ -56,13 +56,13 @@ const Login = () => {
       localStorage.setItem("token", token);
       const regno = encodeURIComponent(username); // URL-encode the email
       const regex = new RegExp('NA*');
-      const regexadmin = new RegExp('ad*1');
+      const regexadmin = new RegExp('ad*');
+      let url
       console.log(regex.test(regno))
-      if (regex.text(regno)) {
-        const url = `/course/?regno=${regno}`;
-      }
-      if (regex.text(regno)){
-        const url = `/admininstrator`
+      if (regex.test(regno)) {
+        url = `/course/?regno=${regno}`;
+      } else if (regexadmin.test(regno)) { // Use regexadmin.test() here
+        url = `/administrator`; // Correct the typo in the URL path as well
       }
       setSnackbarOpen(true);
       setSnackbarMessage("Login successful!");

@@ -1,47 +1,42 @@
-
-
 # OpenCourse Management Webapp
-OpenCourse is a programme in our college where students of other deparments are given an oppertunity to learn courses out of their majors. The courses will be provided by other deparments of the college. The allotement of students to the courses is managed by this Webapp  
 
-
+OpenCourse is a programme in our college where students of other deparments are given an oppertunity to learn courses out of their majors. The courses will be provided by other deparments of the college. The allotement of students to the courses is managed by this Webapp
 
 ## Screenshots
 
 ![Login Page](./src/s1.png)
+
 <!-- ![App Screenshot](./doc/s2.png)
 ![App Screenshot](./doc/s3.png) -->
 
-
 ## Tech Stack
 
-**Client:** React \
-**Server:** Django \
+**Client:** React 
+**Server:** Django 
 **Database:** MySql
-
-
-
 
 ## Deployment
 
 To deploy this project both frontend and backend locally
 
 Clone the project
+
 ```bash
   git clone https://github.com/H4K3R13/opencourse-webapp.git
 ```
+
 ```bash
   cd opencourse-webapp
 ```
 
 - opencourse-webapp
-    - backend-script
-    - open-frontend
-    - openBackend
+  - backend-script
+  - open-frontend
+  - openBackend
 
 ## Run Frontend Locally
 
 After changing directory to root folder
-
 
 ```bash
   cd open-frontend
@@ -63,7 +58,6 @@ Start the server
 
 After changing directory to root folder
 
-
 ```bash
   cd openBackend
 ```
@@ -79,6 +73,7 @@ Start the server
 ```bash
   python3 manage.py runserver
 ```
+
 ## API Reference
 
 #### To record a entry of student
@@ -86,7 +81,9 @@ Start the server
 ```http
   POST api/submit/
 ```
+
 Playload Example
+
 ```json
 {   
     "regno":"NAXXXXXXXX",
@@ -106,31 +103,35 @@ Playload Example
 ```http
   POST /api/login/
 ```
+
 Payload Example
+
 ```json
   {
         'username': 'REGISTER_NUMBER',
         'password': 'DATE_OF_BIRTH',  
   }
-``````
+```
+
 Passwords are set by default.
 
 ### Details
+
 ```http
   GET api/details/?regno=REGISTER_NUMBER
-``````
+```
 
 ## Automation Scripts
+
 ```bash
 backend-scipt/auto_data_entry.py  # Auto data entries
 
 python3 manage.py create_user # Creates user
 
 python3 manage.py delete_user # Deletes the user
-``````
+```
 
-
-## To Do
+<!-- ## To Do
 
 Security issue in login page
 
@@ -142,8 +143,7 @@ Submission of data
     submission to table in row wise 👍🏼
 
 Sorting of data
-    create a button in admin panel which will sort the data from OpenCourseChoice Table and downloads a CSV file.
+    create a button in admin panel which will sort the data from OpenCourseChoice Table and downloads a CSV file. 👍🏼
       an upgradation to this saperate csv files download are per the requirement (using .zip)
 Fixing admin panel
-	Taking admin actions to react rather than django logins
-
+	Taking admin actions to react rather than django logins -->

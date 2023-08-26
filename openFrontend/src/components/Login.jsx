@@ -58,7 +58,7 @@ const Login = () => {
       const regex = new RegExp('NA*');
       const regexadmin = new RegExp('ad*');
       let url
-      console.log(regex.test(regno))
+      //console.log(regex.test(regno))
       if (regex.test(regno)) {
         url = `/course/?regno=${regno}`;
       } else if (regexadmin.test(regno)) { // Use regexadmin.test() here

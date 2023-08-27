@@ -11,7 +11,6 @@ from django.core import serializers
 
 # http://127.0.0.1:8000/openApi/api/details/?regno=NA20CPCR29
 
-
 def details(request):
     reg = request.GET.get("regno")
     try:
@@ -83,7 +82,6 @@ def submit(request):
         reg_no = data["regno"]
         stud_obj = StudMaster.objects.get(uty_reg_no=reg_no)
         course_list = data["selectedCourses"]
-
         # Checks the data already exist
         existing_entry = OpenCourseChoice.objects.filter(stud_id=stud_obj).exists()
         if existing_entry:
@@ -97,3 +95,23 @@ def submit(request):
             )
             open_obj.save()
         return JsonResponse({"message": "Data Stubmitted"})
+
+@csrf_exempt
+def delete_submit(request):
+    if request.method == "DELETE":
+        data = json.loads(request.body)
+        reg_no = data["regno"]
+        try:
+            stud_obj = StudMaster.objects.get(uty_reg_no=reg_no)
+            record = OpenCourseChoice.objects.filter(stud_id=stud_obj)
+            if record.exists():
+                record.delete()
+                return JsonResponse({"message": f"Deleted {reg_no} from the submissions"})
+            else:
+                return JsonResponse({"message": f"No submission found for {reg_no}"}, status=404)
+        except StudMaster.DoesNotExist:
+            return JsonResponse({"message": f"Student not found"}, status=404)
+    else:
+        return JsonResponse({"message": "Invalid request"}, status=400)
+
+

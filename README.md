@@ -76,7 +76,7 @@ Start the server
 
 ## API Reference
 
-#### To record a entry of student
+#### Handle submission of student
 
 ```http
   POST api/submit/
@@ -108,17 +108,29 @@ Payload Example
 
 ```json
   {
-        'username': 'REGISTER_NUMBER',
-        'password': 'DATE_OF_BIRTH',  
+        "username": "REGISTER_NUMBER",
+        "password": "DATE_OF_BIRTH",  
   }
 ```
 
 Passwords are set by default.
 
-### Details
+### Fetches details of a student
 
 ```http
   GET api/details/?regno=REGISTER_NUMBER
+```
+
+### Delete A Submission
+```http
+  DELETE /api/delete
+```
+Payload Example
+
+```json
+  {
+      "regno":"REGISTER_NUMBER",
+  }
 ```
 
 ## Automation Scripts

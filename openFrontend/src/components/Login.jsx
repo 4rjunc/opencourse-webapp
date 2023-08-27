@@ -33,7 +33,6 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
@@ -48,7 +47,7 @@ const Login = () => {
     //Login is not complete about fix 1) session_token handling 2) unauthorizes asses to /course
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/openApi/api/login/",
+        `${import.meta.env.VITE_SECRET_KEY}openApi/api/login/`,
         data
       );
       const token = response.data["session_token"];

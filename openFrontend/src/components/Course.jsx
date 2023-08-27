@@ -54,7 +54,7 @@ const Course = () => {
   const handleDetails = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/openApi/api/details/?regno=${regno}`
+        `${import.meta.env.VITE_SECRET_KEY}openApi/api/details/?regno=${regno}`
       );
       console.log(response);
       setName(response.data[0].name);
@@ -81,7 +81,7 @@ const Course = () => {
 
     console.log("data", data);
     axios
-      .post("http://127.0.0.1:8000/openApi/api/submit/", data)
+      .post(`${import.meta.env.VITE_SECRET_KEY}openApi/api/submit/`, data)
       .then((response) => {
         console.log(response.data);
         //alert(response.data["message"]);

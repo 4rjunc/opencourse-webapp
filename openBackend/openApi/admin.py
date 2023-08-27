@@ -58,5 +58,3 @@ model_classes = [
 for model_class in model_classes:
     if model_class != models.OpenCourseChoice:
         admin.site.register(model_class)
-
-

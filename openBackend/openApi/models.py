@@ -599,8 +599,9 @@ class StudMaster(models.Model):
 
     def __str__(self):
         return f"{self.name} , {self.uty_reg_no}"
-    #def __str__(self):
-     #   return f"Stud ID: {self.stud_id}, Admn No: {self.admn_no}, Roll No: {self.roll_no}, UTY Reg No: {self.uty_reg_no}, Name: {self.name}, Year of Admn: {self.year_of_admn}, DOB: {self.dob}, Sex: {self.sex}, Caste: {self.caste}, Religion: {self.religion}, Email: {self.email}, Contact No: {self.contact_no}, Parent Name: {self.parent_name}, Parent Occupation: {self.parent_occupation}, Parent Mob: {self.parent_mob}, Parent Land: {self.parent_land}, House Name: {self.house_name}, Street: {self.street}, Place: {self.place}, Dist: {self.dist}, State: {self.state}, Pincode: {self.pincode}, PGM: {self.pgm}, Marks SSLC: {self.marks_sslc}, Marks Twelth: {self.marks_twelth}, Board Twelth: {self.board_twelth}, Quota: {self.quota}, Photo: {self.photo}, Status: {self.status}, Comments: {self.comments}, Current Sem: {self.current_sem}, Language: {self.language}, Annual Income: {self.annual_income}, Differently Abled: {self.differently_abled}, Date of Admission: {self.date_of_admission}, Date of Leaving: {self.date_of_leaving}, Egrantz: {self.egrantz}, Fish Egrantz: {self.fish_egrantz}"
+
+    # def __str__(self):
+    #   return f"Stud ID: {self.stud_id}, Admn No: {self.admn_no}, Roll No: {self.roll_no}, UTY Reg No: {self.uty_reg_no}, Name: {self.name}, Year of Admn: {self.year_of_admn}, DOB: {self.dob}, Sex: {self.sex}, Caste: {self.caste}, Religion: {self.religion}, Email: {self.email}, Contact No: {self.contact_no}, Parent Name: {self.parent_name}, Parent Occupation: {self.parent_occupation}, Parent Mob: {self.parent_mob}, Parent Land: {self.parent_land}, House Name: {self.house_name}, Street: {self.street}, Place: {self.place}, Dist: {self.dist}, State: {self.state}, Pincode: {self.pincode}, PGM: {self.pgm}, Marks SSLC: {self.marks_sslc}, Marks Twelth: {self.marks_twelth}, Board Twelth: {self.board_twelth}, Quota: {self.quota}, Photo: {self.photo}, Status: {self.status}, Comments: {self.comments}, Current Sem: {self.current_sem}, Language: {self.language}, Annual Income: {self.annual_income}, Differently Abled: {self.differently_abled}, Date of Admission: {self.date_of_admission}, Date of Leaving: {self.date_of_leaving}, Egrantz: {self.egrantz}, Fish Egrantz: {self.fish_egrantz}"
 
 
 class Takes(models.Model):

@@ -4,10 +4,13 @@ from .models import StudMaster, Course, Programme, OpenCourseChoice
 import json
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.urls import reverse
 from django.db.models import Q
 from django.core import serializers
+import csv
+
+
 
 # http://127.0.0.1:8000/openApi/api/details/?regno=NA20CPCR29
 
@@ -100,7 +103,6 @@ def submit(request):
 def delete_submit(request):
     if request.method == "DELETE":
         data = json.loads(request.body)
-        print(f"{data =}")
         reg_no = data["regno"]
         try:
             stud_obj = StudMaster.objects.get(uty_reg_no=reg_no)
@@ -114,5 +116,33 @@ def delete_submit(request):
             return JsonResponse({"message": f"Student not found"}, status=404)
     else:
         return JsonResponse({"message": "Invalid request"}, status=400)
+    
+  # Adjust the import to your model
+
+def export_course_choices_csv(request):
+    queryset = OpenCourseChoice.objects.all()  # Get the queryset of course choices
+    
+    header = ["Name", "Marks", "CourseCode", "Choice"]
+    rows = []
+
+    for choice in queryset:
+        name = choice.stud_id.name
+        marks = choice.stud_id.marks_twelth
+        course_code = choice.course_code
+        choice_num = choice.choice
+        row = [name, marks, course_code, choice_num]
+        rows.append(row)
+
+    filename = "course_choices.csv"
+
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = f'attachment; filename="{filename}"'
+
+    writer = csv.writer(response)
+    writer.writerow(header)
+    writer.writerows(rows)
+
+    return response
+
 
 

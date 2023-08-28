@@ -21,37 +21,61 @@ const Administrator = () => {
     setSnackbarOpen(false);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/')
-  }
+    navigate("/");
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submit", reg_no)
+    console.log("Submit", reg_no);
     const data = {
-      regno : reg_no,
+      regno: reg_no,
     };
     axios
-      .delete(`${import.meta.env.VITE_SECRET_KEY}openApi/api/delete`, { data : data })
+      .delete(`${import.meta.env.VITE_SECRET_KEY}openApi/api/delete`, {
+        data: data,
+      })
       .then((response) => {
-        console.log("response", response)
+        console.log("response", response);
         setSnackbarOpen(true);
         setSnackbarMessage("Deleted Successfully!");
         setSnackbarSeverity("success");
       })
-      .catch((erros)=>{
-        console.error(erros)
+      .catch((erros) => {
+        console.error(erros);
         setSnackbarOpen(true);
         setSnackbarMessage("Registration Number Not Found");
         setSnackbarSeverity("error");
+      });
+  };
+
+  const handleCSVDown = () => {
+    axios
+      .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/data_csv`, {
+        responseType: "blob", // Set the response type to blob
       })
-  }
+      .then((response) => {
+        // Create a blob URL for the response data
+        const blob = new Blob([response.data], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        // Create an anchor element to trigger the download
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "course_choices.csv";
+        a.click();
+        // Clean up the blob URL
+        URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "green" }}>
           <Toolbar>
             <IconButton
@@ -68,9 +92,14 @@ const Administrator = () => {
               component="div"
               sx={{ flexGrow: 1, fontWeight: 600 }}
             >
-              Open Course - 🧑🏻‍💼 Admin Panel 
+              Open Course - 🧑🏻‍💼 Admin Panel
             </Typography>
-            <Button style={{backgroundColor:"white", color:"black"}} onClick={handleLogout}>Logout</Button>
+            <Button
+              style={{ backgroundColor: "white", color: "black" }}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>
@@ -87,8 +116,8 @@ const Administrator = () => {
             fullWidth
             variant="outlined"
             label="Register Number"
-            sx={{ mb: 2 }} 
-            onChange={(e)=> setRegno(e.target.value)}
+            sx={{ mb: 2 }}
+            onChange={(e) => setRegno(e.target.value)}
           />
           <Button
             type="submit"
@@ -99,26 +128,45 @@ const Administrator = () => {
             Delete!
           </Button>
         </form>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            paddingTop: "3rem",
+          }}
+        >
+        <Typography>Download the submitted data</Typography>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mb: 2 }}
+            onClick={handleCSVDown}
+          >
+            Download Submissions
+          </Button>
+        </Box>
+
         <Box sx={{ textAlign: "center" }}>
-               <Snackbar
-                  open={snackbarOpen}
-                  autoHideDuration={5000}
-                  onClose={handleSnackbarClose}
-                  //style={{ padding: "20rem 31.2rem" }}
-                >
-                  <MuiAlert
-                    elevation={6}
-                    variant="filled"
-                    onClose={handleSnackbarClose}
-                    severity={snackbarSeverity}
-                  >
-                    {snackbarMessage}
-                  </MuiAlert>
-                </Snackbar>
+          <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={5000}
+            onClose={handleSnackbarClose}
+            //style={{ padding: "20rem 31.2rem" }}
+          >
+            <MuiAlert
+              elevation={6}
+              variant="filled"
+              onClose={handleSnackbarClose}
+              severity={snackbarSeverity}
+            >
+              {snackbarMessage}
+            </MuiAlert>
+          </Snackbar>
         </Box>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Administrator
+export default Administrator;

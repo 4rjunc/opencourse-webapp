@@ -100,6 +100,7 @@ def submit(request):
 def delete_submit(request):
     if request.method == "DELETE":
         data = json.loads(request.body)
+        print(f"{data =}")
         reg_no = data["regno"]
         try:
             stud_obj = StudMaster.objects.get(uty_reg_no=reg_no)

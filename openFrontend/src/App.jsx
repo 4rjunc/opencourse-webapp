@@ -28,5 +28,5 @@ function App() {
     </>
   )
 }
-//Add the sec. feature of redirection to /course
+
 export default App

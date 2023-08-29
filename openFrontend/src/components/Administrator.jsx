@@ -112,6 +112,13 @@ const Administrator = () => {
         }}
       >
         <form onSubmit={handleSubmit}>
+        <Typography
+            variant="h5"
+            component="div"
+            sx={{ flexGrow: 1, fontWeight: 600 }}
+          >
+            Delete a submission
+          </Typography>
           <TextField
             fullWidth
             variant="outlined"

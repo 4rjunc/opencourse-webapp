@@ -136,7 +136,13 @@ const Administrator = () => {
             paddingTop: "3rem",
           }}
         >
-        <Typography>Download the submitted data</Typography>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ flexGrow: 1, fontWeight: 600 }}
+          >
+            Download the submitted data
+          </Typography>
           <Button
             fullWidth
             variant="contained"

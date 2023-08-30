@@ -133,6 +133,11 @@ Payload Example
   }
 ```
 
+### Fetches Number Of Seats
+```http
+  GET /openApi/api/seats
+```
+
 ## Automation Scripts
 
 ```bash

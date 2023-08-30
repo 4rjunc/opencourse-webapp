@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import StudMaster, Course, Programme, OpenCourseChoice
+from .models import StudMaster, Course, Programme, OpenCourseChoice, SeatsOpenCourse
 import json
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
@@ -145,4 +145,29 @@ def export_course_choices_csv(request):
     return response
 
 
+def get_seats_open_course(request):
+    # Fetch the single instance of SeatsOpenCourse (assuming it's the only instance)
+    seats_open_course = SeatsOpenCourse.objects.first()
+    
+    # Serialize the data manually
+    serialized_data = {
+        "id": seats_open_course.id,
+        "BOT": seats_open_course.BOT,
+        "CHE": seats_open_course.CHE,
+        "COM": seats_open_course.COM,
+        "CSC": seats_open_course.CSC,
+        "ECO": seats_open_course.ECO,
+        "MAT": seats_open_course.MAT,
+        "PED": seats_open_course.PED,
+        "PHY": seats_open_course.PHY,
+        "POL": seats_open_course.POL,
+        "SKT": seats_open_course.SKT,
+        "STA": seats_open_course.STA,
+        "ZLG": seats_open_course.ZLG,
+        "HIS": seats_open_course.HIS,
+        "ENG": seats_open_course.ENG,
+        "MAL": seats_open_course.MAL
+    }
 
+    # Return the serialized data as JSON response
+    return JsonResponse(serialized_data)

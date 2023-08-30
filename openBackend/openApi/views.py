@@ -65,12 +65,14 @@ def login_api(request):
         if user is not None:
             login(request, user)
             session_token = request.session.session_key
+            staff = user.is_staff
+            print(staff)
             if not session_token:
                 # Create a new session if one doesn't exists
                 request.session.create()
                 session_token = request.session.session_key
             return JsonResponse(
-                {"message": "Login successful", "session_token": session_token}
+                {"message": "Login successful", "session_token": session_token, "staff" : staff}
             )
         else:
             return JsonResponse({"message": "Invalid username or password"}, status=401)

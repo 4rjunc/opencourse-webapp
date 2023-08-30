@@ -51,16 +51,14 @@ const Login = () => {
         data
       );
       const token = response.data["session_token"];
-      console.log(token);
+      const staff = response.data["staff"];
+      console.log("Login Response",response.data);
       localStorage.setItem("token", token);
       const regno = encodeURIComponent(username); // URL-encode the email
-      const regex = new RegExp('NA*');
-      const regexadmin = new RegExp('ad*');
       let url
-      //console.log(regex.test(regno))
-      if (regex.test(regno)) {
+      if (!staff) {
         url = `/course/?regno=${regno}`;
-      } else if (regexadmin.test(regno)) { // Use regexadmin.test() here
+      } else if (staff) { // Use regexadmin.test() here
         url = `/administrator`; // Correct the typo in the URL path as well
       }
       setSnackbarOpen(true);

@@ -12,6 +12,7 @@ import MuiAlert from "@mui/material/Alert";
 import DeleteIcon from '@mui/icons-material/Delete';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Table from "./Table";
 
 const Administrator = () => {
   const [reg_no, setRegno] = useState("");
@@ -213,6 +214,7 @@ const Administrator = () => {
             </MuiAlert>
           </Snackbar>
         </Box>
+        <Table/>
       </Box>
     </>
   );

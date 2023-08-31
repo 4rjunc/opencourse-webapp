@@ -138,6 +138,11 @@ Payload Example
   GET /openApi/api/seats
 ```
 
+### Fetches Submission Details
+```http
+  GET /api/submissions
+```
+
 ## Automation Scripts
 
 ```bash

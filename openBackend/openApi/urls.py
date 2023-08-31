@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import details, login_api, submit, delete_submit, export_course_choices_csv, get_seats_open_course
+from .views import details, login_api, submit, delete_submit, export_course_choices_csv, get_seats_open_course, get_submissions
 
 urlpatterns = [
     # path('api/submit/', save_object, name='save_object'),
@@ -8,5 +8,6 @@ urlpatterns = [
     path("api/submit/", submit),
     path("api/delete", delete_submit),
     path("api/data_csv", export_course_choices_csv ),
-    path("api/seats", get_seats_open_course)
+    path("api/seats", get_seats_open_course),
+    path("api/submissions", get_submissions),
 ]

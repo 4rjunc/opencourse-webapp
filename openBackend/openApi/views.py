@@ -173,3 +173,16 @@ def get_seats_open_course(request):
 
     # Return the serialized data as JSON response
     return JsonResponse(serialized_data)
+
+def get_submissions(request):
+    if request.method == "GET":
+        submissions = OpenCourseChoice.objects.all()
+        sub_data = [
+                {
+                 "id": sub.id,   
+                 "Name" : sub.stud_id.name, 
+                 "Course Code": sub.course_code,
+                 "Choice": sub.choice}
+                 for sub in submissions]
+        print(f"{sub_data = }")
+        return JsonResponse({'submission_data': sub_data})

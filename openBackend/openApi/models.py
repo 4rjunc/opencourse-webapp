@@ -712,6 +712,7 @@ class WorkingDays(models.Model):
 
 # Table to store data of students on their Course Priority
 class OpenCourseChoice(models.Model):
+    id = models.AutoField(primary_key=True)
     course_code = models.CharField(blank=True, null=True, max_length=20)
     choice = models.IntegerField(blank=True, null=True)
     stud_id = models.ForeignKey(StudMaster, models.CASCADE, blank=True, null=True)

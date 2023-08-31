@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-
+import LoginIcon from '@mui/icons-material/Login';
 //import FormControlLabel from '@mui/material/FormControlLabel';
 //import Checkbox from '@mui/material/Checkbox';
 //import Link from '@mui/material/Link';
@@ -133,6 +133,7 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
+              startIcon={<LoginIcon/>}
             >
               Login
             </Button>

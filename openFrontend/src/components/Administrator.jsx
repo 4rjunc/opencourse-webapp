@@ -9,6 +9,9 @@ import { useState } from "react";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import DeleteIcon from '@mui/icons-material/Delete';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Administrator = () => {
   const [reg_no, setRegno] = useState("");
@@ -51,6 +54,10 @@ const Administrator = () => {
       });
   };
 
+  const handleAllote = () => {
+    console.log("Allotement");
+  };
+
   const handleCSVDown = () => {
     axios
       .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/data_csv`, {
@@ -73,6 +80,7 @@ const Administrator = () => {
       });
   };
 
+  
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -97,6 +105,7 @@ const Administrator = () => {
             <Button
               style={{ backgroundColor: "white", color: "black" }}
               onClick={handleLogout}
+              startIcon={<LogoutIcon/>}
             >
               Logout
             </Button>
@@ -107,15 +116,65 @@ const Administrator = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          paddingTop: "3rem",
+          alignItems: "flex-start",
+          paddingTop: "2rem",
+          paddingLeft: "2rem"
         }}
       >
-        <form onSubmit={handleSubmit}>
-        <Typography
-            variant="h5"
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            paddingTop: "2rem",
+          }}
+        >
+          <Typography
+            variant="h6"
             component="div"
             sx={{ flexGrow: 1, fontWeight: 600 }}
+          >
+            Course Allotment
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{ mb: 2 }}
+            onClick={handleAllote}
+            startIcon={<FileDownloadIcon/>}
+          >
+            Download
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            paddingTop: "1rem",
+          }}
+        >
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{fontWeight: 600 }}
+          >
+            Download the submitted data
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{ mb: 2 }}
+            onClick={handleCSVDown}
+            startIcon={<FileDownloadIcon/>}
+          >
+            Download
+          </Button>
+        </Box>
+
+        <form onSubmit={handleSubmit}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{fontWeight: 600 }}
           >
             Delete a submission
           </Typography>
@@ -128,38 +187,15 @@ const Administrator = () => {
           />
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             sx={{ mb: 2 }} // Add margin to the bottom
+            color="error"
+            startIcon={<DeleteIcon />}
           >
-            Delete!
+            Delete 
           </Button>
         </form>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: "3rem",
-          }}
-        >
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1, fontWeight: 600 }}
-          >
-            Download the submitted data
-          </Typography>
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ mb: 2 }}
-            onClick={handleCSVDown}
-          >
-            Download Submissions
-          </Button>
-        </Box>
-
+        
         <Box sx={{ textAlign: "center" }}>
           <Snackbar
             open={snackbarOpen}

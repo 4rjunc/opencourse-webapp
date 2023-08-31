@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const theme = createTheme({
   typography: {
@@ -165,7 +166,7 @@ const Course = () => {
             >
               Open Course
             </Typography>
-            <Button style={{backgroundColor:"white", color:"black"}} onClick={handleLogout}>Logout</Button>
+            <Button style={{backgroundColor:"white", color:"black"}} onClick={handleLogout} startIcon={<LogoutIcon/>}>Logout</Button>
           </Toolbar>
         </AppBar>
       </Box>

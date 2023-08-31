@@ -9,6 +9,7 @@ import {
   TableCell,
   Paper,
 } from '@mui/material';
+import Typography from "@mui/material/Typography";
 
 const TableComponent = () => {
   const [subData, setSubData] = useState([]);
@@ -26,6 +27,14 @@ const TableComponent = () => {
   }, []);
 
   return (
+    <>
+              <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, fontWeight: 600 }}
+          >
+            Submissions
+          </Typography>
     <TableContainer component={Paper} style={{ maxHeight: '30rem', width:"40rem" }}>
       <Table stickyHeader>
         <TableHead>
@@ -46,6 +55,7 @@ const TableComponent = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 };
 

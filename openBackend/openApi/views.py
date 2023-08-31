@@ -184,5 +184,5 @@ def get_submissions(request):
                  "Course Code": sub.course_code,
                  "Choice": sub.choice}
                  for sub in submissions]
-        print(f"{sub_data = }")
+        # print(f"{sub_data = }")
         return JsonResponse({'submission_data': sub_data})

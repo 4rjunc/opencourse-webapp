@@ -188,6 +188,6 @@ def get_submissions(request):
                 }
                 for sub in submissions
             ]
-            return JsonResponse({'submission_data': sub_data}, status=404)
+            return JsonResponse({'submission_data': sub_data}, status=200)
         else:
             return JsonResponse({'message': 'No submissions found'}, status=404)

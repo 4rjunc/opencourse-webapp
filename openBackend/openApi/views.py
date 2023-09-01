@@ -177,13 +177,17 @@ def get_seats_open_course(request):
 def get_submissions(request):
     if request.method == "GET":
         submissions = OpenCourseChoice.objects.all()
-        sub_data = [
+        if submissions.exists():  # Check if the queryset is not empty
+            sub_data = [
                 {
-                 "id": sub.id,   
-                 "Name" : sub.stud_id.name, 
-                 "Regno" : sub.stud_id.uty_reg_no,
-                 "Course Code": sub.course_code,
-                 "Choice": sub.choice}
-                 for sub in submissions]
-        # print(f"{sub_data = }")
-        return JsonResponse({'submission_data': sub_data})
+                    "id": sub.id,
+                    "Name": sub.stud_id.name,
+                    "Regno": sub.stud_id.uty_reg_no,
+                    "Course Code": sub.course_code,
+                    "Choice": sub.choice
+                }
+                for sub in submissions
+            ]
+            return JsonResponse({'submission_data': sub_data}, status=404)
+        else:
+            return JsonResponse({'message': 'No submissions found'}, status=404)

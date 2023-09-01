@@ -157,6 +157,7 @@ python3 manage.py delete_user # Deletes the user
 
 Security issue in login page
 
+Hi
 Form Ui
   displaying the opencourses in a priority list where the numbers(priority on LHS) & course name in RHS 👍🏼
   once selected course should not be displayed in the dropdown 👍🏼

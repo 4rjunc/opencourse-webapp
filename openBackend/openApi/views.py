@@ -181,6 +181,7 @@ def get_submissions(request):
                 {
                  "id": sub.id,   
                  "Name" : sub.stud_id.name, 
+                 "Regno" : sub.stud_id.uty_reg_no,
                  "Course Code": sub.course_code,
                  "Choice": sub.choice}
                  for sub in submissions]

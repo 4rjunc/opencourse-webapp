@@ -47,12 +47,13 @@ const TableComponent = () => {
       </Typography>
       <TableContainer
         component={Paper}
-        style={{ maxHeight: "30rem", width: "40rem" }}
+        style={{ maxHeight: "30rem", width: "60%" }}
       >
         <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
+              <TableCell>Register Number</TableCell>
               <TableCell>Course Code</TableCell>
               <TableCell>Choice</TableCell>
             </TableRow>
@@ -61,6 +62,7 @@ const TableComponent = () => {
             {subData.map((item) => (
               <TableRow key={item.id}>
                 <TableCell>{item.Name}</TableCell>
+                <TableCell>{item.Regno}</TableCell>
                 <TableCell>{item["Course Code"]}</TableCell>
                 <TableCell>{item.Choice}</TableCell>
               </TableRow>

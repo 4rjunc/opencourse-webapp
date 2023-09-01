@@ -146,30 +146,7 @@ const Administrator = () => {
             Download
           </Button>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            paddingTop: "1rem",
-          }}
-        >
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{fontWeight: 600 }}
-          >
-            Download the submitted data
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{ mb: 2 }}
-            onClick={handleCSVDown}
-            startIcon={<FileDownloadIcon/>}
-          >
-            Download
-          </Button>
-        </Box>
+
 
         <form onSubmit={handleSubmit}>
           <Typography
@@ -196,7 +173,32 @@ const Administrator = () => {
             Delete 
           </Button>
         </form>
-        
+        <Table/>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            paddingTop: "1rem",
+          }}
+        >
+          {/* <Typography
+            variant="h6"
+            component="div"
+            sx={{fontWeight: 600 }}
+          >
+            Download the submitted data
+          </Typography> */}
+          <Button
+            variant="contained"
+            sx={{ mb: 2 }}
+            onClick={handleCSVDown}
+            startIcon={<FileDownloadIcon/>}
+          >
+            Download
+          </Button>
+        </Box>
+
         <Box sx={{ textAlign: "center" }}>
           <Snackbar
             open={snackbarOpen}
@@ -213,8 +215,7 @@ const Administrator = () => {
               {snackbarMessage}
             </MuiAlert>
           </Snackbar>
-        </Box>
-        <Table/>
+        </Box>     
       </Box>
     </>
   );

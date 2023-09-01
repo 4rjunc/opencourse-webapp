@@ -194,7 +194,7 @@ const Course = () => {
                   const selectedCourseKey = getCourseCodeForKey(choice);
                   return (
                     <li key={index} style={{ marginTop: 10, fontSize:"1.3rem", listStyleType:"none"}}>
-                      {index + 1}:{" "}
+                      {index + 1}{" "}
                       <FormControl variant="outlined" sx={{ minWidth: 300 }}>
                         <InputLabel>
                           {selectedCourseKey ? (

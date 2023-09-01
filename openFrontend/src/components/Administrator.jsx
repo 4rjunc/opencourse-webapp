@@ -101,7 +101,7 @@ const Administrator = () => {
               component="div"
               sx={{ flexGrow: 1, fontWeight: 600 }}
             >
-              Open Course - 🧑🏻‍💼 Admin Panel
+              Open Course - Admin Panel
             </Typography>
             <Button
               style={{ backgroundColor: "white", color: "black" }}

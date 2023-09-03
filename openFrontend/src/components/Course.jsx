@@ -181,20 +181,20 @@ const Course = () => {
         >
           <div>
             <form onSubmit={handleSubmit}>
-              <p style={{ fontSize: 20, padding:"1rem" }}>
+              <p style={{ fontSize: 20, padding:"2rem" }}>
                 <b>Name :</b> {name} <br />
                 <b>Marks :</b> {marks} <br />
                 <b>Dept :</b> {dept} <br />
                 <b>Register Number :</b> {regNumber}
               </p>
-              <b style={{ fontSize: 25, padding:"1rem" }}>Select the courses</b>
+              <b style={{ fontSize: 25, padding:"2rem" }}>Select the courses</b>
               <ul style={{ padding: "1rem 2rem" }}>
                 {courses.map((course, index) => {
                   const choice = index + 1;
                   const selectedCourseKey = getCourseCodeForKey(choice);
                   return (
-                    <li key={index} style={{ marginTop: 10, fontSize:"1.3rem", listStyleType:"none",  display: "flex", alignItems: "center", fontWeight:"700"}}>
-                      {index + 1}:{"   "}
+                    <li key={index} style={{ marginTop: 10, gap:9,fontSize:"1.3rem", listStyleType:"none",  display: "flex", alignItems: "center", fontWeight:"700"}}>
+                      {index + 1}
                       <FormControl variant="outlined" sx={{ minWidth: 300 }}>
                         <InputLabel>
                           {selectedCourseKey ? (

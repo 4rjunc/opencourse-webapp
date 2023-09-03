@@ -11,9 +11,9 @@ OpenCourse is a programme in our college where students of other deparments are 
 
 ## Tech Stack
 
-**Client:** React 
-**Server:** Django 
-**Database:** MySql
+- **Client:** ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- **Server:**  ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+- **Database:** MySql
 
 ## Deployment
 

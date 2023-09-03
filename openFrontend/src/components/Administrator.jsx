@@ -148,31 +148,7 @@ const Administrator = () => {
         </Box>
 
 
-        <form onSubmit={handleSubmit}>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{fontWeight: 600 }}
-          >
-            Delete a submission
-          </Typography>
-          <TextField
-            fullWidth
-            variant="outlined"
-            label="Register Number"
-            sx={{ mb: 2 }}
-            onChange={(e) => setRegno(e.target.value)}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ mb: 2 }} // Add margin to the bottom
-            color="error"
-            startIcon={<DeleteIcon />}
-          >
-            Delete 
-          </Button>
-        </form>
+        
         <Table/>
         <Box
           sx={{
@@ -198,6 +174,32 @@ const Administrator = () => {
             Download
           </Button>
         </Box>
+        
+        <form onSubmit={handleSubmit}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{fontWeight: 600 }}
+          >
+            Delete a submission
+          </Typography>
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Register Number"
+            sx={{ mb: 2 }}
+            onChange={(e) => setRegno(e.target.value)}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ mb: 2 }} // Add margin to the bottom
+            color="error"
+            startIcon={<DeleteIcon />}
+          >
+            Delete 
+          </Button>
+        </form>
 
         <Box sx={{ textAlign: "center" }}>
           <Snackbar

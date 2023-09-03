@@ -51,11 +51,11 @@ const TableComponent = () => {
       >
         <Table stickyHeader>
           <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Register Number</TableCell>
-              <TableCell>Course Code</TableCell>
-              <TableCell>Choice</TableCell>
+            <TableRow >
+              <TableCell style={{ fontWeight:900}} >Name</TableCell>
+              <TableCell style={{ fontWeight:900}} >Register Number</TableCell>
+              <TableCell style={{ fontWeight:900}} >Course Code</TableCell>
+              <TableCell style={{ fontWeight:900}} >Choice</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

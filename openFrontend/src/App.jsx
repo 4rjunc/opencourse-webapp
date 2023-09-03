@@ -6,10 +6,14 @@ import { Routes, Route, BrowserRouter} from 'react-router-dom'
 import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute'
 import Administrator from './components/Administrator'
+import Footer from './components/Footer'
+
+
 function App() {
   return (
     <>
     <BrowserRouter>
+
       <Routes>
         <Route path='/course' element={
         <PrivateRoute>
@@ -25,6 +29,7 @@ function App() {
         }/>
       </Routes> 
     </BrowserRouter>
+    <Footer/>
     </>
   )
 }

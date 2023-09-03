@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer"
+
 
 const theme = createTheme({
   typography: {
@@ -167,7 +167,7 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>*/}
-                <Footer/>
+
           </Box>
         </Box>
       </Container>

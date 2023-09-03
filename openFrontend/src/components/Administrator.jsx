@@ -84,6 +84,7 @@ const Administrator = () => {
   
   return (
     <>
+    <div style={{marginBottom:"3.5rem"}}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "green" }}>
           <Toolbar>
@@ -219,6 +220,7 @@ const Administrator = () => {
           </Snackbar>
         </Box>     
       </Box>
+      </div>
     </>
   );
 };

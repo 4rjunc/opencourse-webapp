@@ -146,7 +146,7 @@ const Course = () => {
   
   return (
     <ThemeProvider theme={theme}>
-    <div>
+    <div style={{marginBottom:"3.5rem"}}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "green" }}>
           <Toolbar>
@@ -253,7 +253,6 @@ const Course = () => {
             </form>
           </div>
         </Box>
-        <Box style={{textAlign:"center"}}>Develped with ♥️ </Box>
       </div>
     </div>
     </ThemeProvider>

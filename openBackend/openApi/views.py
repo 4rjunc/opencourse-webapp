@@ -174,10 +174,27 @@ def get_seats_open_course(request):
     # Return the serialized data as JSON response
     return JsonResponse(serialized_data)
 
+
+
 def get_submissions(request):
     if request.method == "GET":
-        submissions = OpenCourseChoice.objects.all()
-        if submissions.exists():  # Check if the queryset is not empty
+        page = request.GET.get('page', 2)  # Get the page parameter from the query string (default to 1 if not provided)
+        rows_per_page = request.GET.get('rowsPerPage', 10)  # Get the rowsPerPage parameter (default to 10 if not provided)
+
+        try:
+            page = int(page)
+            rows_per_page = int(rows_per_page)
+        except ValueError:
+            return JsonResponse({'message': 'Invalid page or rowsPerPage parameter'}, status=400)
+
+        # Calculate the starting and ending indices for the pagination
+        start_index = (page - 1) * rows_per_page
+        end_index = start_index + rows_per_page
+
+        submissions = OpenCourseChoice.objects.all()[start_index:end_index]  # Slice the queryset based on pagination
+        total_rows = OpenCourseChoice.objects.count()  # Get the total number of rows
+
+        if submissions.exists():
             sub_data = [
                 {
                     "id": sub.id,
@@ -188,6 +205,6 @@ def get_submissions(request):
                 }
                 for sub in submissions
             ]
-            return JsonResponse({'submission_data': sub_data}, status=200)
+            return JsonResponse({'submission_data': sub_data, 'total_rows': total_rows}, status=200)
         else:
             return JsonResponse({'message': 'No submissions found'}, status=404)

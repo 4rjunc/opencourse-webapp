@@ -193,7 +193,7 @@ const Course = () => {
                   const choice = index + 1;
                   const selectedCourseKey = getCourseCodeForKey(choice);
                   return (
-                    <li key={index} style={{ marginTop: 10, gap:9,fontSize:"1.3rem", listStyleType:"none",  display: "flex", alignItems: "center", fontWeight:"700"}}>
+                    <li key={index} style={{ marginTop: 10, gap:9,fontSize:"1.9rem", listStyleType:"none",  display: "flex", alignItems: "center", fontWeight:"700"}}>
                       {index + 1}
                       <FormControl variant="outlined" sx={{ minWidth: 300 }}>
                         <InputLabel>

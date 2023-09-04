@@ -86,7 +86,7 @@ const Administrator = () => {
     <>
     <div style={{marginBottom:"3.5rem"}}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "green" }}>
+        <AppBar position="fixed" sx={{ backgroundColor: "green" }}>
           <Toolbar>
             <IconButton
               size="large"

@@ -22,11 +22,7 @@ import backgroundImage from "./background_img.jpeg"; // Replace with your image 
 
 
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "Helvetica Neue",
-  },
-});
+
 
 const Login = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -183,7 +179,7 @@ const Login = () => {
         </Box>
 
       </Container>
-    </ThemeProvider>
+      </>
 
   );
 };

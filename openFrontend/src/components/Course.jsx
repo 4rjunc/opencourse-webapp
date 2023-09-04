@@ -17,11 +17,6 @@ import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "Helvetica Neue",
-  },
-});
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -145,10 +140,10 @@ const Course = () => {
   }
   
   return (
-    <ThemeProvider theme={theme}>
-    <div style={{marginBottom:"3.5rem"}}>
+      <>
+    <div style={{marginBottom:"4.5rem"}}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "green" }}>
+        <AppBar position="fixed" sx={{ backgroundColor: "green" }} >
           <Toolbar>
             <IconButton
               size="large"
@@ -170,7 +165,7 @@ const Course = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <div style={{ margin: "2rem" }}>
+      <div style={{ margin: "3rem" }}>
         <Box
           sx={{
             display: "flex",
@@ -255,7 +250,7 @@ const Course = () => {
         </Box>
       </div>
     </div>
-    </ThemeProvider>
+    </>
   );
 };
 

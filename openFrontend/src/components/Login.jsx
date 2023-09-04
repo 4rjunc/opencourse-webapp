@@ -20,11 +20,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "Helvetica Neue",
-  },
-});
+
 
 const Login = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -79,7 +75,7 @@ const Login = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -171,7 +167,7 @@ const Login = () => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+      </>
 
   );
 };

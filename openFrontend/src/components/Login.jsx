@@ -18,6 +18,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "./background_img.jpeg"; // Replace with your image path
+
 
 
 const theme = createTheme({
@@ -80,7 +82,16 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container 
+        component="main" 
+        maxWidth="xs"
+        sx={{
+          backgroundImage: `url(${backgroundImage})`, // Apply background image here
+          backgroundSize: "100% auto", // This will span the image from left to right
+          backgroundRepeat: "no-repeat",
+          height: "100vh", // Set the height to cover the entire viewport
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -170,6 +181,7 @@ const Login = () => {
 
           </Box>
         </Box>
+
       </Container>
     </ThemeProvider>
 

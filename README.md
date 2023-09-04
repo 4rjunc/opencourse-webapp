@@ -1,21 +1,21 @@
-# OpenCourse Management Webapp
+# 🏫 OpenCourse Management Webapp
 
 OpenCourse is a programme in our college where students of other deparments are given an oppertunity to learn courses out of their majors. The courses will be provided by other deparments of the college. The allotement of students to the courses is managed by this Webapp
 
-## Screenshots
+## 📸 Screenshots
 
 ![Login Page](./src/s1.png)
 
 <!-- ![App Screenshot](./doc/s2.png)
 ![App Screenshot](./doc/s3.png) -->
 
-## Tech Stack
+## 🕹️ Tech Stack
 
 - **Client:** ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 - **Server:**  ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
 - **Database:** ![MySql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
-## Deployment
+## 🚀 Deployment
 
 To deploy this project both frontend and backend locally
 
@@ -34,7 +34,7 @@ Clone the project
   - open-frontend
   - openBackend
 
-## Run Frontend Locally
+## 🧪 Run Frontend Locally
 
 After changing directory to root folder
 
@@ -54,7 +54,7 @@ Start the server
   yarn run dev
 ```
 
-## Run Backend Locally
+## 🧪 Run Backend Locally
 
 After changing directory to root folder
 
@@ -74,7 +74,7 @@ Start the server
   python3 manage.py runserver
 ```
 
-## API Reference
+## 🥧 API Reference
 
 #### Handle submission of student
 
@@ -143,7 +143,7 @@ Payload Example
   GET /api/submissions
 ```
 
-## Automation Scripts
+## 🛺 Automation Scripts
 
 ```bash
 backend-scipt/auto_data_entry.py  # Auto data entries

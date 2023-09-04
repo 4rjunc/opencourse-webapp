@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import StudMaster, Course, Programme, OpenCourseChoice, SeatsOpenCourse
 import json
 from django.contrib.auth import authenticate, login
-from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
 from django.urls import reverse
 from django.db.models import Q

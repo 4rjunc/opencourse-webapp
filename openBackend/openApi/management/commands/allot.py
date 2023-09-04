@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.db import IntegrityError
 from django.core import serializers
 import csv
-
+import pandas as pd
 class Command(BaseCommand):
     def handle(self, *args: Any, **options):
         print("hello")
@@ -31,14 +31,17 @@ class Command(BaseCommand):
 
             # Update the choice for the specific course
             student_data[student_id][sub.course_code] = sub.choice
+        data = pd.DataFrame(student_data)
+        data = data.T
+        print(f"{data = }")
+        data.to_csv('allote.csv', index=False)
+        # with open("student_data.csv", mode="w", newline="") as csv_file:
+        #     writer = csv.writer(csv_file)
+        #     writer.writerow(header)
 
-        with open("student_data.csv", mode="w", newline="") as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(header)
-
-            for student_id, student_info in student_data.items():
-                row = [student_info[column] for column in header]
-                writer.writerow(row)
+        #     for student_id, student_info in student_data.items():
+        #         row = [student_info[column] for column in header]
+        #         writer.writerow(row)
 
 
 

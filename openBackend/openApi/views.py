@@ -146,7 +146,7 @@ def export_course_choices_csv(request):
 
     return response
 
-
+#Not intergrated Yet ! 🛠
 def get_seats_open_course(request):
     # Fetch the single instance of SeatsOpenCourse (assuming it's the only instance)
     seats_open_course = SeatsOpenCourse.objects.first()

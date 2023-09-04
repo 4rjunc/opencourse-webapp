@@ -45,7 +45,7 @@ After changing directory to root folder
 Install dependencies
 
 ```bash
-  yarn install
+  yarn 
 ```
 
 Start the server

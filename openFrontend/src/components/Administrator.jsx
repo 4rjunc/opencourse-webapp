@@ -70,7 +70,7 @@ const Administrator = () => {
         // Create an anchor element to trigger the download
         const a = document.createElement("a");
         a.href = url;
-        a.download = "course_allotement.csv";
+        a.download = "opencourse_allotement.csv";
         a.click();
         // Clean up the blob URL
         URL.revokeObjectURL(url);
@@ -96,7 +96,7 @@ const Administrator = () => {
         // Create an anchor element to trigger the download
         const a = document.createElement("a");
         a.href = url;
-        a.download = "course_choices.csv";
+        a.download = "opencourse_submissions.csv";
         a.click();
         // Clean up the blob URL
         URL.revokeObjectURL(url);

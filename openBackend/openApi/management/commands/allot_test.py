@@ -31,10 +31,8 @@ class Command(BaseCommand):
                 }
                 # Initialize choices for all courses with 99 (or another default value)
                 student_data[student_id].update({course: 99 for course in courses_list})
-
             # Update the choice for the specific course
             student_data[student_id][sub.course_code] = sub.choice
-
         data = pd.DataFrame(student_data)
         data = data.T
         print(f"{data = }")

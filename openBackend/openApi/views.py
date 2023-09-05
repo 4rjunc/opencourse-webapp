@@ -122,35 +122,42 @@ def delete_submit(request):
   # Adjust the import to your model
 
 def export_course_choices_csv(request):
-    queryset = OpenCourseChoice.objects.all()  # Get the queryset of course choices
-    
-    header = ["Name", "Marks", "CourseCode", "Choice"]
-    rows = []
+        opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
+        courses_list = [course.course_code for course in opencourse]
+        header = ["Name", "Class","Reg No.", "Marks"]
+        header += courses_list
+        student_data = {}  # Create a dictionary to store data for each student
+        submissions = OpenCourseChoice.objects.all()
+        for sub in submissions:
+            student_id = sub.stud_id.uty_reg_no
+            if student_id not in student_data:
+                student_data[student_id] = {
+                    "Name": sub.stud_id.name,
+                    "Class": sub.stud_id.pgm,
+                    "Reg No.": sub.stud_id.uty_reg_no,
+                    "Marks": sub.stud_id.marks_twelth,
+                }
+                # Initialize choices for all courses with 99 (or another default value)
+                student_data[student_id].update({course: 99 for course in courses_list})
 
-    for choice in queryset:
-        name = choice.stud_id.name
-        marks = choice.stud_id.marks_twelth
-        course_code = choice.course_code
-        choice_num = choice.choice
-        row = [name, marks, course_code, choice_num]
-        rows.append(row)
+            # Update the choice for the specific course
+            student_data[student_id][sub.course_code] = sub.choice
 
-    filename = "course_choices.csv"
+        data = pd.DataFrame(student_data)
+        data = data.T
+        # print(f"{data = }")
+        #data.to_csv('allote.csv', index=False)
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="opencourse_submissions.csv"'
+        # Write the DataFrame to the response
+        data.to_csv(response, index=False)
+        return response
 
-    response = HttpResponse(content_type="text/csv")
-    response["Content-Disposition"] = f'attachment; filename="{filename}"'
-
-    writer = csv.writer(response)
-    writer.writerow(header)
-    writer.writerows(rows)
-
-    return response
 
 #Not intergrated Yet ! 🛠
 def get_seats_open_course(request):
     # Fetch the single instance of SeatsOpenCourse (assuming it's the only instance)
     seats_open_course = SeatsOpenCourse.objects.first()
-    
     # Serialize the data manually
     serialized_data = {
         "id": seats_open_course.id,
@@ -237,14 +244,11 @@ def get_submissions(request):
         #     return JsonResponse({'message': 'No submissions found'}, status=404)
 
 def allotement(request):
-        print("hello")
         opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
         courses_list = [course.course_code for course in opencourse]
         header = ["Name", "Class","Reg No.", "Marks"]
         header += courses_list
-       
         student_data = {}  # Create a dictionary to store data for each student
-
         submissions = OpenCourseChoice.objects.all()
         for sub in submissions:
             student_id = sub.stud_id.uty_reg_no
@@ -263,12 +267,10 @@ def allotement(request):
 
         data = pd.DataFrame(student_data)
         data = data.T
-        print(f"{data = }")
+        # print(f"{data = }")
         #data.to_csv('allote.csv', index=False)
         response = HttpResponse(content_type="text/csv")
         response["Content-Disposition"] = 'attachment; filename="allote.csv"'
-
         # Write the DataFrame to the response
         data.to_csv(response, index=False)
-
         return response

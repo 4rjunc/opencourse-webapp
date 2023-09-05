@@ -7,6 +7,7 @@ def update_seats(dept):
     currently_allotted_seats[dept] = currently_allotted_seats[dept] + 1
 
 df = pd.read_excel("OC.csv")
+print(f"{df=}")
 df.sort_values(by=['Marks'], ascending=False,inplace=True)
 seats = {"BOT":30,"CHE":34,"COM":66,"CSC":20,"ECO":58,
          "HIS":55,"MAL":39,"MAT":33,"PED":30,"PHY":42,
@@ -37,13 +38,12 @@ for i, stud in df.iterrows():
     for choice in range(1,25):
         l = stud[stud  == choice].index.tolist()
         for course, dept in courses.items():
-            print(stud["Reg No."])
             if l[0] == course:
                 if is_available(dept):
                     update_seats(dept)
                     allotted = True
                     allotment_row = []
-                    allotment_row.append(stud["Reg No"])
+                    allotment_row.append(stud["Reg No."])
                     allotment_row.append(stud["Name"])
                     allotment_row.append(stud["Marks"])
                     allotment_row.append(course)

@@ -57,6 +57,14 @@ const Administrator = () => {
 
   const handleAllote = () => {
     console.log("Allotement");
+    axios
+      .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/allotement`)
+      .then((response)=>{
+        console.log(response)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
   };
 
   const handleCSVDown = () => {
@@ -146,10 +154,8 @@ const Administrator = () => {
           >
             Download
           </Button>
-        </Box>
+        </Box> 
 
-
-        
         <Table/>
         <Box
           sx={{

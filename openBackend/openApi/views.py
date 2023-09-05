@@ -234,3 +234,6 @@ def get_submissions(request):
         #     return JsonResponse({'submission_data': final_data, 'total_rows': total_rows, 'headers': header}, status=200)
         # else:
         #     return JsonResponse({'message': 'No submissions found'}, status=404)
+
+def allotement(request):
+    return JsonResponse({"message":"Success"}, status=200)

@@ -13,8 +13,10 @@ class Command(BaseCommand):
         print("hello")
         opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
         courses_list = [course.course_code for course in opencourse]
-        header = ["Name", "Marks", "Reg No."]
-        header += courses_list       
+        print(f"{courses_list = }")
+        # header = ["Name", "Marks", "Reg No."]
+        # header += courses_list
+       
         student_data = {}  # Create a dictionary to store data for each student
 
         submissions = OpenCourseChoice.objects.all()

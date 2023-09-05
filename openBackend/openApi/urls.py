@@ -4,10 +4,10 @@ from .views import (
     login_api,
     submit,
     delete_submit,
-    export_course_choices_csv,
+    submissions_csv,
     get_seats_open_course,
     get_submissions,
-    allotement,
+    allotement_csv,
 )
 
 urlpatterns = [
@@ -16,8 +16,8 @@ urlpatterns = [
     path("api/login/", login_api),
     path("api/submit/", submit),
     path("api/delete", delete_submit),
-    path("api/data_csv", export_course_choices_csv),
+    path("api/submission_csv", submissions_csv),
     path("api/seats", get_seats_open_course),
     path("api/submissions", get_submissions),
-    path("api/allotement", allotement),
+    path("api/allotement_csv", allotement_csv),
 ]

@@ -61,7 +61,7 @@ const Administrator = () => {
     setIsLoading1(true);
     console.log("Allotement");
     axios
-      .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/allotement`, {
+      .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/allotement_csv`, {
         responseType: "blob",
       })
       .then((response) => {
@@ -86,7 +86,7 @@ const Administrator = () => {
   const handleCSVDown = () => {
     setIsLoading2(true);
     axios
-      .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/data_csv`, {
+      .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/submission_csv`, {
         responseType: "blob", // Set the response type to blob
       })
       .then((response) => {

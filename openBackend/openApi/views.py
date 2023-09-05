@@ -132,7 +132,7 @@ def delete_submit(request):
 # Adjust the import to your model
 
 
-def export_course_choices_csv(request):
+def submissions_csv(request):
     opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
     courses_list = [course.course_code for course in opencourse]
     header = ["Name", "Class", "Reg No.", "Marks"]
@@ -234,35 +234,10 @@ def get_submissions(request):
         else:
             return JsonResponse({"message": "No submissions found"}, status=404)
 
-        # student_data = {}  # Create a dictionary to store data for each student
-        # opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
-        # courses_list = [course.course_code for course in opencourse]
-        # submissions = OpenCourseChoice.objects.all()
-        # header = ["Name", "Marks", "Registration Number"]
-        # header += courses_list
-        # if submissions.exists():
-        #     for sub in submissions:
-        #         student_id = sub.stud_id.uty_reg_no
-        #         if student_id not in student_data:
-        #             student_data[student_id] = {
-        #                 "Name": sub.stud_id.name,
-        #                 "Marks": sub.stud_id.marks_twelth,
-        #                 "Registration Number": sub.stud_id.uty_reg_no
-        #             }
-        #             # Initialize choices for all courses with 99 (or another default value)
-        #             student_data[student_id].update({course: 99 for course in courses_list})
-
-        #         # Update the choice for the specific course
-        #         student_data[student_id][sub.course_code] = sub.choice
-        #         final_data = {}
-        #         for student_id, student_info in student_data.items():
-        #              final_data = [student_info[column] for column in header]
-        #     return JsonResponse({'submission_data': final_data, 'total_rows': total_rows, 'headers': header}, status=200)
-        # else:
-        #     return JsonResponse({'message': 'No submissions found'}, status=404)
+        
 
 
-def allotement(request):
+def allotement_csv(request):
     opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
     courses_list = [course.course_code for course in opencourse]
     header = ["Name", "Class", "Reg No.", "Marks"]

@@ -8,15 +8,18 @@ from django.core import serializers
 import csv
 import pandas as pd
 
+
 class Command(BaseCommand):
     def handle(self, *args: Any, **options):
         print("hello")
-        opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
+        opencourse = Course.objects.filter(
+            Q(course_type=2) & Q(syllabus_intro_year=2019)
+        )
         courses_list = [course.course_code for course in opencourse]
         print(f"{courses_list = }")
         # header = ["Name", "Marks", "Reg No."]
         # header += courses_list
-       
+
         student_data = {}  # Create a dictionary to store data for each student
 
         submissions = OpenCourseChoice.objects.all()
@@ -36,7 +39,7 @@ class Command(BaseCommand):
         data = pd.DataFrame(student_data)
         data = data.T
         print(f"{data = }")
-        data.to_csv('allote.csv', index=False)
+        data.to_csv("allote.csv", index=False)
 
         # def is_available(dept):
         #     return currently_allotted_seats[dept] < seats[dept]
@@ -77,7 +80,7 @@ class Command(BaseCommand):
         #         print(f"{l=}")
         #         for course, dept in courses.items():
         #             print(stud["Reg No."])
-        #             try : 
+        #             try :
         #                 if l[0] == course:
         #                     if is_available(dept):
         #                         update_seats(dept)
@@ -105,9 +108,3 @@ class Command(BaseCommand):
         #     for student_id, student_info in student_data.items():
         #         row = [student_info[column] for column in header]
         #         writer.writerow(row)
-
-
-
-
-
-

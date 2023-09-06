@@ -77,24 +77,29 @@ const Login = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container 
-        component="main" 
-        maxWidth="xs"
-        sx={{
-          backgroundImage: `url(${backgroundImage})`, // Apply background image here
-          backgroundSize: "100% auto", // This will span the image from left to right
+
+    <>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "100vh", // Set the height to cover the entire viewport
+          height: "100vh",
+          width: "100vw",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          overflow: "hidden",
         }}
       >
-        <CssBaseline />
+      <Container component="main"  maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -118,6 +123,8 @@ const Login = () => {
               name="regno"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
+              sx={{ width: '70%'}} // Adjust the width as needed
+              
             />
             <TextField
               margin="normal"
@@ -130,6 +137,7 @@ const Login = () => {
               placeholder="YYYY-MM-DD"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
+              sx={{ width: '70%'}} // Adjust the width as needed
             />
             {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -139,7 +147,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, width: '70%' }}
               onClick={handleSubmit}
               startIcon={<LoginIcon/>}
             >
@@ -174,14 +182,17 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>*/}
-
+            </Box>
+            <Box sx={{ textAlign: "center", marginTop: 2 }}>
+              <Typography variant="body2" color="textSecondary">
+                   Nehru Arts and Science College
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-
-      </Container>
+        </Container>
+      </div>
       </>
-
-  );
+    );
 };
 
 export default Login;

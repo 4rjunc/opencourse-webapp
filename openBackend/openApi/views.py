@@ -52,8 +52,6 @@ def details(request):
 
 
 # http://127.0.0.1:8000/openApi/api/login/
-
-
 @csrf_exempt
 def login_api(request):
     if request.method == "POST":
@@ -127,10 +125,6 @@ def delete_submit(request):
             return JsonResponse({"message": f"Student not found"}, status=404)
     else:
         return JsonResponse({"message": "Invalid request"}, status=400)
-
-
-# Adjust the import to your model
-
 
 def submissions_csv(request):
     opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))

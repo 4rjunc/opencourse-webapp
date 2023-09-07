@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -11,14 +10,13 @@ import LoginIcon from '@mui/icons-material/Login';
 //import Link from '@mui/material/Link';
 //import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
-import SchoolIcon from "@mui/icons-material/School";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-
+import logo from "./images/icon6.png";
+import IconButton from "@mui/material/IconButton";
 
 
 const Login = () => {
@@ -85,9 +83,15 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <SchoolIcon />
-          </Avatar>
+                        <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+          <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
+          </IconButton>
           <Typography component="h1" variant="h5">
             Open Course Login
           </Typography>

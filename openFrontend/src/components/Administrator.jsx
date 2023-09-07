@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -14,6 +13,7 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Table from "./Table";
 import CircularProgress from "@mui/material/CircularProgress";
+import logo from "./images/icon6.png";
 
 const Administrator = () => {
   const [regNo, setRegNo] = useState("");
@@ -122,7 +122,7 @@ const Administrator = () => {
                 aria-label="menu"
                 sx={{ mr: 2 }}
               >
-                <SchoolIcon />
+                <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
               </IconButton>
               <Typography
                 variant="h4"

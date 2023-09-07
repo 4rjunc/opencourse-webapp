@@ -81,7 +81,11 @@ const Login = () => {
     <>
       <div
         style={{
-          backgroundImage: `url(${backgroundImage})`,
+          background: linear-gradient(
+            to bottom, 
+            rgba(0, 0, 0, 0.5), /* Adjust the color and opacity here */
+            rgba(4,9,30,0.8) /* You can specify different colors and opacity for the gradient */
+          ), url('background_img.jpg');
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "100vh",
@@ -90,8 +94,20 @@ const Login = () => {
           top: 0,
           left: 0,
           overflow: "hidden",
+          
         }}
       >
+     <div
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.2)", // White with 50% opacity
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      ></div>
+        
       <Container component="main"  maxWidth="xs">
         <Box
           sx={{
@@ -123,7 +139,7 @@ const Login = () => {
               name="regno"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
-              sx={{ width: '70%'}} // Adjust the width as needed
+              
               
             />
             <TextField
@@ -137,7 +153,7 @@ const Login = () => {
               placeholder="YYYY-MM-DD"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
-              sx={{ width: '70%'}} // Adjust the width as needed
+              
             />
             {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -147,7 +163,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, width: '70%' }}
+              sx={{ mt: 3, mb: 2}}
               onClick={handleSubmit}
               startIcon={<LoginIcon/>}
             >

@@ -36,6 +36,7 @@ open_list = []
 for i, stud in df.iterrows():
     allotted = False
     for choice in range(1,25):
+        print(stud ,"  ",stud[stud  == choice].index.tolist())
         l = stud[stud  == choice].index.tolist()
         for course, dept in courses.items():
             if l[0] == course:

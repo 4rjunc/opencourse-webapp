@@ -259,9 +259,7 @@ def allotement_csv(request):
 
     data = pd.DataFrame(student_data)
     data = data.T
-    # print(f"{data = }")
-    # data.to_csv('allote.csv', index=False)
-
+ 
     def is_available(dept):
             return currently_allotted_seats[dept] < seats[dept]
 
@@ -323,19 +321,22 @@ def allotement_csv(request):
     header = ["Reg No.", "Name","Class", "Marks", "Course Code", "Choice"]
     data.columns = header
     data.to_csv(os.path.join(temp_dir, f'Allotement_Master.csv'), index=False)
+    
+    #Creating .csv's wrt course code
     opencourse_list = data["Course Code"].unique()
-    print(f"{opencourse_list=}")
     opencourse_by_coursecode={}
     for category in opencourse_list:
-        print(category)
         opencourse_by_coursecode[category] = data[data["Course Code"] == category]
-    print(opencourse_by_coursecode["5D01BOT"])
-    
-    # Creating Zip file
-    
     for course_code in opencourse_list:
         opencourse_by_coursecode[course_code].to_csv(os.path.join(temp_dir, f'{course_code}.csv'), index=False)
 
+    #Creating .csv's wrt department
+    for dept in courses.values():
+        print(dept)
+
+
+
+    # Creating Zip file
     zip_filename = 'OpenCourse_Allotement.zip'
     with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, dirs, files in os.walk(temp_dir):
@@ -349,10 +350,4 @@ def allotement_csv(request):
     # Clean up the temporary directory and ZIP file
     os.unlink(zip_filename)
     shutil.rmtree(temp_dir)
-    
-    # #Creating other csv files according to 
-    # response = HttpResponse(content_type="text/csv")
-    # response["Content-Disposition"] = 'attachment; filename="allote.csv"'
-    # # Write the DataFrame to the response
-    # data.to_csv(response, index=False)
     return response

@@ -9,6 +9,10 @@ from django.db.models import Q
 from django.core import serializers
 import csv
 import pandas as pd
+import os
+import tempfile
+import zipfile
+import shutil
 
 
 # http://127.0.0.1:8000/openApi/api/details/?regno=NA20CPCR29
@@ -255,9 +259,7 @@ def allotement_csv(request):
 
     data = pd.DataFrame(student_data)
     data = data.T
-    # print(f"{data = }")
-    # data.to_csv('allote.csv', index=False)
-
+ 
     def is_available(dept):
             return currently_allotted_seats[dept] < seats[dept]
 
@@ -303,6 +305,7 @@ def allotement_csv(request):
                                 allotment_row = []
                                 allotment_row.append(stud["Reg No."])
                                 allotment_row.append(stud["Name"])
+                                allotment_row.append(stud["Class"])
                                 allotment_row.append(stud["Marks"])
                                 allotment_row.append(course)
                                 allotment_row.append(choice)
@@ -312,12 +315,39 @@ def allotement_csv(request):
                         break
                 if allotted == True:
                     break
+    temp_dir = tempfile.mkdtemp()
 
     data = pd.DataFrame(open_list)  
-    header = ["Reg No.", "Name", "Marks", "Course Code", "Choice"]
+    header = ["Reg No.", "Name","Class", "Marks", "Course Code", "Choice"]
     data.columns = header
-    response = HttpResponse(content_type="text/csv")
-    response["Content-Disposition"] = 'attachment; filename="allote.csv"'
-    # Write the DataFrame to the response
-    data.to_csv(response, index=False)
+    data.to_csv(os.path.join(temp_dir, f'Allotement_Master.csv'), index=False)
+    
+    #Creating .csv's wrt course code
+    opencourse_list = data["Course Code"].unique()
+    opencourse_by_coursecode={}
+    for category in opencourse_list:
+        opencourse_by_coursecode[category] = data[data["Course Code"] == category]
+    for course_code in opencourse_list:
+        opencourse_by_coursecode[course_code].to_csv(os.path.join(temp_dir, f'{course_code}.csv'), index=False)
+
+    #Creating .csv's wrt department
+    for dept in courses.values():
+        print(dept)
+
+
+
+    # Creating Zip file
+    zip_filename = 'OpenCourse_Allotement.zip'
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(temp_dir):
+            for file in files:
+                zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), temp_dir))
+
+    # Create an HTTP response with the ZIP file
+    response = HttpResponse(open(zip_filename, 'rb').read(), content_type='application/zip')
+    response['Content-Disposition'] = f'attachment; filename="{zip_filename}"'
+    
+    # Clean up the temporary directory and ZIP file
+    os.unlink(zip_filename)
+    shutil.rmtree(temp_dir)
     return response

@@ -15,8 +15,10 @@ import Container from "@mui/material/Container";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "./background_img.jpeg"; // Replace with your image path
 import logo from "./images/icon6.png";
 import IconButton from "@mui/material/IconButton";
+
 
 
 const Login = () => {
@@ -72,15 +74,45 @@ const Login = () => {
   };
 
   return (
+
     <>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+      <div
+        style={{
+          background: linear-gradient(
+            to bottom, 
+            rgba(0, 0, 0, 0.5), /* Adjust the color and opacity here */
+            rgba(4,9,30,0.8) /* You can specify different colors and opacity for the gradient */
+          ), url('background_img.jpg');
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          width: "100vw",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          overflow: "hidden",
+          
+        }}
+      >
+     <div
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.2)", // White with 50% opacity
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      ></div>
+        
+      <Container component="main"  maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            
           }}
         >
                         <IconButton
@@ -110,6 +142,8 @@ const Login = () => {
               name="regno"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
+              
+              
             />
             <TextField
               margin="normal"
@@ -122,6 +156,7 @@ const Login = () => {
               placeholder="YYYY-MM-DD"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
+              
             />
             {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -131,7 +166,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2}}
               onClick={handleSubmit}
               startIcon={<LoginIcon/>}
             >
@@ -166,13 +201,17 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>*/}
-
+            </Box>
+            <Box sx={{ textAlign: "center", marginTop: 2 }}>
+              <Typography variant="body2" color="textSecondary">
+                   Nehru Arts and Science College
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-      </Container>
+        </Container>
+      </div>
       </>
-
-  );
+    );
 };
 
 export default Login;

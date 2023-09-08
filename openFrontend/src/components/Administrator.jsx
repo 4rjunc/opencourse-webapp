@@ -65,12 +65,12 @@ const Administrator = () => {
         responseType: "blob",
       })
       .then((response) => {
-        const blob = new Blob([response.data], { type: "text/csv" });
+        const blob = new Blob([response.data], { type: "application/zip" });
         const url = URL.createObjectURL(blob);
         // Create an anchor element to trigger the download
         const a = document.createElement("a");
         a.href = url;
-        a.download = "opencourse_allotement.csv";
+        a.download = "opencourse_allotement.zip";
         a.click();
         // Clean up the blob URL
         URL.revokeObjectURL(url);

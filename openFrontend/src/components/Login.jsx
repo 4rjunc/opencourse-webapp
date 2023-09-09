@@ -81,11 +81,7 @@ const Login = () => {
     <>
       <div
         style={{
-          background: linear-gradient(
-            to bottom, 
-            rgba(0, 0, 0, 0.5), /* Adjust the color and opacity here */
-            rgba(4,9,30,0.8) /* You can specify different colors and opacity for the gradient */
-          ), url('background_img.jpg');
+          backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "100vh",
@@ -99,7 +95,7 @@ const Login = () => {
       >
      <div
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.2)", // White with 50% opacity
+          backgroundColor: "rgba(4, 9, 24, 0.75)",
           position: "absolute",
           top: 0,
           left: 0,
@@ -121,7 +117,14 @@ const Login = () => {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <SchoolIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            color: 'white', // Off-white color
+            fontWeight: 'bold' // Make the font bold
+          }}
+        >
             Open Course Login
           </Typography>
           <Box
@@ -139,6 +142,9 @@ const Login = () => {
               name="regno"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
+              InputProps={{
+                style: { color: 'white' }
+              }}
               
               
             />
@@ -153,6 +159,10 @@ const Login = () => {
               placeholder="YYYY-MM-DD"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                style: { color: 'white' }
+              }}
+              
               
             />
             {/*<FormControlLabel

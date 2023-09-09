@@ -8,22 +8,30 @@ import {
   TableRow,
   TableCell,
   Paper,
-  Box,
+  
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import LinearProgress from '@mui/material/LinearProgress';
+import TablePagination from '@mui/material/TablePagination'; // Import TablePagination
+
 
 
 const TableComponent = () => {
   const [subData, setSubData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0); // Current page
+  const [rowsPerPage, setRowsPerPage] = useState(10); // Rows per page
+  const [totalRows, setTotalRows] = useState(0);
 
-  const handleSubData = () => {
+  const handleSubData = async (page, rowsPerPage) => {
     axios
-    .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/submissions`)
+    .get(`${import.meta.env.VITE_SECRET_KEY}openApi/api/submissions`,{
+      params: { page, rowsPerPage },
+    })
     .then((response) => {
       console.log("Submission Data", response);
       setSubData(response.data.submission_data);
+      setTotalRows(response.data.total_rows);
       setLoading(false);
     })
     .catch((errors) => {
@@ -33,8 +41,17 @@ const TableComponent = () => {
   }
 
   useEffect(() => {
-    handleSubData()
-  }, []);
+    handleSubData(page + 1, rowsPerPage);
+  }, [page, rowsPerPage]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
     <>
@@ -70,6 +87,25 @@ const TableComponent = () => {
           </TableBody>
         </Table>
         {loading ? (<LinearProgress />) : (<></>)}
+        <div
+        style={{
+          position: 'sticky',
+          bottom: 0,
+          backgroundColor: 'white',
+          padding: '8px',
+          borderTop: '1px solid #ddd',
+        }}
+      >
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 50, 100]} // Customize the rows per page options
+          component="div"
+          count={totalRows} // Total number of rows
+          page={page} // Current page
+          onPageChange={handleChangePage} // Handle page change
+          rowsPerPage={rowsPerPage} // Rows per page
+          onRowsPerPageChange={handleChangeRowsPerPage} // Handle rows per page change
+        />
+        </div>
       </TableContainer>
     </>
   );

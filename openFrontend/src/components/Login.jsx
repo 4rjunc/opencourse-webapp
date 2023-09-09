@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -11,20 +10,16 @@ import LoginIcon from '@mui/icons-material/Login';
 //import Link from '@mui/material/Link';
 //import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
-import SchoolIcon from "@mui/icons-material/School";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import backgroundImage from "./background_img.jpeg"; // Replace with your image path
+import logo from "./images/icon6.png";
+import IconButton from "@mui/material/IconButton";
 
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "Helvetica Neue",
-  },
-});
 
 const Login = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -79,21 +74,54 @@ const Login = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+
+    <>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+          width: "100vw",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          overflow: "hidden",
+          
+        }}
+      >
+     <div
+        style={{
+          backgroundColor: "rgba(4, 9, 24, 0.75)",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      ></div>
+        
+      <Container component="main"  maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <SchoolIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            color: 'white', // Off-white color
+            fontWeight: 'bold' // Make the font bold
+          }}
+        >
             Open Course Login
           </Typography>
           <Box
@@ -111,6 +139,11 @@ const Login = () => {
               name="regno"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
+              InputProps={{
+                style: { color: 'white' }
+              }}
+              
+              
             />
             <TextField
               margin="normal"
@@ -123,6 +156,11 @@ const Login = () => {
               placeholder="YYYY-MM-DD"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                style: { color: 'white' }
+              }}
+              
+              
             />
             {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -132,7 +170,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2}}
               onClick={handleSubmit}
               startIcon={<LoginIcon/>}
             >
@@ -167,13 +205,17 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>*/}
-
+            </Box>
+            <Box sx={{ textAlign: "center", marginTop: 2 }}>
+              <Typography variant="body2" color="textSecondary">
+                   Nehru Arts and Science College
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
-
-  );
+        </Container>
+      </div>
+      </>
+    );
 };
 
 export default Login;

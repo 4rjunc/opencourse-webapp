@@ -16,12 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "Helvetica Neue",
-  },
-});
+import logo from "./images/icon6.png";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -145,10 +140,10 @@ const Course = () => {
   }
   
   return (
-    <ThemeProvider theme={theme}>
-    <div>
+      <>
+    <div style={{marginBottom:"4.5rem"}}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "green" }}>
+        <AppBar position="fixed" sx={{ backgroundColor: "green" }} >
           <Toolbar>
             <IconButton
               size="large"
@@ -157,7 +152,7 @@ const Course = () => {
               aria-label="menu"
               sx={{ mr: 2 }}
             >
-              <SchoolIcon />
+              <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
             </IconButton>
             <Typography
               variant="h4"
@@ -170,7 +165,7 @@ const Course = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <div style={{ margin: "2rem" }}>
+      <div style={{ margin: "3rem" }}>
         <Box
           sx={{
             display: "flex",
@@ -253,10 +248,9 @@ const Course = () => {
             </form>
           </div>
         </Box>
-        <Box style={{textAlign:"center"}}>Develped with ♥️ </Box>
       </div>
     </div>
-    </ThemeProvider>
+    </>
   );
 };
 

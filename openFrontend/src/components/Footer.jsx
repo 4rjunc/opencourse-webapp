@@ -1,40 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Container } from '@mui/material';
 
 const footerStyle = {
-  backgroundColor: 'green', // Set the background color to green
-  width: '100vw', // Make the footer full-width of the viewport
-  position: 'fixed', // Set the position to fixed
-  bottom: 0, // Place the footer at the bottom
-  left: 0, 
-  height: '3rem',
-
-
+  backgroundColor: 'green',
+  width: '100%',
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  zIndex: 999,
+  transition: 'bottom 0.3s', // Add a smooth transition for the footer
 };
 
 const contentStyle = {
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'center', // Center the content horizontally
-  justifyContent: 'center', // Center the content horizontally
-
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 const textStyle = {
-  marginBottom: '16px', // Add margin to create space between Typography components
+  marginBottom: '6px',
 };
 
 const Footer = () => {
+  const [showFooter, setShowFooter] = useState(false);
+
+  useEffect(() => {
+    // Listen for scroll events
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      // Remove the scroll event listener when the component unmounts
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    // Check if the user has scrolled to the bottom of the page
+    const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+
+    // Toggle the visibility of the footer based on scroll position
+    setShowFooter(isAtBottom);
+  };
+
   return (
-    <AppBar position="static" style={footerStyle}>
+    <AppBar position="static" style={{ ...footerStyle, bottom: showFooter ? 0 : -100 }}>
       <Container>
         <Toolbar style={contentStyle}>
           <Typography variant="body1" color="inherit" style={textStyle}>
             Nehru Arts and Science College Padannakad
-          </Typography><br/>
-          {/*<Typography >
-            <h6>Developed By Arjun C and Gopika Krishnan R</h6>
-  </Typography>*/}
+          </Typography>
         </Toolbar>
       </Container>
     </AppBar>
@@ -42,5 +56,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-

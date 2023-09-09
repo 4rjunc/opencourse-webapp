@@ -399,11 +399,15 @@ class OpenAllotment(models.Model):
 
 class PgmCourse(models.Model):
     pgm = models.ForeignKey("Programme", models.DO_NOTHING, blank=True, null=True)
-    course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=True)
+    course = models.ForeignKey(Course, models.DO_NOTHING, blank=True, null=False,primary_key=True,unique=True)
 
     class Meta:
         managed = False
         db_table = "pgm_course"
+
+    def __str__(self):
+        return self.pgm.pgm_name
+    
 
 
 class Programme(models.Model):

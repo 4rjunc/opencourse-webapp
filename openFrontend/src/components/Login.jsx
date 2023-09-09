@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -11,16 +10,14 @@ import LoginIcon from '@mui/icons-material/Login';
 //import Link from '@mui/material/Link';
 //import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
-import SchoolIcon from "@mui/icons-material/School";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "./background_img.jpeg"; // Replace with your image path
-
-
+import logo from "./images/icon6.png";
+import IconButton from "@mui/material/IconButton";
 
 
 

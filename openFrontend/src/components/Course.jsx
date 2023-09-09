@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import logo from "./images/icon6.png";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -152,7 +152,7 @@ const Course = () => {
               aria-label="menu"
               sx={{ mr: 2 }}
             >
-              <SchoolIcon />
+              <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
             </IconButton>
             <Typography
               variant="h4"

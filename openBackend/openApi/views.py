@@ -325,16 +325,17 @@ def allotement_csv(request):
     #Creating .csv's wrt course code
     opencourse_list = data["Course Code"].unique()
     opencourse_by_coursecode={}
-    for category in opencourse_list:
-        opencourse_by_coursecode[category] = data[data["Course Code"] == category]
+    for course_code in opencourse_list:
+        opencourse_by_coursecode[course_code] = data[data["Course Code"] == course_code]
     for course_code in opencourse_list:
         opencourse_by_coursecode[course_code].to_csv(os.path.join(temp_dir, f'{course_code}.csv'), index=False)
 
     #Creating .csv's wrt department
+    opencourse_by_dept={}
     for dept in courses.values():
-        print(dept)
-
-
+        opencourse_by_dept[dept] = data[data["Course Code"].str[-3:] == dept]
+    for dept in courses.values():
+        opencourse_by_dept[dept].to_csv(os.path.join(temp_dir, f'{dept}.csv'), index=False)
 
     # Creating Zip file
     zip_filename = 'OpenCourse_Allotement.zip'

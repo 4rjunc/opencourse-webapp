@@ -233,8 +233,7 @@ def get_submissions(request):
             return JsonResponse({"message": "No submissions found"}, status=404)
 
         
-
-
+#Allotement 
 def allotement_csv(request):
     opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
     courses_list = [course.course_code for course in opencourse]

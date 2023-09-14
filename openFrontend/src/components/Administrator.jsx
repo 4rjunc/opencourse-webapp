@@ -113,7 +113,7 @@ const Administrator = () => {
     <>
       <div style={{ marginBottom: "3.5rem", marginTop: "2rem" }}>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="fixed" sx={{ backgroundColor: "green" }}>
+          <AppBar position="fixed" sx={{ backgroundColor: "white", color:"black", borderRadius:"1rem",  marginTop: ".3rem", marginLeft: ".3rem", marginRight: ".3rem", width:"99%" }}>
             <Toolbar>
               <IconButton
                 size="large"
@@ -132,7 +132,7 @@ const Administrator = () => {
                 Open Course - Admin Panel
               </Typography>
               <Button
-                style={{ backgroundColor: "white", color: "black" }}
+                style={{ backgroundColor: "#27ac1f", color: "white" }}
                 onClick={handleLogout}
                 startIcon={<LogoutIcon />}
               >

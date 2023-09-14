@@ -17,6 +17,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "./images/icon6.png";
 import IconButton from "@mui/material/IconButton";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 
 
 
@@ -74,29 +76,50 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-                        <IconButton
+    <div style={{marginBottom: "3.5rem", marginTop: "2rem" }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="fixed" sx={{ backgroundColor: "green" }}>
+            <Toolbar>
+              <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="menu"
                 sx={{ mr: 2 }}
               >
-          <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
-          </IconButton>
-          <Typography component="h1" variant="h5">
-            Open Course Login
-          </Typography>
+                <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
+              </IconButton>
+              <Typography
+                variant="h4"
+                component="div"
+                sx={{ flexGrow: 1, fontWeight: 600 }}
+              >
+                OpenCourseMate
+              </Typography>
+            </Toolbar>
+          </AppBar>
+        </Box>
+          
+        <Container component="main" maxWidth="xs">
+          <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+          ></div> 
+x
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >    
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -112,7 +135,14 @@ const Login = () => {
               name="regno"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
-            />
+              InputProps={{
+                style: { borderColor: '#27ac1f' }, // Set border color to green
+                focused: { borderColor: '#27ac1f' } // Set focused border color to green
+              }}
+              InputLabelProps={{
+                style: { color: 'black' }, // Set label color to green
+              }}  
+            /> 
             <TextField
               margin="normal"
               required
@@ -124,6 +154,9 @@ const Login = () => {
               placeholder="YYYY-MM-DD"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
+              InputLabelProps={{
+                style: { color: 'black' }, // Set label color to green
+              }}  
             />
             {/*<FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -169,10 +202,9 @@ const Login = () => {
               </Grid>
             </Grid>*/}
           </Box>
-        </Box>
+        </Box>  
       </Container>
-      </>
-
+    </div>
   );
 };
 

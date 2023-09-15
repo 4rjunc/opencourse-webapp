@@ -6,7 +6,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import PrivateRoute from "./components/PrivateRoute";
 import Administrator from "./components/Administrator";
-import Footer from "./components/Footer";
 import { motion } from "framer-motion";
 
 function App() {
@@ -41,7 +40,6 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-      <Footer />
     </>
   );
 }

@@ -17,6 +17,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import logo from "./images/icon6.png";
+import Footer from "./Footer";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -250,6 +251,7 @@ const Course = () => {
         </Box>
       </div>
     </div>
+    <Footer/>
     </>
   );
 };

@@ -14,6 +14,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Table from "./Table";
 import CircularProgress from "@mui/material/CircularProgress";
 import logo from "./images/icon6.png";
+import Footer from "./Footer";
 
 const Administrator = () => {
   const [regNo, setRegNo] = useState("");
@@ -241,6 +242,7 @@ const Administrator = () => {
           </Box>
         </Box>
       </div>
+      <Footer />
     </>
   );
 };

@@ -112,10 +112,10 @@ const Administrator = () => {
 
   return (
     <>
-      <div style={{ marginBottom: "3.5rem", marginTop: "2rem" }}>
+      <div style={{ marginBottom: "3.5rem", marginTop: "3rem" }}>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="fixed" sx={{ backgroundColor: "white", color:"black", borderRadius:"1rem",  marginTop: ".3rem", marginLeft: ".3rem", marginRight: ".3rem", width:"99%" }}>
-            <Toolbar>
+        <AppBar position="fixed" sx={{ backgroundColor: "white", color:"black", borderRadius:"1rem",  marginTop: ".5rem", marginLeft: ".3rem", marginRight: ".3rem", width:"99%",    boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)" // Adding the boxShadow property for shadow
+ }}>            <Toolbar>
               <IconButton
                 size="large"
                 edge="start"

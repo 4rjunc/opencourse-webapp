@@ -21,7 +21,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 
 
-
 const Login = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -33,7 +32,24 @@ const Login = () => {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
-
+  const footerStyle = {
+    backgroundColor: '#228B22', // Set the background color to Screamin Green
+    width: '100vw', // Make the footer full-width of the viewport
+    position: 'fixed', // Set the position to fixed
+    bottom: 0, // Place the footer at the bottom
+    left: 0,
+    height: '3rem',
+  };
+  
+  const contentStyle = {
+    display: 'flex',
+    flexDirection: 'column', // Arrange content in a column
+    alignItems: 'center', // Center the content horizontally
+  };
+  
+  const textStyle = {
+    marginBottom: '16px', // Add margin to create space between Typography components
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,10 +91,23 @@ const Login = () => {
     }
   };
 
+
+
   return (
-    <div style={{marginBottom: "3.5rem", marginTop: "2rem" }}>
+
+    <div style={{ background: 'whiteSmoke', height: '100vh', overflow: 'hidden'}}>
+      <div style={{marginBottom: "3.5rem", marginTop: "2rem", marginRight:"60%"  }}>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="fixed" sx={{ backgroundColor: "green" }}>
+          <AppBar position="fixed" 
+            sx={{  
+              backgroundColor: "white", 
+              color:"black", 
+              borderRadius:"1rem", 
+              marginTop: ".5rem",
+              marginLeft: ".3rem",
+              marginRight: ".3rem", 
+              width:"99%" }}
+          >
             <Toolbar>
               <IconButton
                 size="large"
@@ -98,8 +127,16 @@ const Login = () => {
               </Typography>
             </Toolbar>
           </AppBar>
-        </Box>
-          
+        </Box>     
+        <AppBar position="static" style={footerStyle}>
+          <Container>
+            <Toolbar style={contentStyle}>
+              <Typography variant="body1" color="black" style={textStyle}>
+                Nehru Arts and Science College Padannakad
+              </Typography>
+            </Toolbar>
+          </Container>
+      </AppBar> 
         <Container component="main" maxWidth="xs">
           <div
           style={{
@@ -110,7 +147,7 @@ const Login = () => {
             height: "100%",
           }}
           ></div> 
-x
+
           <CssBaseline />
           <Box
             sx={{
@@ -120,90 +157,93 @@ x
               alignItems: "center",
             }}
           >    
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="regno"
-              label="Register Number"
-              name="regno"
-              onChange={(e) => setUsername(e.target.value)}
-              autoFocus
-              InputProps={{
-                style: { borderColor: '#27ac1f' }, // Set border color to green
-                focused: { borderColor: '#27ac1f' } // Set focused border color to green
-              }}
-              InputLabelProps={{
-                style: { color: 'black' }, // Set label color to green
-              }}  
-            /> 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              placeholder="YYYY-MM-DD"
-              autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
-              InputLabelProps={{
-                style: { color: 'black' }, // Set label color to green
-              }}  
-            />
-            {/*<FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />*/}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2, background:"#27ac1f !important", borderRadius:"2rem" }}
-              onClick={handleSubmit}
-              startIcon={<LoginIcon/>}
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 15 }}
             >
-              Login
-            </Button>
-            <Box sx={{textAlign:"center"}}>
-            <Snackbar
-              open={snackbarOpen}
-              autoHideDuration={5000}
-              onClose={handleSnackbarClose}
-              //style={{padding:"20rem 31.2rem"}}
-            >
-              <MuiAlert
-                elevation={6}
-                variant="filled"
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="regno"
+                  label="Register Number"
+                  name="regno"
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoFocus
+                  InputProps={{
+                    style: { borderColor: '#27ac1f' }, // Set border color to green
+                    focused: { borderColor: '#27ac1f' } // Set focused border color to green
+                  }}
+                  InputLabelProps={{
+                    style: { color: 'black' }, // Set label color to black
+                  }}  
+                /> 
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  placeholder="YYYY-MM-DD"
+                  autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  InputLabelProps={{
+                    style: { color: 'black' }, // Set label color to black
+                  }}  
+                />
+                {/*<FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />*/}
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Button
+                    type="submit"
+                    //fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2, background:"#27ac1f !important", borderRadius:"2rem" }}
+                    onClick={handleSubmit}
+                    startIcon={<LoginIcon/>}
+                  >
+                    Login
+                  </Button>
+                  </Box>
+              <Box sx={{textAlign:"center"}}>
+              <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={5000}
                 onClose={handleSnackbarClose}
-                severity={snackbarSeverity}
+                //style={{padding:"20rem 31.2rem"}}
               >
-                {snackbarMessage}
-              </MuiAlert>
-            </Snackbar>
+                <MuiAlert
+                  elevation={6}
+                  variant="filled"
+                  onClose={handleSnackbarClose}
+                  severity={snackbarSeverity}
+                >
+                  {snackbarMessage}
+                </MuiAlert>
+              </Snackbar>
+              </Box>
+              {/* <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="/register" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>*/}
             </Box>
-            {/* <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>*/}
-          </Box>
-        </Box>  
-      </Container>
+          </Box>  
+        </Container>
+      </div>
     </div>
   );
 };

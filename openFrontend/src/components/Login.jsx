@@ -33,22 +33,24 @@ const Login = () => {
     setSnackbarOpen(false);
   };
   const footerStyle = {
-    backgroundColor: '#228B22', // Set the background color to Screamin Green
-    width: '100vw', // Make the footer full-width of the viewport
-    position: 'fixed', // Set the position to fixed
-    bottom: 0, // Place the footer at the bottom
+    backgroundColor: '#228B22',
+    width: '100%',
+    position: 'fixed',
+    bottom: 0,
     left: 0,
-    height: '3rem',
+    zIndex: 999,
+    transition: 'bottom 0.3s', // Add a smooth transition for the footer
   };
   
   const contentStyle = {
     display: 'flex',
-    flexDirection: 'column', // Arrange content in a column
-    alignItems: 'center', // Center the content horizontally
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   };
   
   const textStyle = {
-    marginBottom: '16px', // Add margin to create space between Typography components
+    marginBottom: '6px',
   };
 
   const handleSubmit = async (event) => {
@@ -129,15 +131,6 @@ const Login = () => {
             </Toolbar>
           </AppBar>
         </Box>     
-        <AppBar position="static" style={footerStyle}>
-          <Container>
-            <Toolbar style={contentStyle}>
-              <Typography variant="body1" color="black" style={textStyle}>
-                Nehru Arts and Science College Padannakad
-              </Typography>
-            </Toolbar>
-          </Container>
-      </AppBar> 
         <Container component="main" maxWidth="xs">
           <div
           style={{
@@ -245,6 +238,15 @@ const Login = () => {
           </Box>  
         </Container>
       </div>
+      <AppBar position="static" style={footerStyle}>
+          <Container>
+            <Toolbar style={contentStyle}>
+              <Typography variant="body1" color="white" style={textStyle}>
+                Nehru Arts and Science College Padannakad
+              </Typography>
+            </Toolbar>
+          </Container>
+      </AppBar> 
     </div>
   );
 };

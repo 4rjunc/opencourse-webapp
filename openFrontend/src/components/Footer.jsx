@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Container } from '@mui/material';
 
 const footerStyle = {
-  backgroundColor: 'green',
+  backgroundColor: '#228B22',
   width: '100%',
   position: 'fixed',
   bottom: 0,

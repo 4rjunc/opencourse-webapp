@@ -17,6 +17,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import logo from "./images/icon6.png";
+import Footer from "./Footer";
 
 const Course = () => {
   const [name, setName] = useState("");
@@ -143,8 +144,8 @@ const Course = () => {
       <>
     <div style={{marginBottom:"4.5rem"}}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" sx={{ backgroundColor: "green" }} >
-          <Toolbar>
+      <AppBar position="fixed" sx={{ backgroundColor: "white", color:"black", borderRadius:"1rem",  marginTop: ".5rem", marginLeft: ".3rem", marginRight: ".3rem", width:"99%",    boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)" // Adding the boxShadow property for shadow
+ }}>          <Toolbar>
             <IconButton
               size="large"
               edge="start"
@@ -161,11 +162,15 @@ const Course = () => {
             >
               Open Course
             </Typography>
-            <Button style={{backgroundColor:"white", color:"black"}} onClick={handleLogout} startIcon={<LogoutIcon/>}>Logout</Button>
+            <Button
+                style={{ backgroundColor: "#27ac1f", color: "white" }}
+                onClick={handleLogout}
+                startIcon={<LogoutIcon />}
+              >Logout</Button>
           </Toolbar>
         </AppBar>
       </Box>
-      <div style={{ margin: "3rem" }}>
+      <div style={{ margin: "4rem" }}>
         <Box
           sx={{
             display: "flex",
@@ -250,6 +255,7 @@ const Course = () => {
         </Box>
       </div>
     </div>
+    <Footer/>
     </>
   );
 };

@@ -106,7 +106,8 @@ const Login = () => {
               marginTop: ".5rem",
               marginLeft: ".3rem",
               marginRight: ".3rem", 
-              width:"99%" }}
+              width:"99%", 
+              boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)"}}
           >
             <Toolbar>
               <IconButton

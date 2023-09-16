@@ -114,8 +114,21 @@ const Administrator = () => {
     <>
       <div style={{ marginBottom: "3.5rem", marginTop: "3rem" }}>
         <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" sx={{ backgroundColor: "white", color:"black", borderRadius:"1rem",  marginTop: ".5rem", marginLeft: ".3rem", marginRight: ".3rem", width:"99%",    boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)" // Adding the boxShadow property for shadow
- }}>            <Toolbar>
+          <AppBar
+            position="fixed"
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              borderRadius: "1rem",
+              marginTop: ".5rem",
+              marginLeft: ".3rem",
+              marginRight: ".3rem",
+              width: "99%",
+              boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)", // Adding the boxShadow property for shadow
+            }}
+          >
+            {" "}
+            <Toolbar>
               <IconButton
                 size="large"
                 edge="start"
@@ -123,7 +136,11 @@ const Administrator = () => {
                 aria-label="menu"
                 sx={{ mr: 2 }}
               >
-                <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: "50px", height: "50px", marginLeft: "8px" }}
+                />
               </IconButton>
               <Typography
                 variant="h4"
@@ -133,7 +150,7 @@ const Administrator = () => {
                 Open Course - Admin Panel
               </Typography>
               <Button
-                style={{ backgroundColor: "#27ac1f", color: "white" }}
+                style={{ backgroundColor: "#27ac1f", color: "white" ,borderRadius:"2rem", padding:".7rem"}}
                 onClick={handleLogout}
                 startIcon={<LogoutIcon />}
               >
@@ -190,15 +207,18 @@ const Administrator = () => {
               paddingTop: "1rem",
             }}
           >
-            {isLoading2 ? (<CircularProgress/>):(<Button
-              variant="contained"
-              sx={{ mb: 2 }}
-              onClick={handleCSVDown}
-              startIcon={<FileDownloadIcon />}
-            >
-              Download
-            </Button>)}
-            
+            {isLoading2 ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                variant="contained"
+                sx={{ mb: 2 }}
+                onClick={handleCSVDown}
+                startIcon={<FileDownloadIcon />}
+              >
+                Download
+              </Button>
+            )}
           </Box>
 
           <form onSubmit={handleSubmit}>

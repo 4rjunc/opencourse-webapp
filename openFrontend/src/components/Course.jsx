@@ -12,10 +12,8 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import SchoolIcon from "@mui/icons-material/School";
 import { useNavigate } from "react-router-dom";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import logo from "./images/icon6.png";
 import Footer from "./Footer";
 
@@ -30,7 +28,7 @@ const Course = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
-  
+
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
@@ -64,7 +62,6 @@ const Course = () => {
       console.error(error);
     }
   };
-
 
   //After Submittion
   const handleSubmit = (e) => {
@@ -120,9 +117,11 @@ const Course = () => {
   const getCourseCodeForKey = (targetValue) => {
     for (const key in selectedCourses) {
       if (selectedCourses[key] === targetValue) {
-        console.log("key", key)
-        const courseName = courses.find(course => Object.values(course)[0] === key);
-        console.log("courseName", Object.keys(courseName)[0])
+        console.log("key", key);
+        const courseName = courses.find(
+          (course) => Object.values(course)[0] === key
+        );
+        console.log("courseName", Object.keys(courseName)[0]);
         return Object.keys(courseName)[0];
       }
     }
@@ -132,130 +131,172 @@ const Course = () => {
   useEffect(() => {
     console.log("selectedcourses", selectedCourses);
   }, [selectedCourses]);
-  
+
   //Logout
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/')
-  }
-  
+    navigate("/");
+  };
+
   return (
-      <>
-    <div style={{marginBottom:"4.5rem"}}>
-      <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: "white", color:"black", borderRadius:"1rem",  marginTop: ".5rem", marginLeft: ".3rem", marginRight: ".3rem", width:"99%",    boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)" // Adding the boxShadow property for shadow
- }}>          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <img src={logo} alt="Logo" style={{ width: '50px', height: '50px', marginLeft: '8px' }} />
-            </IconButton>
-            <Typography
-              variant="h4"
-              component="div"
-              sx={{ flexGrow: 1, fontWeight: 600 }}
-            >
-              Open Course
-            </Typography>
-            <Button
-                style={{ backgroundColor: "#27ac1f", color: "white" }}
+    <>
+      <div style={{ marginBottom: "4.5rem" }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar
+            position="fixed"
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              borderRadius: "1rem",
+              marginTop: ".5rem",
+              marginLeft: ".3rem",
+              marginRight: ".3rem",
+              width: "99%",
+              boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)", // Adding the boxShadow property for shadow
+            }}
+          >
+            {" "}
+            <Toolbar>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: "50px", height: "50px", marginLeft: "8px" }}
+                />
+              </IconButton>
+              <Typography
+                variant="h4"
+                component="div"
+                sx={{ flexGrow: 1, fontWeight: 600 }}
+              >
+                Open Course
+              </Typography>
+              <Button
+                style={{ backgroundColor: "#27ac1f", color: "white", borderRadius:"2rem", padding:".7rem" }}
                 onClick={handleLogout}
                 startIcon={<LogoutIcon />}
-              >Logout</Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
-      <div style={{ margin: "4rem" }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            //paddingTop: "0rem", // Add some top padding to center vertically
-          }}
-        >
-          <div>
-            <form onSubmit={handleSubmit}>
-              <p style={{ fontSize: 20, padding:"2rem" }}>
-                <b>Name :</b> {name} <br />
-                <b>Marks :</b> {marks} <br />
-                <b>Dept :</b> {dept} <br />
-                <b>Register Number :</b> {regNumber}
-              </p>
-              <b style={{ fontSize: 25, padding:"2rem" }}>Select the courses</b>
-              <ul style={{ padding: "1rem 2rem" }}>
-                {courses.map((course, index) => {
-                  const choice = index + 1;
-                  const selectedCourseKey = getCourseCodeForKey(choice);
-                  return (
-                    <li key={index} style={{ marginTop: 10, gap:9,fontSize:"1.9rem", listStyleType:"none",  display: "flex", alignItems: "center", fontWeight:"700"}}>
-                      {index + 1}
-                      <FormControl variant="outlined" sx={{ minWidth: 300 }}>
-                        <InputLabel>
-                          {selectedCourseKey ? (
-                            <b>{selectedCourseKey}</b>
-                          ) : (
-                            <b>Select A Course</b>
-                          )}
-                        </InputLabel>
-                        <Select
-                          value=""
-                          onChange={(e) =>
-                            handleCourseSelection(e.target.value, choice)
-                          }
-                          label="Select a course"
-                        >
-                          <MenuItem value="">Select a course</MenuItem>
-                          {courses.map((course, index) => {
-                            const courseName = Object.keys(course)[0];
-                            const courseCode = Object.values(course)[0];
-                            if (!selectedCourses[courseCode]) {
-                              return (
-                                <MenuItem key={index} value={courseCode}>
-                                  {courseName} : {courseCode}
-                                </MenuItem>
-                              );
-                            }
-                            return null;
-                          })}
-                        </Select>
-                      </FormControl>
-                    </li>
-                  );
-                })}
-              </ul>
-              <Box sx={{ textAlign: "center" }}>
-                <Button variant="contained" type="submit">
-                  Submit
-                </Button>
-
-                <Snackbar
-                  open={snackbarOpen}
-                  autoHideDuration={5000}
-                  onClose={handleSnackbarClose}
-                  //style={{ padding: "20rem 31.2rem" }}
-                >
-                  <MuiAlert
-                    elevation={6}
-                    variant="filled"
-                    onClose={handleSnackbarClose}
-                    severity={snackbarSeverity}
-                  >
-                    {snackbarMessage}
-                  </MuiAlert>
-                </Snackbar>
-              </Box>
-            </form>
-          </div>
+              >
+                Logout
+              </Button>
+            </Toolbar>
+          </AppBar>
         </Box>
+        <div style={{ margin: "4rem" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              //paddingTop: "0rem", // Add some top padding to center vertically
+            }}
+          >
+            <div>
+              <form onSubmit={handleSubmit}>
+                <p style={{ fontSize: 20, padding: "2rem" }}>
+                  <b>Name :</b> {name} <br />
+                  <b>Marks :</b> {marks} <br />
+                  <b>Dept :</b> {dept} <br />
+                  <b>Register Number :</b> {regNumber}
+                </p>
+                <b style={{ fontSize: 25, padding: "2rem" }}>
+                  Select the courses
+                </b>
+                <ul style={{ padding: "1rem 2rem" }}>
+                  {courses.map((course, index) => {
+                    const choice = index + 1;
+                    const selectedCourseKey = getCourseCodeForKey(choice);
+                    return (
+                      <li
+                        key={index}
+                        style={{
+                          marginTop: 10,
+                          gap: 9,
+                          fontSize: "1.9rem",
+                          listStyleType: "none",
+                          display: "flex",
+                          alignItems: "center",
+                          fontWeight: "700",
+                        }}
+                      >
+                        {index + 1}
+                        <FormControl variant="outlined" sx={{ minWidth: 300 }}>
+                          <InputLabel>
+                            {selectedCourseKey ? (
+                              <b>{selectedCourseKey}</b>
+                            ) : (
+                              <b>Select A Course</b>
+                            )}
+                          </InputLabel>
+                          <Select
+                            value=""
+                            onChange={(e) =>
+                              handleCourseSelection(e.target.value, choice)
+                            }
+                            label="Select a course"
+                          >
+                            <MenuItem value="">Select a course</MenuItem>
+                            {courses.map((course, index) => {
+                              const courseName = Object.keys(course)[0];
+                              const courseCode = Object.values(course)[0];
+                              if (!selectedCourses[courseCode]) {
+                                return (
+                                  <MenuItem key={index} value={courseCode}>
+                                    {courseName} : {courseCode}
+                                  </MenuItem>
+                                );
+                              }
+                              return null;
+                            })}
+                          </Select>
+                        </FormControl>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <Box sx={{ textAlign: "center" }}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{
+                      mt: 3,
+                      mb: 2,
+                      background: "#27ac1f !important",
+                      borderRadius: "2rem",
+                      padding:".7rem 1.4rem"
+                    }}
+                  >
+                    Submit
+                  </Button>
+
+                  <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={5000}
+                    onClose={handleSnackbarClose}
+                    //style={{ padding: "20rem 31.2rem" }}
+                  >
+                    <MuiAlert
+                      elevation={6}
+                      variant="filled"
+                      onClose={handleSnackbarClose}
+                      severity={snackbarSeverity}
+                    >
+                      {snackbarMessage}
+                    </MuiAlert>
+                  </Snackbar>
+                </Box>
+              </form>
+            </div>
+          </Box>
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 };

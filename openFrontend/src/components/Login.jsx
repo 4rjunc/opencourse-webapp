@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -16,10 +15,9 @@ import Container from "@mui/material/Container";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import logo from "./images/icon6.png";
-import IconButton from "@mui/material/IconButton";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import NavBar from "./NavBar";
 
 
 const CssTextField = styled(TextField)({
@@ -125,44 +123,7 @@ const Login = () => {
           marginRight: "60%",
         }}
       >
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar
-            position="fixed"
-            sx={{
-              backgroundColor: "white",
-              color: "black",
-              borderRadius: "1rem",
-              marginTop: ".5rem",
-              marginLeft: ".3rem",
-              marginRight: ".3rem",
-              width: "99%",
-              boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
-            }}
-          >
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <img
-                  src={logo}
-                  alt="Logo"
-                  style={{ width: "50px", height: "50px", marginLeft: "8px" }}
-                />
-              </IconButton>
-              <Typography
-                variant="h4"
-                component="div"
-                sx={{ flexGrow: 1, fontWeight: 600 }}
-              >
-                OpenCourseMate
-              </Typography>
-            </Toolbar>
-          </AppBar>
-        </Box>
+        <NavBar/>
         <Container component="main" maxWidth="xs">
           <div
             style={{

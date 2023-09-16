@@ -1,20 +1,15 @@
-import { Button, Box, InputLabel, TextField } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import { Button, Box, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import LogoutIcon from "@mui/icons-material/Logout";
 import Table from "./Table";
 import CircularProgress from "@mui/material/CircularProgress";
-import logo from "./images/icon6.png";
 import Footer from "./Footer";
+import NavBar from "./NavBar";
 
 const Administrator = () => {
   const [regNo, setRegNo] = useState("");
@@ -26,12 +21,6 @@ const Administrator = () => {
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
-  };
-
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
   };
 
   const handleSubmit = async (event) => {
@@ -113,52 +102,7 @@ const Administrator = () => {
   return (
     <>
       <div style={{ marginBottom: "3.5rem", marginTop: "3rem" }}>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar
-            position="fixed"
-            sx={{
-              backgroundColor: "white",
-              color: "black",
-              borderRadius: "1rem",
-              marginTop: ".5rem",
-              marginLeft: ".3rem",
-              marginRight: ".3rem",
-              width: "99%",
-              boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)", // Adding the boxShadow property for shadow
-            }}
-          >
-            {" "}
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <img
-                  src={logo}
-                  alt="Logo"
-                  style={{ width: "50px", height: "50px", marginLeft: "8px" }}
-                />
-              </IconButton>
-              <Typography
-                variant="h4"
-                component="div"
-                sx={{ flexGrow: 1, fontWeight: 600 }}
-              >
-                OpenCourseMate <h6>Admin Panel</h6>
-              </Typography>
-              <Button
-                style={{ backgroundColor: "#27ac1f", color: "white" ,borderRadius:"2rem", padding:".7rem"}}
-                onClick={handleLogout}
-                startIcon={<LogoutIcon />}
-              >
-                Logout
-              </Button>
-            </Toolbar>
-          </AppBar>
-        </Box>
+        <NavBar title="Admin Panel" logout="true"/>
         <Box
           sx={{
             display: "flex",

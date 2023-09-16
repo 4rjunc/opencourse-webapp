@@ -147,7 +147,7 @@ const Administrator = () => {
                 component="div"
                 sx={{ flexGrow: 1, fontWeight: 600 }}
               >
-                Open Course - Admin Panel
+                OpenCourseMate <h6>Admin Panel</h6>
               </Typography>
               <Button
                 style={{ backgroundColor: "#27ac1f", color: "white" ,borderRadius:"2rem", padding:".7rem"}}

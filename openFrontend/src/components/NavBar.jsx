@@ -2,18 +2,17 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { Button, Box} from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import logo from "./images/icon6.png";
 
 const NavBar = (props) => {
-
-    const navigate = useNavigate();
-    const handleLogout = () => {
-      localStorage.removeItem("token");
-      navigate("/");
-    };
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <>
@@ -53,18 +52,22 @@ const NavBar = (props) => {
             >
               OpenCourseMate <h6>{props.title}</h6>
             </Typography>
-            {props.logout ? (            <Button
-              style={{
-                backgroundColor: "#27ac1f",
-                color: "white",
-                borderRadius: "2rem",
-                padding: ".7rem",
-              }}
-              onClick={handleLogout}
-              startIcon={<LogoutIcon />}
-            >
-              Logout
-            </Button>): <></>}
+            {props.logout ? (
+              <Button
+                style={{
+                  backgroundColor: "#27ac1f",
+                  color: "white",
+                  borderRadius: "2rem",
+                  padding: ".7rem",
+                }}
+                onClick={handleLogout}
+                startIcon={<LogoutIcon />}
+              >
+                Logout
+              </Button>
+            ) : (
+              <></>
+            )}
           </Toolbar>
         </AppBar>
       </Box>

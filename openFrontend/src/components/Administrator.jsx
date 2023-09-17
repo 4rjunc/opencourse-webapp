@@ -10,6 +10,27 @@ import Table from "./Table";
 import CircularProgress from "@mui/material/CircularProgress";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import { styled } from "@mui/material/styles";
+
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "#228B22",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#228B22",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "grey",
+    },
+    "&:hover fieldset": {
+      borderColor: "black",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#228B22",
+    },
+  },
+});
 
 const Administrator = () => {
   const [regNo, setRegNo] = useState("");
@@ -102,7 +123,7 @@ const Administrator = () => {
   return (
     <>
       <div style={{ marginBottom: "3.5rem", marginTop: "3rem" }}>
-        <NavBar title="Admin Panel" logout="true"/>
+        <NavBar title="Admin Panel" logout="true" />
         <Box
           sx={{
             display: "flex",
@@ -133,7 +154,14 @@ const Administrator = () => {
             ) : (
               <Button
                 variant="contained"
-                sx={{ mb: 2 }}
+                sx={{
+                  mb: 2,
+                  backgroundColor: "#27ac1f",
+                  color: "white",
+                  borderRadius: "1.5rem",
+                  padding: ".7rem",
+                }}
+                style={{}}
                 onClick={handleAllote}
                 startIcon={<FileDownloadIcon />}
               >
@@ -156,7 +184,13 @@ const Administrator = () => {
             ) : (
               <Button
                 variant="contained"
-                sx={{ mb: 2 }}
+                sx={{
+                  mb: 2,
+                  backgroundColor: "#27ac1f",
+                  color: "white",
+                  borderRadius: "1.5rem",
+                  padding: ".7rem",
+                }}
                 onClick={handleCSVDown}
                 startIcon={<FileDownloadIcon />}
               >
@@ -169,7 +203,7 @@ const Administrator = () => {
             <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
               Delete a submission
             </Typography>
-            <TextField
+            <CssTextField
               fullWidth
               variant="outlined"
               label="Register Number"
@@ -179,7 +213,7 @@ const Administrator = () => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mb: 2 }} // Add margin to the bottom
+              sx={{ mb: 2, borderRadius: "1.5rem", padding: ".7rem" }} // Add margin to the bottom
               color="error"
               startIcon={<DeleteIcon />}
             >

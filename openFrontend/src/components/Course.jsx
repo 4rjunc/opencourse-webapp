@@ -130,7 +130,7 @@ const Course = () => {
   return (
     <>
       <div style={{ marginBottom: "4.5rem" }}>
-      <NavBar title="Student's Panel" logout="true"/>
+      <NavBar title="Student Panel" logout="true"/>
         <div style={{ margin: "4rem" }}>
           <Box
             sx={{

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Container } from '@mui/material';
 
 const footerStyle = {

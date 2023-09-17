@@ -79,7 +79,6 @@ const Login = () => {
       password: password,
     };
     console.log(data);
-    //Login is not complete about fix 1) session_token handling 2) unauthorizes asses to /course
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SECRET_KEY}openApi/api/login/`,
@@ -89,13 +88,12 @@ const Login = () => {
       const staff = response.data["staff"];
       console.log("Login Response", response.data);
       localStorage.setItem("token", token);
-      const regno = encodeURIComponent(username); // URL-encode the email
+      const regno = encodeURIComponent(username); 
       let url;
       if (!staff) {
         url = `/course/?regno=${regno}`;
       } else if (staff) {
-        // Use regexadmin.test() here
-        url = `/administrator`; // Correct the typo in the URL path as well
+        url = `/administrator`; 
       }
       setSnackbarOpen(true);
       setSnackbarMessage("Login successful!");

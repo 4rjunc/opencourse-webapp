@@ -5,8 +5,8 @@ import IconButton from "@mui/material/IconButton";
 import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
-import logo from "./images/icon6.png";
-
+import logo from "./images/logo.png";
+import "../index.css"
 const NavBar = (props) => {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -42,7 +42,7 @@ const NavBar = (props) => {
               <img
                 src={logo}
                 alt="Logo"
-                style={{ width: "50px", height: "50px", marginLeft: "8px" }}
+                style={{ width: "50px", height: "50px", marginLeft: "8px" , animation:"scale-up-center 0.5s "}}
               />
             </IconButton>
             <Typography

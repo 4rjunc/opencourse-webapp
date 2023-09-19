@@ -42,7 +42,8 @@ const NavBar = (props) => {
               <img
                 src={logo}
                 alt="Logo"
-                style={{ width: "50px", height: "50px", marginLeft: "8px" , animation:"scale-up-center 0.5s "}}
+                style={{ width: "50px", height: "50px", marginLeft: "8px" }}
+                className="scale-up-center"
               />
             </IconButton>
             <Typography

@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import NavBar from "./NavBar";
+import backgroundImage from "./images/bg4.jpeg"; 
 
 
 const CssTextField = styled(TextField)({
@@ -112,17 +113,44 @@ const Login = () => {
 
   return (
     <div
-      style={{ background: "whiteSmoke", height: "100vh", overflow: "hidden" }}
-    >
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          height: "100%",
+          width: "100%",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          overflow: "hidden",
+        
+        }}
+      >
+      <div
+        style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "rgba(0, 0, 0, 0.8)", // Adjust the opacity as needed
+      }}
+    ></div>
       <div
         style={{
           marginBottom: "3.5rem",
           marginTop: "2rem",
           marginRight: "60%",
+          height: "50vh",  
+          width: "50vw",
         }}
       >
         <NavBar/>
-        <Container component="main" maxWidth="xs">
+        <Container 
+          component="main"
+          maxWidth="xs"
+        >
           <div
             style={{
               position: "absolute",
@@ -157,6 +185,10 @@ const Login = () => {
                 name="regno"
                 onChange={(e) => setUsername(e.target.value)}
                 autoFocus
+                sx={{ 
+                  backgroundColor: 'white',
+                  borderRadius: '2rem'
+              }}
               />
               <CssTextField
                 margin="normal"
@@ -169,6 +201,10 @@ const Login = () => {
                 placeholder="YYYY-MM-DD"
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
+                sx={{ 
+                  backgroundColor: 'white',
+                  borderRadius: '2rem'
+                }}
               />
               {/*<FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
@@ -183,7 +219,10 @@ const Login = () => {
                     mt: 3,
                     mb: 2,
                     background: "#27ac1f !important",
+                    backgroundColor: 'white',
+                  '& .MuiOutlinedInput-root': {
                     borderRadius: "2rem",
+                    }
                   }}
                   onClick={handleSubmit}
                   startIcon={<LoginIcon />}

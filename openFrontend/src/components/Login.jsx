@@ -8,7 +8,7 @@ import LoginIcon from "@mui/icons-material/Login";
 //import Checkbox from '@mui/material/Checkbox';
 //import Link from '@mui/material/Link';
 //import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -18,25 +18,18 @@ import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import NavBar from "./NavBar";
-import backgroundImage from "./images/bg4.jpeg"; 
-
+import backgroundImage from "./images/bg4.jpeg";
 
 const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#228B22',
+  "& label.Mui-focused": {
+    color: "#228B22",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#228B22',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#228B22",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'grey',
-    },
-    '&:hover fieldset': {
-      borderColor: 'black',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#228B22',
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: "#228B22",
     },
   },
 });
@@ -89,12 +82,12 @@ const Login = () => {
       const staff = response.data["staff"];
       console.log("Login Response", response.data);
       localStorage.setItem("token", token);
-      const regno = encodeURIComponent(username); 
+      const regno = encodeURIComponent(username);
       let url;
       if (!staff) {
         url = `/course/?regno=${regno}`;
       } else if (staff) {
-        url = `/administrator`; 
+        url = `/administrator`;
       }
       setSnackbarOpen(true);
       setSnackbarMessage("Login successful!");
@@ -113,44 +106,41 @@ const Login = () => {
 
   return (
     <div
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          height: "100%",
-          width: "100%",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          overflow: "hidden",
-        
-        }}
-      >
-      <div
-        style={{
-        position: "absolute",
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "100%",
+        width: "100%",
+        position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
-        background: "rgba(0, 0, 0, 0.8)", // Adjust the opacity as needed
+        overflow: "hidden",
       }}
-    ></div>
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "rgb(0, 0, 0)", // Adjust the opacity as needed
+          opacity: ".2",
+        }}
+      ></div>
       <div
         style={{
           marginBottom: "3.5rem",
           marginTop: "2rem",
           marginRight: "60%",
-          height: "50vh",  
+          height: "50vh",
           width: "50vw",
         }}
       >
-        <NavBar/>
-        <Container 
-          component="main"
-          maxWidth="xs"
-        >
+        <NavBar />
+        <Container component="main" maxWidth="xs">
           <div
             style={{
               position: "absolute",
@@ -185,10 +175,14 @@ const Login = () => {
                 name="regno"
                 onChange={(e) => setUsername(e.target.value)}
                 autoFocus
-                sx={{ 
-                  backgroundColor: 'white',
-                  borderRadius: '2rem'
-              }}
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                }}
+                variant="filled"
+                InputProps={{
+                  disableUnderline: true, // Disable the underline
+                }}
               />
               <CssTextField
                 margin="normal"
@@ -201,9 +195,13 @@ const Login = () => {
                 placeholder="YYYY-MM-DD"
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
-                sx={{ 
-                  backgroundColor: 'white',
-                  borderRadius: '2rem'
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                }}
+                variant="filled"
+                InputProps={{
+                  disableUnderline: true, // Disable the underline
                 }}
               />
               {/*<FormControlLabel
@@ -219,10 +217,7 @@ const Login = () => {
                     mt: 3,
                     mb: 2,
                     background: "#27ac1f !important",
-                    backgroundColor: 'white',
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: "2rem",
-                    }
+                    borderRadius: "1rem",
                   }}
                   onClick={handleSubmit}
                   startIcon={<LoginIcon />}

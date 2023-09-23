@@ -169,4 +169,6 @@ Sorting of data
     create a button in admin panel which will sort the data from OpenCourseChoice Table and downloads a CSV file. 👍🏼
       an upgradation to this saperate csv files download are per the requirement (using .zip)
 Fixing admin panel
-	Taking admin actions to react rather than django logins -->
+	Taking admin actions to react rather than django logins 
+Add create user to admin panel  
+-->

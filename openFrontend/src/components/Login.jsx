@@ -127,7 +127,7 @@ const Login = () => {
           width: "100%",
           height: "100%",
           background: "rgb(0, 0, 0)", // Adjust the opacity as needed
-          opacity: ".2",
+          opacity: ".6",
         }}
       ></div>
       <div

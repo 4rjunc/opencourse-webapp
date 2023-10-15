@@ -262,7 +262,7 @@ const Login = () => {
         <Container>
           <Toolbar style={contentStyle}>
             <Typography variant="body1" color="white" style={textStyle}>
-              Nehru Arts and Science College Padannakad
+              Nehru Arts and Science College Kanhangad
             </Typography>
           </Toolbar>
         </Container>

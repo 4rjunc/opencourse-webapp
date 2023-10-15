@@ -169,7 +169,7 @@ const Course = () => {
                         }}
                       >
                         {index + 1}
-                        <FormControl variant="outlined" sx={{ minWidth: 300 }}>
+                        <FormControl variant="outlined" sx={{ minWidth: 600 }}>
                           <InputLabel>
                             {selectedCourseKey ? (
                               <b>{selectedCourseKey}</b>
@@ -191,7 +191,7 @@ const Course = () => {
                               if (!selectedCourses[courseCode]) {
                                 return (
                                   <MenuItem key={index} value={courseCode}>
-                                    {courseName} : {courseCode}
+                                     {courseCode} : {courseName} 
                                   </MenuItem>
                                 );
                               }

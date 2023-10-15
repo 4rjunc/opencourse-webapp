@@ -268,7 +268,7 @@ def allotement_csv(request):
     df = data
     df.sort_values(by=['Marks'], ascending=False,inplace=True)
     seats = {"BOT":30,"CHE":34,"COM":66,"CSC":20,"ECO":58,
-                "HIS":55,"MAL":39,"MAT":33,"PED":30,"PHY":42,
+            "HIS":55,"MAL":39,"MAT":33,"PED":30,"PHY":42,
                 "POL":50,"SKT":50,"STA":33,"ZLG":28}
     currently_allotted_seats = {"BOT":0,"CHE":0,"COM":0,"CSC":0,"ECO":0,
                 "HIS":0,"MAL":0,"MAT":0,"PED":0,"PHY":0,

@@ -127,7 +127,7 @@ const Login = () => {
           width: "100%",
           height: "100%",
           background: "rgb(0, 0, 0)", // Adjust the opacity as needed
-          opacity: ".6",
+          opacity: ".5",
         }}
       ></div>
       <div
@@ -152,6 +152,7 @@ const Login = () => {
           ></div>
 
           <CssBaseline />
+
           <Box
             sx={{
               marginTop: 8,
@@ -160,89 +161,103 @@ const Login = () => {
               alignItems: "center",
             }}
           >
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 15 }}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "absolute",
+                top: -75,
+                right: 0, // Adjust this to move the content to the right
+                width: "50%", // Adjust the width as needed
+                height: "100%",
+              }}
             >
-              <CssTextField
-                margin="normal"
-                required
-                fullWidth
-                id="regno"
-                label="Register Number"
-                name="regno"
-                onChange={(e) => setUsername(e.target.value)}
-                autoFocus
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: "1rem",
-                }}
-                variant="filled"
-                InputProps={{
-                  disableUnderline: true, // Disable the underline
-                }}
-              />
-              <CssTextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                placeholder="YYYY-MM-DD"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: "1rem",
-                }}
-                variant="filled"
-                InputProps={{
-                  disableUnderline: true, // Disable the underline
-                }}
-              />
-              {/*<FormControlLabel
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 15 }}
+              >
+                <CssTextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="regno"
+                  label="Register Number"
+                  name="regno"
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoFocus
+                  sx={{
+                    backgroundColor: "white",
+                    borderRadius: "1rem",
+                  }}
+                  variant="filled"
+                  InputProps={{
+                    disableUnderline: true, // Disable the underline
+                  }}
+                />
+                <CssTextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  placeholder="YYYY-MM-DD"
+                  autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  sx={{
+                    backgroundColor: "white",
+                    borderRadius: "1rem",
+                  }}
+                  variant="filled"
+                  InputProps={{
+                    disableUnderline: true, // Disable the underline
+                  }}
+                />
+                {/*<FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
                 />*/}
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button
-                  type="submit"
-                  //fullWidth
-                  variant="contained"
-                  sx={{
-                    mt: 3,
-                    mb: 2,
-                    background: "#27ac1f !important",
-                    borderRadius: "1rem",
-                  }}
-                  onClick={handleSubmit}
-                  startIcon={<LoginIcon />}
-                >
-                  Login
-                </Button>
-              </Box>
-              <Box sx={{ textAlign: "center" }}>
-                <Snackbar
-                  open={snackbarOpen}
-                  autoHideDuration={5000}
-                  onClose={handleSnackbarClose}
-                  //style={{padding:"20rem 31.2rem"}}
-                >
-                  <MuiAlert
-                    elevation={6}
-                    variant="filled"
-                    onClose={handleSnackbarClose}
-                    severity={snackbarSeverity}
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                  <Button
+                    type="submit"
+                    //fullWidth
+                    variant="contained"
+                    sx={{
+                      mt: 3,
+                      mb: 2,
+                      background: "#27ac1f !important",
+                      borderRadius: "1rem",
+                    }}
+                    onClick={handleSubmit}
+                    startIcon={<LoginIcon />}
                   >
-                    {snackbarMessage}
-                  </MuiAlert>
-                </Snackbar>
-              </Box>
-              {/* <Grid container>
+                    Login
+                  </Button>
+                </Box>
+
+                <Box sx={{ textAlign: "center" }}>
+                  <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={5000}
+                    onClose={handleSnackbarClose}
+                    //style={{padding:"20rem 31.2rem"}}
+                  >
+                    <MuiAlert
+                      elevation={6}
+                      variant="filled"
+                      onClose={handleSnackbarClose}
+                      severity={snackbarSeverity}
+                    >
+                      {snackbarMessage}
+                    </MuiAlert>
+                  </Snackbar>
+                </Box>
+                {/* <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
@@ -254,7 +269,8 @@ const Login = () => {
                   </Link>
                 </Grid>
               </Grid>*/}
-            </Box>
+              </Box>
+            </div>
           </Box>
         </Container>
       </div>

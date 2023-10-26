@@ -168,8 +168,8 @@ const Login = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 position: "absolute",
-                top: -75,
-                right: 0, // Adjust this to move the content to the right
+                top: -60,
+                right: 90, // Adjust this to move the content to the right
                 width: "50%", // Adjust the width as needed
                 height: "100%",
               }}

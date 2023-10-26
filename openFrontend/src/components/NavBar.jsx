@@ -22,12 +22,12 @@ const NavBar = (props) => {
           sx={{
             backgroundColor: "white",
             color: "black",
-            borderRadius: "1rem",
-            marginTop: ".5rem",
-            marginLeft: ".3rem",
-            marginRight: ".3rem",
-            width: "99%",
-            boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)", // Adding the boxShadow property for shadow
+            // borderRadius: "1rem",
+            // marginTop: ".5rem",
+            // marginLeft: ".3rem",
+            // marginRight: ".3rem",
+            // width: "99%",
+            boxShadow: " 20px rgb(255, 255, 255)", // Adding the boxShadow property for shadow
           }}
         >
           {" "}

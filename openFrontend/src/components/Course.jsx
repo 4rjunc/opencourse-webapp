@@ -13,6 +13,7 @@ import NavBar from "./NavBar";
 
 const Course = () => {
   const [name, setName] = useState("");
+  const [dob, setDob] = useState("");
   const [regNumber, setRegNumber] = useState("");
   const [dept, setDept] = useState("");
   const [marks, setMarks] = useState(0);
@@ -47,6 +48,7 @@ const Course = () => {
       );
       console.log(response);
       setName(response.data[0].name);
+      setDob(response.data[0].dob)
       setMarks(response.data[0].marks);
       setDept(response.data[0].dept);
       setRegNumber(response.data[0].regno);
@@ -62,6 +64,13 @@ const Course = () => {
     console.log("Submit");
     e.preventDefault();
     //POST-ing data to server
+    console.log("Size", Object.keys(selectedCourses).length)
+    if (Object.keys(selectedCourses).length <= 10){
+      setSnackbarOpen(true);
+      setSnackbarMessage("Select Atleast 10 Choices!");
+      setSnackbarSeverity("error");
+      return
+    }
     const data = {
       regno: regNumber,
       selectedCourses,
@@ -144,6 +153,7 @@ const Course = () => {
               <form onSubmit={handleSubmit}>
                 <p style={{ fontSize: 20, padding: "2rem" }}>
                   <b>Name :</b> {name} <br />
+                  <b>Date Of Birth:</b> {dob}<br/>
                   <b>Marks :</b> {marks} <br />
                   <b>Dept :</b> {dept} <br />
                   <b>Register Number :</b> {regNumber}

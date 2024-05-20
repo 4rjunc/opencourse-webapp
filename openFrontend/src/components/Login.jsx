@@ -84,6 +84,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       const regno = encodeURIComponent(username);
       let url;
+      console.log('Login')
       if (!staff) {
         url = `/course/?regno=${regno}`;
       } else if (staff) {

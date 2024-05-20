@@ -1,7 +1,12 @@
 POST
-http://127.0.0.1:8000/openApi/api/login/
+
+https://google.com/
 
 {
-        'username': 'NA21AECR001',
-        'password': '2004-03-30',
+  "password": "2004-03-30",
+  "username": "NA21AECR001
 }
+
+
+
+

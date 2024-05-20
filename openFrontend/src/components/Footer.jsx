@@ -37,8 +37,6 @@ const Footer = () => {
   const handleScroll = () => {
     // Check if the user has scrolled to the bottom of the page
     const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
-
-    // Toggle the visibility of the footer based on scroll position
     setShowFooter(isAtBottom);
   };
 
@@ -47,7 +45,7 @@ const Footer = () => {
       <Container>
         <Toolbar style={contentStyle}>
           <Typography variant="body1" color="inherit" style={textStyle}>
-            Nehru Arts and Science College Padannakad
+            Nehru Arts and Science College Kanhangad
           </Typography>
         </Toolbar>
       </Container>

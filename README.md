@@ -3,7 +3,7 @@
 OpenCourse is a programme in our college where students of other deparments are given an oppertunity to learn courses out of their majors. The courses will be provided by other deparments of the college. The allotement of students to the courses is managed by this Webapp
 
 ## 📸 Screenshots
-
+![alt text](<src/Screenshot 2024-06-02 at 11.53.00.png>)
 ![Login Page](./src/s1.png)
 
 <!-- ![App Screenshot](./doc/s2.png)

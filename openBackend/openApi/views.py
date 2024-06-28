@@ -130,6 +130,7 @@ def delete_submit(request):
     else:
         return JsonResponse({"message": "Invalid request"}, status=400)
 
+
 def submissions_csv(request):
     opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
     courses_list = [course.course_code for course in opencourse]
@@ -157,9 +158,9 @@ def submissions_csv(request):
     # print(f"{data = }")
     # data.to_csv('allote.csv', index=False)
     response = HttpResponse(content_type="text/csv")
-    response[
-        "Content-Disposition"
-    ] = 'attachment; filename="opencourse_submissions.csv"'
+    response["Content-Disposition"] = (
+        'attachment; filename="opencourse_submissions.csv"'
+    )
     # Write the DataFrame to the response
     data.to_csv(response, index=False)
     return response
@@ -232,8 +233,8 @@ def get_submissions(request):
         else:
             return JsonResponse({"message": "No submissions found"}, status=404)
 
-        
-#Allotement 
+
+# Allotement
 def allotement_csv(request):
     opencourse = Course.objects.filter(Q(course_type=2) & Q(syllabus_intro_year=2019))
     courses_list = [course.course_code for course in opencourse]
@@ -258,95 +259,146 @@ def allotement_csv(request):
 
     data = pd.DataFrame(student_data)
     data = data.T
- 
+
     def is_available(dept):
-            return currently_allotted_seats[dept] < seats[dept]
+        return currently_allotted_seats[dept] < seats[dept]
 
     def update_seats(dept):
-            currently_allotted_seats[dept] = currently_allotted_seats[dept] + 1
+        currently_allotted_seats[dept] = currently_allotted_seats[dept] + 1
 
     df = data
-    df.sort_values(by=['Marks'], ascending=False,inplace=True)
-    seats = {"BOT":30,"CHE":34,"COM":66,"CSC":20,"ECO":58,
-            "HIS":55,"MAL":39,"MAT":33,"PED":30,"PHY":42,
-                "POL":50,"SKT":50,"STA":33,"ZLG":28}
-    currently_allotted_seats = {"BOT":0,"CHE":0,"COM":0,"CSC":0,"ECO":0,
-                "HIS":0,"MAL":0,"MAT":0,"PED":0,"PHY":0,
-                "POL":0,"SKT":0,"STA":0,"ZLG":0}
+    df.sort_values(by=["Marks"], ascending=False, inplace=True)
+    seats = {
+        "BOT": 30,
+        "CHE": 34,
+        "COM": 66,
+        "CSC": 20,
+        "ECO": 58,
+        "HIS": 55,
+        "MAL": 39,
+        "MAT": 33,
+        "PED": 30,
+        "PHY": 42,
+        "POL": 50,
+        "SKT": 50,
+        "STA": 33,
+        "ZLG": 28,
+    }
+    currently_allotted_seats = {
+        "BOT": 0,
+        "CHE": 0,
+        "COM": 0,
+        "CSC": 0,
+        "ECO": 0,
+        "HIS": 0,
+        "MAL": 0,
+        "MAT": 0,
+        "PED": 0,
+        "PHY": 0,
+        "POL": 0,
+        "SKT": 0,
+        "STA": 0,
+        "ZLG": 0,
+    }
 
-    courses ={"5D01BOT":"BOT","5D03BOT":"BOT",
-                "5D03CHE":"CHE","5D04CHE":"CHE",
-                "5D01COM":"COM","5D03COM":"COM",
-                "5D02CSC":"CSC","5D05CSC":"CSC",
-                "5D01ECO":"ECO","5D04ECO":"ECO",
-                "5D01HIS":"HIS","5D02HIS":"HIS","5D03HIS":"HIS",
-                "5D03MAL":"MAL","5D04MAL":"MAL",
-                "5D02MAT":"MAT","5D04MAT":"MAT",
-                "5D05PED":"PED",
-                "5D03PHY":"PHY","5D05PHY":"PHY",
-                "5D01POL":"POL","5D05POL":"POL",
-                "5D02SKT":"SKT","5D05SKT":"SKT",
-                "5D02STA":"STA","5D04STA":"STA",
-                "5D02ZLG":"ZLG","5D03ZLG":"ZLG"}
+    courses = {
+        "5D01BOT": "BOT",
+        "5D03BOT": "BOT",
+        "5D03CHE": "CHE",
+        "5D04CHE": "CHE",
+        "5D01COM": "COM",
+        "5D03COM": "COM",
+        "5D02CSC": "CSC",
+        "5D05CSC": "CSC",
+        "5D01ECO": "ECO",
+        "5D04ECO": "ECO",
+        "5D01HIS": "HIS",
+        "5D02HIS": "HIS",
+        "5D03HIS": "HIS",
+        "5D03MAL": "MAL",
+        "5D04MAL": "MAL",
+        "5D02MAT": "MAT",
+        "5D04MAT": "MAT",
+        "5D05PED": "PED",
+        "5D03PHY": "PHY",
+        "5D05PHY": "PHY",
+        "5D01POL": "POL",
+        "5D05POL": "POL",
+        "5D02SKT": "SKT",
+        "5D05SKT": "SKT",
+        "5D02STA": "STA",
+        "5D04STA": "STA",
+        "5D02ZLG": "ZLG",
+        "5D03ZLG": "ZLG",
+    }
 
     open_list = []
 
     for i, stud in df.iterrows():
-            allotted = False
-            for choice in range(1,25):
-                l = stud[stud  == choice].index.tolist()
-                for course, dept in courses.items():
-                    try :
-                        if l[0] == course:
-                            if is_available(dept):
-                                update_seats(dept)
-                                allotted = True
-                                allotment_row = []
-                                allotment_row.append(stud["Reg No."])
-                                allotment_row.append(stud["Name"])
-                                allotment_row.append(stud["Class"])
-                                allotment_row.append(stud["Marks"])
-                                allotment_row.append(course)
-                                allotment_row.append(choice)
-                                open_list.append(allotment_row)
-                                break
-                    except IndexError:
-                        break
-                if allotted == True:
+        allotted = False
+        for choice in range(1, 25):
+            l = stud[stud == choice].index.tolist()
+            for course, dept in courses.items():
+                try:
+                    if l[0] == course:
+                        if is_available(dept):
+                            update_seats(dept)
+                            allotted = True
+                            allotment_row = []
+                            allotment_row.append(stud["Reg No."])
+                            allotment_row.append(stud["Name"])
+                            allotment_row.append(stud["Class"])
+                            allotment_row.append(stud["Marks"])
+                            allotment_row.append(course)
+                            allotment_row.append(choice)
+                            open_list.append(allotment_row)
+                            break
+                except IndexError:
                     break
+            if allotted == True:
+                break
     temp_dir = tempfile.mkdtemp()
 
-    data = pd.DataFrame(open_list)  
-    header = ["Reg No.", "Name","Class", "Marks", "Course Code", "Choice"]
+    data = pd.DataFrame(open_list)
+    header = ["Reg No.", "Name", "Class", "Marks", "Course Code", "Choice"]
     data.columns = header
-    data.to_csv(os.path.join(temp_dir, f'Allotement_Master.csv'), index=False)
-    
-    #Creating .csv's wrt course code
+    data.to_csv(os.path.join(temp_dir, f"Allotement_Master.csv"), index=False)
+
+    # Creating .csv's wrt course code
     opencourse_list = data["Course Code"].unique()
-    opencourse_by_coursecode={}
+    opencourse_by_coursecode = {}
     for course_code in opencourse_list:
         opencourse_by_coursecode[course_code] = data[data["Course Code"] == course_code]
     for course_code in opencourse_list:
-        opencourse_by_coursecode[course_code].to_csv(os.path.join(temp_dir, f'{course_code}.csv'), index=False)
+        opencourse_by_coursecode[course_code].to_csv(
+            os.path.join(temp_dir, f"{course_code}.csv"), index=False
+        )
 
-    #Creating .csv's wrt department
-    opencourse_by_dept={}
+    # Creating .csv's wrt department
+    opencourse_by_dept = {}
     for dept in courses.values():
         opencourse_by_dept[dept] = data[data["Course Code"].str[-3:] == dept]
     for dept in courses.values():
-        opencourse_by_dept[dept].to_csv(os.path.join(temp_dir, f'{dept}.csv'), index=False)
+        opencourse_by_dept[dept].to_csv(
+            os.path.join(temp_dir, f"{dept}.csv"), index=False
+        )
 
     # Creating Zip file
-    zip_filename = 'OpenCourse_Allotement.zip'
-    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    zip_filename = "OpenCourse_Allotement.zip"
+    with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
         for root, dirs, files in os.walk(temp_dir):
             for file in files:
-                zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), temp_dir))
+                zipf.write(
+                    os.path.join(root, file),
+                    os.path.relpath(os.path.join(root, file), temp_dir),
+                )
 
     # Create an HTTP response with the ZIP file
-    response = HttpResponse(open(zip_filename, 'rb').read(), content_type='application/zip')
-    response['Content-Disposition'] = f'attachment; filename="{zip_filename}"'
-    
+    response = HttpResponse(
+        open(zip_filename, "rb").read(), content_type="application/zip"
+    )
+    response["Content-Disposition"] = f'attachment; filename="{zip_filename}"'
+
     # Clean up the temporary directory and ZIP file
     os.unlink(zip_filename)
     shutil.rmtree(temp_dir)

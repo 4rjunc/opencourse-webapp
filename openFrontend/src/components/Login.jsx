@@ -76,7 +76,7 @@ const Login = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SECRET_KEY}openApi/api/login/`,
-        data
+        data,
       );
       const token = response.data["session_token"];
       const staff = response.data["staff"];
@@ -84,7 +84,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       const regno = encodeURIComponent(username);
       let url;
-      console.log('Login')
+      console.log("Login");
       if (!staff) {
         url = `/course/?regno=${regno}`;
       } else if (staff) {
@@ -246,7 +246,7 @@ const Login = () => {
                     open={snackbarOpen}
                     autoHideDuration={5000}
                     onClose={handleSnackbarClose}
-                    //style={{padding:"20rem 31.2rem"}}
+                  //style={{padding:"20rem 31.2rem"}}
                   >
                     <MuiAlert
                       elevation={6}
